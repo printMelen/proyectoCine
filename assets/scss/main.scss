@@ -1,0 +1,11 @@
+/*variables CSS*/
+//@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;400;500;600;700&display=swap');
+@import './assets/scss/base/variables';
+/*archivo reset*/
+@import './assets/scss/base/reset';
+/*CSS basico para la web*/
+@import './assets/scss/base/base';
+/*layouts*/
+@import './assets/scss/layout/header';
+@import './assets/scss/layout/main';
+@import './assets/scss/layout/footer';
