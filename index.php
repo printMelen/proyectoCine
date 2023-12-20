@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="container bg-back max-w-screen-2xl mx-auto">
+<body class="container bg-back max-w-screen-2xl mx-auto font-Poppins">
      <?php include("assets/templates/header.php"); ?>
      <main>
 

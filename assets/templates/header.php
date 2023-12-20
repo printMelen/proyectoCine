@@ -1,6 +1,6 @@
 <header class="container max-w-screen-xl mx-auto pt-[14px]">
 <!-- minmax(480px,819px) -->
-    <nav class="grid grid-cols-[180px_480px_121px] justify-between items-center">
+    <nav class="grid grid-cols-[180px_891px_121px] items-center justify-between">
         <a href="#">
             <img src="assets/images/playOn.svg" alt="" srcset="">
         </a>
@@ -10,7 +10,7 @@
             <li><a href="#">Series</a></li>
             <li><a href="#">Top</a></li>
         </ul>
-        <div class="flex items-center gap-[25px]">
+        <div class="flex items-center gap-[25px] justify-end">
             <a href="#" >
                 <img src="assets/images/lupa.svg" alt="" srcset="">
             </a>
