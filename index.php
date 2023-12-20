@@ -18,9 +18,10 @@
 
 </head>
 
-<body>
+<body class="container bg-back max-w-screen-2xl mx-auto">
      <?php include("assets/templates/header.php"); ?>
      <main>
+
      </main>
      <?php include("assets/templates/footer.php"); ?>
      <script src="assets/js/custom.js"></script>

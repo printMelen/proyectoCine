@@ -9,7 +9,7 @@ export default {
     extend: {
       maxWidth:{
         'screen-2xl':'1600px',
-        'screen-xl':'1180px',
+        'screen-xl':'1500px',
       }
     },
     fontFamily: {
@@ -18,7 +18,7 @@ export default {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'back': '#EEEEF6',
+      'back': '#020510',
       'pink': '#EF2A82',
       'midnight': '#0F1F4B',
       'white': '#FFF',
