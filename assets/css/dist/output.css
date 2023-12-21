@@ -603,6 +603,10 @@ video {
   margin-right: 2px;
 }
 
+.mb-\[16px\] {
+  margin-bottom: 16px;
+}
+
 .flex {
   display: flex;
 }
@@ -789,6 +793,10 @@ video {
 
 .pt-\[7px\] {
   padding-top: 7px;
+}
+
+.pb-\[11px\] {
+  padding-bottom: 11px;
 }
 
 .font-Poppins {
