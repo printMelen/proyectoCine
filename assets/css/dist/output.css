@@ -583,12 +583,32 @@ video {
   margin-right: auto;
 }
 
+.mb-\[10px\] {
+  margin-bottom: 10px;
+}
+
+.mb-\[14px\] {
+  margin-bottom: 14px;
+}
+
+.mb-\[17px\] {
+  margin-bottom: 17px;
+}
+
+.mb-\[27px\] {
+  margin-bottom: 27px;
+}
+
 .flex {
   display: flex;
 }
 
 .grid {
   display: grid;
+}
+
+.h-\[50px\] {
+  height: 50px;
 }
 
 .h-\[516px\] {
@@ -601,6 +621,14 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.w-\[100\%\] {
+  width: 100%;
+}
+
+.w-\[300px\] {
+  width: 300px;
 }
 
 .w-\[500px\] {
@@ -667,6 +695,10 @@ video {
   gap: 9px;
 }
 
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
 .rounded-\[15px\] {
   border-radius: 15px;
 }
@@ -680,9 +712,8 @@ video {
   background-color: rgb(2 5 16 / var(--tw-bg-opacity));
 }
 
-.bg-bubble-gum {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 119 233 / var(--tw-bg-opacity));
+.bg-backInputs {
+  background-color: #020510B3;
 }
 
 .bg-greyBotones {
@@ -693,6 +724,11 @@ video {
   background-color: #FFFFFF33;
 }
 
+.bg-pink {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 44 120 / var(--tw-bg-opacity));
+}
+
 .bg-backLogin {
   background-image: url('../../images/backgroundLogin.svg');
 }
@@ -701,8 +737,16 @@ video {
   padding-bottom: 10px;
 }
 
+.pb-\[12px\] {
+  padding-bottom: 12px;
+}
+
 .pb-\[8px\] {
   padding-bottom: 8px;
+}
+
+.pl-\[21px\] {
+  padding-left: 21px;
 }
 
 .pl-\[8px\] {
@@ -721,6 +765,10 @@ video {
   padding-top: 3px;
 }
 
+.pt-\[7px\] {
+  padding-top: 7px;
+}
+
 .font-Poppins {
   font-family: Poppins, sans-serif;
 }
@@ -737,8 +785,20 @@ video {
   font-size: 18.75px;
 }
 
+.text-22 {
+  font-size: 22px;
+}
+
+.text-30 {
+  font-size: 30px;
+}
+
 .font-400 {
   font-weight: 400;
+}
+
+.font-600 {
+  font-weight: 600;
 }
 
 .text-grey {
@@ -749,6 +809,14 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.decoration-current {
+  text-decoration-color: currentColor;
+}
+
+.decoration-solid {
+  text-decoration-style: solid;
 }
 
 .backdrop-blur-\[10px\] {

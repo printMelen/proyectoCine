@@ -15,7 +15,7 @@
         </nav>
      </header>
      <main class="container max-w-screen-2xl bg-backLogin h-[690px] flex flex-col justify-center">
-        <div class="h-[516px] w-[500px] mx-auto bg-login backdrop-blur-[10px] rounded-[15px]">
+        <div class="h-[516px] w-[500px] mx-auto bg-login backdrop-blur-[10px] rounded-[15px] flex flex-col justify-center">
 
         </div>
      </main>
