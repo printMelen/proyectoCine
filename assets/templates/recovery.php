@@ -7,7 +7,8 @@
     <link href="../css/dist/output.css" rel="stylesheet">
 </head>
 <body class="bg-back">
-<div class="h-[516px] w-[500px] mx-auto bg-login backdrop-blur-[10px] rounded-[15px] flex flex-col justify-center">
+    <div class="h-[516px] w-[500px] mx-auto bg-login backdrop-blur-[10px] rounded-[15px] flex flex-col justify-center">
+            <a href=""><img src="../images/flechaIzq.svg" alt="" class="w-[50px] h-[35px] absolute mt-[-123px] ml-[17px]"></a>
             <div class="w-[300px] mx-auto text-white ">
                 <h3 class="text-white text-30 font-600 pb-[11px]">Recuperación de contraseña</h3>
                 <form action="index.php?peticion=login" method="post">

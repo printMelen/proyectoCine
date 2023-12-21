@@ -8,7 +8,8 @@
 </head>
 <body class="bg-back">
 <div class="h-[516px] w-[500px] mx-auto bg-login backdrop-blur-[10px] rounded-[15px] flex flex-col justify-center">
-            <div class="w-[300px] mx-auto text-white ">
+    <a href=""><img src="../images/flechaIzq.svg" alt="" class="w-[50px] h-[35px] absolute ml-[17px]"></a>
+    <div class="w-[300px] mx-auto text-white ">
                 <h3 class="text-white text-30 font-600 pb-[12px]">Registro</h3>
                 <form action="index.php?peticion=login" method="post">
                     <input type="text" placeholder="Nombre y apellidos" name="" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
