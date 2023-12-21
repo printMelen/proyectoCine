@@ -1,4 +1,7 @@
-<?php require_once("assets/config/config.php"); ?>
+<?php 
+require_once "autoload.php";
+include "app/controller/enrutador.php";
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>   <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
 <!--[if IE 7]> 		<html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
