@@ -13,7 +13,7 @@
      <meta name="author" content="Álvaro Redondo Rodríguez">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta name="description" content="">
-     <title>Tailwind Page</title>
+     <title>PlayOn</title>
      <link href="assets/css/dist/output.css" rel="stylesheet">
 
 </head>

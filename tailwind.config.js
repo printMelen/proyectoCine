@@ -31,6 +31,9 @@ export default {
       500: '500',
       600: '600',
     },
+    backgroundImage: {
+      'backLogin': "url('../../images/backgroundLogin.svg')",
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -39,7 +42,7 @@ export default {
       'grey': '#9E9E9E',
       'greyBotones': '#FFFFFF1A',
       'white': '#FFF',
-      'silver': '#ecebff',
+      'login': '#FFFFFF33',
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
     },
