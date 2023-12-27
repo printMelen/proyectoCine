@@ -10,6 +10,7 @@ export default {
       maxWidth:{
         'screen-2xl':'1600px',
         'screen-xl':'1500px',
+        'screen-xs':'1300px',
       }
     },
     fontFamily: {
@@ -43,6 +44,7 @@ export default {
       'grey': '#9E9E9E',
       'greyBotones': '#FFFFFF1A',
       'white': '#FFF',
+      'whiteAdmin': '#F8F9FA',
       'login': '#FFFFFF33',
       'backInputs': '#020510B3',
       'bermuda': '#78dcca',
