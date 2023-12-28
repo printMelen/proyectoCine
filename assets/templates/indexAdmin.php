@@ -21,7 +21,12 @@
 <body class="flex flex-row-reverse container bg-whiteAdmin max-w-screen-2xl justify-between mx-auto font-Poppins">
      <div class="container max-w-screen-xs flex flex-col h-[100%]">
           <?php include("headerAdmin.php"); ?>
-          <?php include("mostrarPelis.php"); ?>
+          <?php include("buscador.php"); ?>
+          <?php 
+          for ($i=0; $i <2 ; $i++) { 
+               include("carrusel.php"); 
+          }
+          ?>
      </div>
      <?php include("asideAdmin.php"); ?>     
      <script src="assets/js/custom.js"></script>
