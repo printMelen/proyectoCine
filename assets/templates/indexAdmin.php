@@ -21,7 +21,7 @@
 <body class="flex flex-row-reverse container bg-whiteAdmin max-w-screen-2xl justify-between mx-auto font-Poppins">
      <div class="container max-w-screen-xs flex flex-col h-[100%]">
           <?php include("headerAdmin.php"); ?>
-          <?php include("formularioPeli.php"); ?>
+          <?php include("mostrarPelis.php"); ?>
      </div>
      <?php include("asideAdmin.php"); ?>     
      <script src="assets/js/custom.js"></script>
