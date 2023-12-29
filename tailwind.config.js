@@ -11,6 +11,8 @@ export default {
         'screen-2xl':'1600px',
         'screen-xl':'1500px',
         'screen-xs':'1300px',
+        'screen-1200':'1200px',
+        'screen-sm':'1100px',
       }
     },
     fontFamily: {

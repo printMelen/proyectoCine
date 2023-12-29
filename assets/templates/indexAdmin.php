@@ -23,9 +23,9 @@
           <?php include("headerAdmin.php"); ?>
           <?php include("buscador.php"); ?>
           <?php 
-          for ($i=0; $i <2 ; $i++) { 
+          
                include("carrusel.php"); 
-          }
+          
           ?>
      </div>
      <?php include("asideAdmin.php"); ?>     
