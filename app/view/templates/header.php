@@ -20,7 +20,7 @@
             <a href="#">
                 <img src="assets/images/campana.svg" alt="" srcset="">
             </a>
-            <a href="#">
+            <a href="index.php?peticion=login">
                 <img src="assets/images/usuario.svg" alt="" srcset="">
             </a>
         </div>

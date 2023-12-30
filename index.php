@@ -1,4 +1,7 @@
-
+<?
+require_once "autoload.php";
+include "app/controller/enrutador.php";
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>   <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
 <!--[if IE 7]> 		<html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
@@ -14,7 +17,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta name="description" content="">
      <title>PlayOn</title>
-     <link href="assets/css/dist/output.css" rel="stylesheet">
+     <link href="app/view/css/dist/output.css" rel="stylesheet">
 
 </head>
 

@@ -16,13 +16,14 @@
 //     }
 // });
 
-$ctl = $_REQUEST['ctl'] ?? 'default';
+$ctl = $_REQUEST['peticion'] ?? NULL;
 
 switch ($ctl) {
     case 'register':
         RegisterController::inicio();
         break;
-    case 'producto':
+    case 'login':
+        echo "Hola";
         ProductoController::inicio();
         break;
     default:
