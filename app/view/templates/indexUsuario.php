@@ -13,7 +13,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta name="description" content="">
      <title>PlayOn</title>
-     <link href="../css/dist/output.css" rel="stylesheet">
+     <link href="app/view/css/dist/output.css" rel="stylesheet">
 
 </head>
 

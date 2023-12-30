@@ -17,6 +17,7 @@
 // });
 
 $ctl = $_REQUEST['peticion'] ?? NULL;
+ViewController::cargarVista("indexUsuario");
 
 switch ($ctl) {
     case 'register':
@@ -27,6 +28,6 @@ switch ($ctl) {
         ProductoController::inicio();
         break;
     default:
-        ViewController::cargarVista("indexUsuario");
         break;
 }
+
