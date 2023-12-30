@@ -24,7 +24,7 @@
           <?php include("buscador.php"); ?>
           <?php 
           
-               include("carrusel.php"); 
+               include("mostrarUsers.php"); 
           
           ?>
      </div>
