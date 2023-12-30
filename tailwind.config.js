@@ -2,8 +2,8 @@
 export default {
   content: [
     './*.{html,php}',
-    './assets/templates/*.{html,php}',
-    './assets/js/*.{html,js}',
+    './app/view/templates/*.{html,php}',
+    './app/view/js/*.{html,js}',
   ],
   theme: {
     extend: {

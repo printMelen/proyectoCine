@@ -27,6 +27,6 @@ switch ($ctl) {
         ProductoController::inicio();
         break;
     default:
-        DefaultController::inicio();
+        ViewController::cargarVista("indexUsuario");
         break;
 }
