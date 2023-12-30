@@ -4,16 +4,16 @@ class Register{
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Retrieve and clean input values
-            $name = Register::clean_input($_POST["name"]);
-            $surnames = Register::clean_input($_POST["surnames"]);
+            $nombreApellidos = Register::clean_input($_POST["nombreApellidos"]);
             $nif = Register::clean_input($_POST["nif"]);
             $email = Register::clean_input($_POST["email"]);
             $password = Register::clean_input($_POST["password"]);
-            $confirm_password = Register::clean_input($_POST["confirm_password"]);
+            $confirm_password = Register::clean_input($_POST["confPassword"]);
         
+            $array=explode(",",$nombreApellidos);
             // Validate Name and Surnames
-            if (empty($name) || empty($surnames)) {
-                $error_message = "Name and Surnames are required.";
+            if (empty($nombreApellidos)) {
+                //PONER EL VALUE EN NOMBRE
             } elseif (Register::starts_with_number($name) || Register::starts_with_number($surnames)) {
                 $error_message = "Name and Surnames cannot start with a number.";
             }

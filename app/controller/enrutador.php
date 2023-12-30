@@ -19,8 +19,8 @@
 $ctl = $_REQUEST['ctl'] ?? 'default';
 
 switch ($ctl) {
-    case 'usuario':
-        UsuarioController::inicio();
+    case 'register':
+        RegisterController::inicio();
         break;
     case 'producto':
         ProductoController::inicio();

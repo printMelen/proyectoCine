@@ -1,11 +1,9 @@
 <?php
-class UsuarioController
+class RegisterController
 {
     public static function inicio()
     {
-        echo "<br><h4> Estoy en el método inicio de UsuarioController</h4><br> ";
-        echo "<br>LLamo al metodo mostrarTodos() mi propia clase<br>";
-        self::mostrarTodos();
+        Register::comprobar();
     }
     public static function mostrarTodos()
     {
