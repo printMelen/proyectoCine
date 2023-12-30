@@ -18,8 +18,8 @@
 </head>
 
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
-     <?php include("header.php"); ?>
-     <?php include("footer.php"); ?>
+     <?php include("app/view/templates/header.php"); ?>
+     <?php include("app/view/templates/footer.php"); ?>
      <script src="../js/custom.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <!-- grid-cols-[180px_891px_121px] -->
     <nav class="grid grid-cols-2 items-center justify-between text-18.75 font-400">
         <div class="flex items-center gap-[54px]">
-            <a href="#">
+            <a href="index.php">
                 <img src="app/view/images/playOn.svg" alt="" srcset="">
             </a>
             <ul class="text-white flex gap-[50px]">

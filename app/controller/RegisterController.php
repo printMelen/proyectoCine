@@ -3,7 +3,7 @@ class RegisterController
 {
     public static function inicio()
     {
-        Register::comprobar();
+        ViewController::cargarVista("loginBack");
     }
     public static function mostrarTodos()
     {

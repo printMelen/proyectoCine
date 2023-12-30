@@ -17,17 +17,16 @@
 // });
 
 $ctl = $_REQUEST['peticion'] ?? NULL;
-ViewController::cargarVista("indexUsuario");
 
 switch ($ctl) {
     case 'register':
         RegisterController::inicio();
         break;
     case 'login':
-        echo "Hola";
-        ProductoController::inicio();
+        LoginController::inicio();
         break;
     default:
+        ViewController::cargarVista("indexUsuario");
         break;
 }
 
