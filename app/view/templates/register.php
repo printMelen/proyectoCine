@@ -11,7 +11,7 @@
     <a href="index.php?peticion=login"><img src="app/view/images/flechaIzq.svg" alt="" class="w-[50px] h-[35px] absolute ml-[17px]"></a>
     <div class="w-[300px] mx-auto text-white ">
                 <h3 class="text-white text-30 font-600 pb-[12px]">Registro</h3>
-                <form action="index.php?peticion=register" method="post">
+                <form action="index.php?peticion=register&enviado=si" method="post">
                     <input type="text" placeholder="Nombre y apellidos" name="nombreApellidos" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
                     <input type="text" placeholder="NIF" name="nif" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
                     <input type="email" placeholder="Email" name="email" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">

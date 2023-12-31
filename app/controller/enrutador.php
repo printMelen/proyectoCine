@@ -20,7 +20,11 @@ $ctl = $_REQUEST['peticion'] ?? NULL;
 
 switch ($ctl) {
     case 'register':
-        RegisterController::inicio();
+        if ($_GET['enviado']=="si") {
+            RegisterController::completado();
+        }else{
+            RegisterController::inicio();
+        }
         break;
     case 'login':
         LoginController::inicio();
