@@ -17,7 +17,8 @@
      <main class="container max-w-screen-2xl bg-backLogin h-[690px] flex flex-col justify-center">
         <div class="h-[516px] w-[500px] mx-auto bg-login backdrop-blur-[10px] rounded-[15px] flex flex-col justify-center">
             <?php
-            include $_GET['peticion'].'.php';?>
+            include $_GET['peticion'].'.php';
+            ?>
 
         </div>
      </main>
