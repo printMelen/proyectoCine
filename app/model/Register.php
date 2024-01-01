@@ -12,12 +12,7 @@ class Register
             $confirm_password = Register::clean_input($_POST["confPassword"]);
 
             $nombre = explode(",", $nombreApellidos);
-            echo $nombre[0];
-            echo $nombre[1];
-            echo $email;
-            echo $nif;
-            echo $password;
-            echo $confirm_password;
+            
             // Validate Name and Surnames
             if (empty($nombreApellidos)) {
                 //PONER EL VALUE EN NOMBRE
@@ -51,7 +46,8 @@ class Register
     {
         try {
             $db = Conectar::conexion();
-            $sql = "INSERT INTO `usuariosc`(`id`,`correo`, `nombre`, `apellidos`, `NIF`, `activo`, `avatar`, `hash_pass`, `rol`) VALUES ('',?,?,?,?,'0','avatarPorDefecto.svg',?,'cliente')";
+            $sql = "INSERT INTO `usuariosc`(`correo`, `nombre`, `apellidos`, `NIF`, `activo`, `avatar`, `hash_pass`, `rol`) VALUES (?,?,?,?,'0','avatarPorDefecto.svg',?,'cliente')";
+            $resultado = $db->prepare($sql);
             $resultado = $db->prepare($sql);
             $resultado->bindParam(1, $email, PDO::PARAM_STR);
             $resultado->bindParam(2, $nombre, PDO::PARAM_STR);
@@ -59,12 +55,17 @@ class Register
             $resultado->bindParam(4, $nif, PDO::PARAM_STR);
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $resultado->bindParam(5, $hashed_password, PDO::PARAM_STR);
-            $resultado->execute();  
+            $resultado->execute(); 
+            
+            $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+            $resultado = null; // obligado para cerrar la conexión
+            $db = null; 
         } catch (PDOException $e) {
             echo "<br>Error: " . $e->getMessage();  
             echo "<br>Línea del error: " . $e->getLine();  
             echo "<br>Archivo del error: " . $e->getFile();
         }
+        
     }
     // Function to sanitize and validate input
     public static function  clean_input($data)

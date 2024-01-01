@@ -15,8 +15,7 @@ SET time_zone = "+00:00";
 -- contraseña del administrador, admin
 -- contraseña de serafina, serafina
 --
-CREATE DATABASE IF NOT EXISTS `cine` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE `cine`;
+
 
 -- --------------------------------------------------------
 

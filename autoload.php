@@ -1,7 +1,7 @@
 <?php
 spl_autoload_register(function ($clase) {
     $paths = [
-        'bd/' . $clase . '.php',
+        'database/' . $clase . '.php',
         'app/controller/' . $clase . '.php',
         'app/model/' . $clase . '.php',
         'app/view/templates/' . $clase . '.php',
