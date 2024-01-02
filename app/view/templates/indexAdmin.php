@@ -14,17 +14,17 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta name="description" content="">
      <title>PlayOn</title>
-     <link href="../css/dist/output.css" rel="stylesheet">
+     <link href="app/view/css/dist/output.css" rel="stylesheet">
 
 </head>
 
 <body class="flex flex-row-reverse container bg-whiteAdmin max-w-screen-2xl justify-between mx-auto font-Poppins">
      <div class="container max-w-screen-xs flex flex-col h-[100%]">
           <?php include("headerAdmin.php"); ?>
-          <?php include("buscador.php"); ?>
+          <?php //include("buscador.php"); ?>
           <?php 
           
-               include("mostrarUsers.php"); 
+               include("formularioPeli.php"); 
           
           ?>
      </div>
