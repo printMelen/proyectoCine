@@ -38,7 +38,8 @@ class Register
                 // For demonstration purposes, let's just display a success message
                 echo "Registration successful!";
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
-                ControllerCorreo::enviarCorreo($_SESSION['email']);
+                CrearCookieController::crear($email);
+                ControllerCorreo::enviarCorreo($_COOKIE['correoUsuario']);
             }
         }
     }
@@ -60,7 +61,6 @@ class Register
             $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
             $resultado = null; // obligado para cerrar la conexión
             $db = null; 
-            $_SESSION["email"]=$email;
         } catch (PDOException $e) {
             echo "<br>Error: " . $e->getMessage();  
             echo "<br>Línea del error: " . $e->getLine();  
