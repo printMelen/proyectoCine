@@ -15,7 +15,7 @@
 //         }
 //     }
 // });
-
+session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
 
 switch ($ctl) {
@@ -30,6 +30,7 @@ switch ($ctl) {
         LoginController::inicio();
         break;
     case 'validar':
+        echo $_COOKIE['correoUsuario'];
         ValidarController::validar();
         break;
     default:

@@ -38,8 +38,9 @@ class Register
                 // For demonstration purposes, let's just display a success message
                 echo "Registration successful!";
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
+                $_SESSION['correo']=$email;
                 CrearCookieController::crear($email);
-                ControllerCorreo::enviarCorreo($_COOKIE['correoUsuario']);
+                ControllerCorreo::enviarCorreo($_SESSION['correo']);
             }
         }
     }
