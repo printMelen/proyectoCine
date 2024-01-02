@@ -29,6 +29,10 @@ switch ($ctl) {
     case 'login':
         LoginController::inicio();
         break;
+    case 'validar':
+        ValidarController::validar();
+        var_dump($_SESSION['email']);
+        break;
     default:
         ViewController::cargarVista("indexUsuario");
         break;

@@ -38,6 +38,7 @@ class Register
                 // For demonstration purposes, let's just display a success message
                 echo "Registration successful!";
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
+                ControllerCorreo::enviarCorreo($_SESSION['email']);
             }
         }
     }
@@ -47,7 +48,6 @@ class Register
         try {
             $db = Conectar::conexion();
             $sql = "INSERT INTO `usuariosc`(`correo`, `nombre`, `apellidos`, `NIF`, `activo`, `avatar`, `hash_pass`, `rol`) VALUES (?,?,?,?,'0','avatarPorDefecto.svg',?,'cliente')";
-            $resultado = $db->prepare($sql);
             $resultado = $db->prepare($sql);
             $resultado->bindParam(1, $email, PDO::PARAM_STR);
             $resultado->bindParam(2, $nombre, PDO::PARAM_STR);
@@ -60,6 +60,7 @@ class Register
             $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
             $resultado = null; // obligado para cerrar la conexión
             $db = null; 
+            $_SESSION["email"]=$email;
         } catch (PDOException $e) {
             echo "<br>Error: " . $e->getMessage();  
             echo "<br>Línea del error: " . $e->getLine();  
