@@ -6,4 +6,7 @@ class LoginController
         ViewController::cargarVista("loginBack");
         
     }
+    public static function comprobar(){
+        Login::comprobar();
+    }
 }

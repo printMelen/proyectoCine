@@ -27,7 +27,11 @@ switch ($ctl) {
         }
         break;
     case 'login':
-        LoginController::inicio();
+        if ($_GET['enviado']=="si") {
+            LoginController::comprobar();
+        }else{
+            LoginController::inicio();
+        }
         break;
     case 'validar':
         echo $_COOKIE['correoUsuario'];
