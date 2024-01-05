@@ -36,9 +36,14 @@ for ($i=0; $i < 20; $i++) {
     // var_dump($valor);
     if ($valor['job']=='Director') {
       echo "Director: ".$valor['name']."<br>";
+      break;
     }
   }
-  echo "Actor/Actriz: ". $elenco['cast'][$i]['name']."<br>";
+  foreach ($elenco['cast'] as $key => $valor) {
+    # code...
+    echo "Actor/Actriz: ". $elenco['cast'][$key]['name']."<br>";
+    break;
+  }
   for ($u=0; $u< 19; $u++) { 
     // echo $generos['genres'][$u]['name']."<br>";
     if ($data['results'][$i]['genre_ids'][0]==$generos['genres'][$u]['id']) {
