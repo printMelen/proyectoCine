@@ -15,17 +15,30 @@
 //         }
 //     }
 // });
-
-$ctl = $_REQUEST['ctl'] ?? 'default';
+session_start();
+$ctl = $_REQUEST['peticion'] ?? NULL;
 
 switch ($ctl) {
     case 'register':
-        RegisterController::inicio();
+        if ($_GET['enviado']=="si") {
+            RegisterController::completado();
+        }else{
+            RegisterController::inicio();
+        }
         break;
-    case 'producto':
-        ProductoController::inicio();
+    case 'login':
+        if ($_GET['enviado']=="si") {
+            LoginController::comprobar();
+        }else{
+            LoginController::inicio();
+        }
+        break;
+    case 'validar':
+        echo $_COOKIE['correoUsuario'];
+        ValidarController::validar();
         break;
     default:
-        DefaultController::inicio();
+        ViewController::cargarVista("indexUsuario");
         break;
 }
+

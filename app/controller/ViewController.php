@@ -5,7 +5,7 @@ class ViewController
     {
 
         // Construye la ruta al archivo de la vista
-        $vistaFichero = "app/view/" . $vistaNombre . ".php";
+        $vistaFichero = "app/view/templates/" . $vistaNombre . ".php";
 
         // Comprueba si el archivo de la vista existe
         if (file_exists($vistaFichero)) {

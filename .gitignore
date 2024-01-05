@@ -2,4 +2,6 @@ node_modules
 package-lock.json
 package.json
 gulpfile.js
+vendor
+app/view/templates/apiConfig.php
 # tailwind.config.js

@@ -15,15 +15,15 @@ SET time_zone = "+00:00";
 -- contraseña del administrador, admin
 -- contraseña de serafina, serafina
 --
-CREATE DATABASE IF NOT EXISTS `cine` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE `cine`;
+
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `compra_butacasc`
 --
-
+CREATE DATABASE IF NOT EXISTS `cine` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE `cine`;
 CREATE TABLE IF NOT EXISTS `compra_butacasc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sesion_id` int(11) DEFAULT NULL,
