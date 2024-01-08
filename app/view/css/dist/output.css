@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.4.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -668,6 +668,10 @@ video {
   margin-bottom: 14px;
 }
 
+.mb-\[15px\] {
+  margin-bottom: 15px;
+}
+
 .mb-\[16px\] {
   margin-bottom: 16px;
 }
@@ -690,6 +694,10 @@ video {
 
 .ml-\[17px\] {
   margin-left: 17px;
+}
+
+.ml-\[27px\] {
+  margin-left: 27px;
 }
 
 .ml-auto {
@@ -718,6 +726,18 @@ video {
 
 .mt-\[20px\] {
   margin-top: 20px;
+}
+
+.mt-\[28px\] {
+  margin-top: 28px;
+}
+
+.mt-\[37px\] {
+  margin-top: 37px;
+}
+
+.mr-\[24px\] {
+  margin-right: 24px;
 }
 
 .block {
@@ -784,6 +804,10 @@ video {
   height: 35px;
 }
 
+.h-\[46px\] {
+  height: 46px;
+}
+
 .h-\[50px\] {
   height: 50px;
 }
@@ -806,6 +830,26 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[400px\] {
+  height: 400px;
+}
+
+.h-\[647px\] {
+  height: 647px;
+}
+
+.h-\[106px\] {
+  height: 106px;
+}
+
+.h-\[466px\] {
+  height: 466px;
+}
+
+.h-\[53px\] {
+  height: 53px;
 }
 
 .min-h-\[70px\] {
@@ -840,6 +884,10 @@ video {
   width: 100%;
 }
 
+.w-\[142px\] {
+  width: 142px;
+}
+
 .w-\[200px\] {
   width: 200px;
 }
@@ -870,6 +918,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[653px\] {
+  width: 653px;
+}
+
+.w-\[144px\] {
+  width: 144px;
 }
 
 .min-w-0 {
@@ -981,6 +1037,46 @@ video {
   grid-template-rows: repeat(4, minmax(0, 1fr));
 }
 
+.grid-rows-5 {
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+
+.grid-rows-\[106px_minmax\(900px\2c _1fr\)_100px\] {
+  grid-template-rows: 106px minmax(900px, 1fr) 100px;
+}
+
+.grid-rows-\[106px_655px\] {
+  grid-template-rows: 106px 655px;
+}
+
+.grid-rows-\[106px_705px\] {
+  grid-template-rows: 106px 705px;
+}
+
+.grid-rows-\[106px_787px\] {
+  grid-template-rows: 106px 787px;
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.grid-rows-\[265px_787px_290px\] {
+  grid-template-rows: 265px 787px 290px;
+}
+
+.grid-rows-\[265px_18px_290px\] {
+  grid-template-rows: 265px 18px 290px;
+}
+
+.grid-rows-\[265px_18px_53px\] {
+  grid-template-rows: 265px 18px 53px;
+}
+
+.grid-rows-\[265px_46px_53px\] {
+  grid-template-rows: 265px 46px 53px;
+}
+
 .flex-row-reverse {
   flex-direction: row-reverse;
 }
@@ -1057,6 +1153,14 @@ video {
   gap: 9px;
 }
 
+.gap-\[30px\] {
+  gap: 30px;
+}
+
+.gap-\[55px\] {
+  gap: 55px;
+}
+
 .overflow-x-auto {
   overflow-x: auto;
 }
@@ -1085,6 +1189,10 @@ video {
   border-radius: 6.26px;
 }
 
+.rounded-\[6\.29px\] {
+  border-radius: 6.29px;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -1103,6 +1211,14 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-\[15\.8px\] {
+  border-radius: 15.8px;
+}
+
+.rounded-\[6\.25px\] {
+  border-radius: 6.25px;
 }
 
 .rounded-e-lg {
@@ -1149,6 +1265,14 @@ video {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#FFFFFF1A\] {
+  background-color: #FFFFFF1A;
+}
+
+.bg-\[\#FFFFFF4C\] {
+  background-color: #FFFFFF4C;
+}
+
 .bg-back {
   --tw-bg-opacity: 1;
   background-color: rgb(2 5 16 / var(--tw-bg-opacity));
@@ -1185,8 +1309,26 @@ video {
   background-color: rgb(248 249 250 / var(--tw-bg-opacity));
 }
 
+.bg-bermuda {
+  --tw-bg-opacity: 1;
+  background-color: rgb(120 220 202 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#FFFFFF33\] {
+  background-color: #FFFFFF33;
+}
+
+.bg-\[\#1D1731\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 23 49 / var(--tw-bg-opacity));
+}
+
 .bg-backLogin {
   background-image: url('../../images/backgroundLogin.svg');
+}
+
+.bg-backGuardianes {
+  background-image: url('../../images/banner1Guardianes.svg');
 }
 
 .bg-clip-border {
@@ -1217,6 +1359,10 @@ video {
   padding: 10px;
 }
 
+.p-\[35px\] {
+  padding: 35px;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1235,6 +1381,11 @@ video {
 .px-9 {
   padding-left: 2.25rem;
   padding-right: 2.25rem;
+}
+
+.px-\[68px\] {
+  padding-left: 68px;
+  padding-right: 68px;
 }
 
 .py-1 {
@@ -1265,6 +1416,11 @@ video {
 .py-\[15px\] {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+.py-\[30px\] {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .pb-0 {
@@ -1341,6 +1497,10 @@ video {
 
 .pt-\[7px\] {
   padding-top: 7px;
+}
+
+.pt-\[28px\] {
+  padding-top: 28px;
 }
 
 .text-left {
@@ -1438,14 +1598,14 @@ video {
   color: rgb(158 158 158 / var(--tw-text-opacity));
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-pink {
   --tw-text-opacity: 1;
   color: rgb(255 44 120 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .underline {
