@@ -26,10 +26,16 @@
                <button class="w-[142px] h-[46px] bg-[#FFFFFF1A] rounded-[6.29px] ml-[27px]">Próximamente</button>
           </div>
           <div class="bg-backGuardianes w-[100%] h-[100%]">
-
+          </div>
+          <div class="flex gap-[55px] mx-auto">
+               <?php
+               include("app/view/templates/cardGrande.php");
+               include("app/view/templates/cardGrande.php");
+               ?>
           </div>
      </main>
      <?php include("app/view/templates/footer.php"); ?>
      <script src="../js/custom.js"></script>
 </body>
+
 </html>
