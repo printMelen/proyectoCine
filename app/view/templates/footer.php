@@ -18,19 +18,19 @@
         </ul>
     </nav>
     <div class="flex justify-center gap-[18px]">
-        <button class="flex items-center rounded-[6.26px] bg-greyBotones pb-[8px] pr-[8px]">
-            <img class="pl-[8px]" src="assets/images/apple.svg" alt="" srcset="">
-            <div>
+        <button>
+            <img class="pl-[8px]" src="app/view/images/botonApple.svg" alt="" srcset="">
+            <!-- <div>
                 <span class="text-12 flex pt-[3px]">Upload to</span>
                 <span class="text-15">App Store</span>
-            </div>
+            </div> -->
         </button>
-        <button class="flex items-center rounded-[6.26px] bg-greyBotones pb-[8px] pr-[8px]">
-            <img class="pl-[8px]" src="assets/images/playStore.svg" alt="" srcset="">
-            <div>
+        <button>
+            <img class="pl-[8px]" src="app/view/images/botonGooglePlay.svg" alt="" srcset="">
+            <!-- <div>
                 <span class="text-12 flex pt-[3px]">Upload to</span>
                 <span class="text-15 pb-[8px]">Google Play</span>
-            </div>
+            </div> -->
     </div>
     <div class="flex justify-end items-center gap-[9px]">
         <img src="assets/images/logoFooter.svg" alt="" srcset="">

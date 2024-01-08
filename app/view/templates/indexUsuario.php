@@ -19,7 +19,7 @@
 
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
      <?php include("app/view/templates/header.php"); ?>
-     <main class="grid grid-rows-[106px_787px_466px_396px_725px_81px] py-[30px] px-[68px] h-[2691px] bg-[#0A031C]">
+     <main class="flex flex-col py-[30px] px-[68px] h-[100%] bg-[#0A031C]">
           <div class="h-[106px]">
                <h1 class="text-white mb-[15px]">Cartelera</h1>
                <button class="w-[142px] h-[46px] bg-[#FFFFFF4C] rounded-[6.29px]">En cartelera</button>
@@ -27,25 +27,26 @@
           </div>
           <div class="mx-auto bg-backGuardianes w-[1500px] h-[787px]">
           </div>
-          <div class="flex flex-wrap gap-[55px] justify-center">
+          <div class="flex flex-wrap gap-[55px] h-[466px] justify-center">
                <?php
                     include("app/view/templates/cardGrande.php");
                     include("app/view/templates/cardGrande.php");
                ?>
           </div>
-          <div class="flex flex-wrap gap-[58px] mt-[61px] justify-center">
+          <div class="flex flex-wrap gap-[58px] mt-[61px] h-[396px] justify-center">
                <?php
                     include("app/view/templates/cardPeque.php");
                     include("app/view/templates/cardPeque.php");
                     include("app/view/templates/cardPeque.php");
                ?>
           </div>
-          <div class="mx-auto bg-backLambo bg-no-repeat w-[1431px] h-[100%] mt-[20px]">
+          <div class="mx-auto bg-backLambo bg-no-repeat w-[1431px] h-[725px] mt-[20px]">
 
           </div>
-          <div class="flex justify-center h-[87px] mt-[85px]">
-               <button class="flex justify-center items-center w-[1360px]  py-[43.5px] bg-[#6D6D6D33] border border-[#8F8F8F66] rounded-[7px]">Show more</button>
+          <div class="flex justify-center h-[87px] mt-[85px] mb-[55px]">
+               <button class="flex justify-center items-center w-[1360px] h-[87px] bg-[#6D6D6D33] border border-[#8F8F8F66] rounded-[7px]">Show more</button>
           </div>
+          
      </main>
      <?php include("app/view/templates/footer.php"); ?>
      <script src="../js/custom.js"></script>
