@@ -27,10 +27,18 @@
           </div>
           <div class="bg-backGuardianes w-[100%] h-[100%]">
           </div>
-          <div class="flex gap-[55px] mx-auto">
+          <div class="flex flex-wrap gap-[55px] justify-center">
                <?php
-               include("app/view/templates/cardGrande.php");
-               include("app/view/templates/cardGrande.php");
+                    include("app/view/templates/cardGrande.php");
+                    include("app/view/templates/cardGrande.php");
+               ?>
+          </div>
+          <div class="flex flex-wrap gap-[58px] mt-[61px] justify-center">
+          <?php
+                    
+                    include("app/view/templates/cardPeque.php");
+                    include("app/view/templates/cardPeque.php");
+                    include("app/view/templates/cardPeque.php");
                ?>
           </div>
      </main>
