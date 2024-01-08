@@ -40,7 +40,7 @@ for ($i=0; $i < 20; $i++) {
     }
   }
   foreach ($elenco['cast'] as $key => $valor) {
-    # code...
+    
     echo "Actor/Actriz: ". $elenco['cast'][$key]['name']."<br>";
     break;
   }

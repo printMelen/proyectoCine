@@ -17,7 +17,7 @@
 // });
 session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
-
+// $_GET['enviado']=NULL;
 switch ($ctl) {
     case 'register':
         if ($_GET['enviado']=="si") {
