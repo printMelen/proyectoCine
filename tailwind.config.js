@@ -38,6 +38,7 @@ export default {
     backgroundImage: {
       'backLogin': "url('../../images/backgroundLogin.svg')",
       'backGuardianes': "url('../../images/banner1Guardianes.svg')",
+      'backLambo': "url('../../images/lambo.svg')",
     },
     colors: {
       transparent: 'transparent',
