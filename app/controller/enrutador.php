@@ -20,16 +20,16 @@ $ctl = $_REQUEST['peticion'] ?? NULL;
 // $_GET['enviado']=NULL;
 switch ($ctl) {
     case 'register':
-        if ($_GET['enviado']=="si") {
+        if ($_GET['enviado'] == "si") {
             RegisterController::completado();
-        }else{
+        } else {
             RegisterController::inicio();
         }
         break;
     case 'login':
-        if ($_GET['enviado']=="si") {
+        if ($_GET['enviado'] == "si") {
             LoginController::comprobar();
-        }else{
+        } else {
             LoginController::inicio();
         }
         break;
@@ -37,8 +37,10 @@ switch ($ctl) {
         echo $_COOKIE['correoUsuario'];
         ValidarController::validar();
         break;
+    case 'movies':
+        MoviesController::inicio();
+        break;
     default:
         ViewController::cargarVista("indexUsuario");
         break;
 }
-

@@ -8,7 +8,7 @@
             </a>
             <ul class="text-white flex gap-[50px]">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Movies</a></li>
+                <li><a href="index.php?peticion=movies">Movies</a></li>
                 <li><a href="#">Series</a></li>
                 <li><a href="#">Top</a></li>
             </ul>
