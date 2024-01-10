@@ -24,3 +24,4 @@ switch ($ctl) {
         ViewController::cargarVista("indexUsuario");
         break;
 }
+session_destroy();
