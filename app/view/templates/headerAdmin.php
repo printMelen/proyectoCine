@@ -4,7 +4,7 @@
     <nav class="flex text-18.75 font-400">
         <div class="flex items-center gap-[20px]">
             <a href="#"><img src="app/view/images/usuario.svg" alt="" srcset=""></a>
-            <a href="#" class="">Logout</a>
+            <a href="index.php?peticion=logout" class="">Logout</a>
         </div>
     </nav>
 </header>

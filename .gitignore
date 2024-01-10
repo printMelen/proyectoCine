@@ -4,4 +4,5 @@ package.json
 gulpfile.js
 vendor
 app/view/templates/apiConfig.php
+admin
 # tailwind.config.js
