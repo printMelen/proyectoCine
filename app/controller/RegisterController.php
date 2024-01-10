@@ -3,11 +3,20 @@ class RegisterController
 {
     public static function inicio()
     {
-        ViewController::cargarVista("loginBack");
-        
+        // if ($_POST['Registrarme']) {
+            
+            RegisterController::completado();
+        // } else {
+            // ViewController::cargarVista("loginBack");
+        // }
     }
     public static function completado(){
-        Register::comprobar();
-        ViewController::cargarVista("loginBack");
+        // ViewController::cargarVista("loginBack");
+        if (Register::comprobar()) {
+            ViewController::cargarVista("validar");
+            session_destroy();
+        }else{
+            ViewController::cargarVista("loginBack");
+        }
     }
 }

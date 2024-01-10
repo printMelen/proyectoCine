@@ -90,7 +90,7 @@ class ControllerCorreo
 
             //El método send devuelve true si el mensaje se ha podido enviar y false en caso contrario
             $mail->send();
-            echo "<h2>Mensaje enviado correctamente <br> desde la dirección:  <br> $emisor    <br> a la dirección: <br> $receptor</h2>";
+            // echo "<h2>Mensaje enviado correctamente <br> desde la dirección:  <br> $emisor    <br> a la dirección: <br> $receptor</h2>";
         } catch (Exception $e) {
             echo "En la línea "  . $e->getLine() . ' en el archivo ' . $e->getFile() . ': <br>';
             echo "<br>Mensaje de error:" . $e->getMessage();

@@ -3,6 +3,7 @@ class Register
 {
     public static function comprobar()
     {
+        $devolver=false;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Retrieve and clean input values
             $nombreApellidos = Register::clean_input($_POST["nombreApellidos"]);
@@ -10,39 +11,51 @@ class Register
             $email = Register::clean_input($_POST["email"]);
             $password = Register::clean_input($_POST["password"]);
             $confirm_password = Register::clean_input($_POST["confPassword"]);
-
+            $error_message="";
             $nombre = explode(",", $nombreApellidos);
+            
             
             // Validate Name and Surnames
             if (empty($nombreApellidos)) {
+                $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
+                $error_message = "No puede estar vacio";
                 //PONER EL VALUE EN NOMBRE
             } elseif (Register::starts_with_number($nombre[0]) || Register::starts_with_number($nombre[1])) {
-                echo $error_message = "Name and Surnames cannot start with a number.";
+                $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
+                $error_message = "Name and Surnames cannot start with a number.";
+            }else{
+                $_SESSION["nombreApellidos"]=$nombreApellidos;
             }
             // Validate NIF
-            elseif (!Register::validate_nif($nif)) {
-                echo $error_message = "Invalid NIF format.";
+            if (!Register::validate_nif($nif)) {
+                $_SESSION["nif"]="12345678L";
+                $error_message = "Invalid NIF format.";
+            }else{
+                $_SESSION["nif"]=$nif;
             }
             // Validate Email
-            elseif (!Register::validate_email($email)) {
-                echo  $error_message = "Invalid email address.";
+            if (!Register::validate_email($email)) {
+                $_SESSION["correo"]="correo@gmail.com";
+                $error_message = "Invalid email address.";
+            }else{
+                $_SESSION["correo"]=$email;
             }
             // Validate Password and Confirm Password
-            elseif (empty($password) || empty($confirm_password) || $password !== $confirm_password) {
+            if (empty($password) || empty($confirm_password) || $password !== $confirm_password) {
                 echo $error_message = "Password and Confirm Password do not match.";
             }
             // If all validations pass, you can proceed with registration
-            else {
-                // Perform registration logic here
-
-                // For demonstration purposes, let's just display a success message
+            if ($error_message=="") {
+                $devolver=true;
                 echo "Registration successful!";
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
                 $_SESSION['correo']=$email;
                 CrearCookieController::crear($email);
                 ControllerCorreo::enviarCorreo($_SESSION['correo']);
             }
+            
         }
+        return $devolver;
     }
 
     public static function registrar($nombre, $apellidos, $nif, $email, $password)

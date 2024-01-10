@@ -12,9 +12,9 @@
     <div class="w-[300px] mx-auto text-white ">
                 <h3 class="text-white text-30 font-600 pb-[12px]">Registro</h3>
                 <form action="index.php?peticion=register&enviado=si" method="post">
-                    <input type="text" placeholder="Nombre y apellidos" name="nombreApellidos" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
-                    <input type="text" placeholder="NIF" name="nif" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
-                    <input type="email" placeholder="Email" name="email" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
+                    <input type="text" placeholder="Nombre y apellidos" name="nombreApellidos" value="<?php if(isset($_SESSION["nombreApellidos"])){ echo $_SESSION["nombreApellidos"];}?>" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
+                    <input type="text" placeholder="NIF" name="nif" value="<?php if(isset($_SESSION["nif"])){ echo $_SESSION["nif"];}?>" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
+                    <input type="email" placeholder="Email" name="email" value="<?php if(isset($_SESSION["correo"])){ echo $_SESSION["correo"];}?>" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
                     <input type="password" placeholder="Password" name="password" id="" class="w-[100%] mb-[14px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
                     <input type="password" placeholder="Confirmar password" name="confPassword" id="" class="w-[100%] mb-[10px] h-[50px] rounded-[10px] bg-backInputs pl-[21px] backdrop-blur-[10px]">
                     <label class="text-12 flex justify-end mb-[10px] items-center"><input type="checkbox" id="cbox1" value="acepta" class=" appearance-none w-3 h-3 rounded-sm bg-login backdrop-blur-[10px] checked:bg-pink mr-[2px]">He leido y acepto la &nbsp<a href="#" class="underline"> política de privacidad</a></label>

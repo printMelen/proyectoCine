@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.4.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -744,6 +744,10 @@ video {
   margin-top: 26px;
 }
 
+.mt-\[30px\] {
+  margin-top: 30px;
+}
+
 .mt-\[32px\] {
   margin-top: 32px;
 }
@@ -758,10 +762,6 @@ video {
 
 .mt-\[85px\] {
   margin-top: 85px;
-}
-
-.mt-\[30px\] {
-  margin-top: 30px;
 }
 
 .block {
@@ -1024,6 +1024,10 @@ video {
   max-width: 1200px;
 }
 
+.max-w-screen-1400 {
+  max-width: 1400px;
+}
+
 .max-w-screen-2xl {
   max-width: 1600px;
 }
@@ -1042,10 +1046,6 @@ video {
 
 .max-w-sm {
   max-width: 24rem;
-}
-
-.max-w-screen-1400 {
-  max-width: 1400px;
 }
 
 .flex-\[1_auto\] {
@@ -1103,30 +1103,6 @@ video {
 
 .grid-cols-\[50px_1000px_50px\] {
   grid-template-columns: 50px 1000px 50px;
-}
-
-.grid-cols-\[50px_1400px_50px\] {
-  grid-template-columns: 50px 1400px 50px;
-}
-
-.grid-cols-\[50px_1300px_50px\] {
-  grid-template-columns: 50px 1300px 50px;
-}
-
-.grid-cols-\[50px_1200px_50px\] {
-  grid-template-columns: 50px 1200px 50px;
-}
-
-.grid-cols-\[10px_1400px_10px\] {
-  grid-template-columns: 10px 1400px 10px;
-}
-
-.grid-cols-\[10px_1400px_px\] {
-  grid-template-columns: 10px 1400px px;
-}
-
-.grid-cols-\[10px_1400px_5px\] {
-  grid-template-columns: 10px 1400px 5px;
 }
 
 .grid-rows-4 {
