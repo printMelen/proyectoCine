@@ -3,10 +3,15 @@ class LoginController
 {
     public static function inicio()
     {
-        ViewController::cargarVista("loginBack");
+        LoginController::comprobar();
+        // ViewController::cargarVista("loginBack");
         
     }
     public static function comprobar(){
-        Login::comprobar();
+        if (Login::comprobar()) {
+            ViewController::cargarVista("index".$_SESSION["rol"]);
+        }else{
+            ViewController::cargarVista("loginBack");
+        }
     }
 }

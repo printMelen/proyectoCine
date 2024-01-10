@@ -1,17 +1,14 @@
 <?php
 session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
+// $_SESSION["rol"]??null;
 // $_GET['enviado']=NULL;
 switch ($ctl) {
     case 'register':
         RegisterController::inicio();
         break;
     case 'login':
-        if ($_GET['enviado'] == "si") {
-            LoginController::comprobar();
-        } else {
-            LoginController::inicio();
-        }
+        LoginController::inicio();
         break;
     case 'validar':
         echo $_COOKIE['correoUsuario'];
