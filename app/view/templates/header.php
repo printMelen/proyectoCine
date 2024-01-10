@@ -23,6 +23,13 @@
             <a href="index.php?peticion=login">
                 <img src="app/view/images/usuario.svg" alt="" srcset="">
             </a>
+            <?php
+                if ($_SESSION["logeado"]) {
+                    echo $_SESSION['nombre'];
+                    echo '<img src="app/view/images/' . $_SESSION["avatar"] . '" class="w-[30px] h-[30px]" alt="" srcset="">';
+                    echo '<a href="index.php?peticion=logout">Logout</a>';
+                }
+            ?>
         </div>
     </nav>
 </header>

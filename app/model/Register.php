@@ -62,7 +62,7 @@ class Register
     {
         try {
             $db = Conectar::conexion();
-            $sql = "INSERT INTO `usuariosc`(`correo`, `nombre`, `apellidos`, `NIF`, `activo`, `avatar`, `hash_pass`, `rol`) VALUES (?,?,?,?,'0','avatarPorDefecto.svg',?,'cliente')";
+            $sql = "INSERT INTO `usuariosc`(`correo`, `nombre`, `apellidos`, `NIF`, `activo`, `avatar`, `hash_pass`, `rol`) VALUES (?,?,?,?,'0','avatarSudadera.png',?,'cliente')";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(1, $email, PDO::PARAM_STR);
             $resultado->bindParam(2, $nombre, PDO::PARAM_STR);

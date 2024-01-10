@@ -9,8 +9,10 @@ class LoginController
     }
     public static function comprobar(){
         if (Login::comprobar()) {
+            $_SESSION["logeado"]=true;
             ViewController::cargarVista("index".$_SESSION["rol"]);
         }else{
+            $_SESSION["logeado"]=false;
             ViewController::cargarVista("loginBack");
         }
     }
