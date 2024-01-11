@@ -30,7 +30,7 @@ switch ($ctl) {
         FormularioPeliController::inicio();
         break;
     case 'formularioActor':
-        LogoutController::cerrar();
+        FormularioActorController::inicio();
         break;
     default:
         DefaultController::inicio();
