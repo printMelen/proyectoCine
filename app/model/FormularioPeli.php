@@ -4,19 +4,59 @@ class FormularioPeli
     public static function comprobar()
     {
         $_SESSION["error"]="";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["name"])) {
+                $errors[] = "El campo Nombre es obligatorio.";
+            }
+        
+            // Validar el campo Argumento
+            if (empty($_POST["argumento"])) {
+                $errors[] = "El campo Argumento es obligatorio.";
+            }
+        
+            // Validar el campo Edad mínima
+            if (empty($_POST["edadMinima"])) {
+                $errors[] = "El campo Edad mínima es obligatorio.";
+            } elseif (!is_numeric($_POST["edadMinima"]) || $_POST["edadMinima"] < 0) {
+                $errors[] = "La Edad mínima debe ser un número positivo.";
+            }
+        
+            // Validar el campo Género
+            if (empty($_POST["genero"])) {
+                $errors[] = "El campo Género es obligatorio.";
+            }
+        
+            // Validar el campo Director
+            if (empty($_POST["director"])) {
+                $errors[] = "El campo Director es obligatorio.";
+            }
+        
+            // Validar el campo Actor
+            if (empty($_POST["actor"])) {
+                $errors[] = "El campo Actor/Actriz es obligatorio.";
+            }
+            if (empty($errors)) {
+                FormularioPeli::insertarPeli(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),FormularioPeli::clean_input($_POST["edadMinima"]),FormularioPeli::clean_input($_POST["director"]))
+            } else {
+                // Mostrar los errores al usuario
+                foreach ($errors as $error) {
+                    echo "<p>{$error}</p>";
+                }
+            }
+        
+        }
     }
-    public static function insertarPeli($nombre, $argumento, $cartel, $clasificacion, $password)
+    public static function insertarPeli($nombre, $argumento, $cartel, $clasificacion, $generoId)
     {
         try {
             $db = Conectar::conexion();
-            $sql = "INSERT INTO `usuariosc`(`correo`, `nombre`, `apellidos`, `NIF`, `activo`, `avatar`, `hash_pass`, `rol`) VALUES (?,?,?,?,'0','avatarSudadera.png',?,'cliente')";
+            $sql = "INSERT INTO `peliculasc`(`nombre`, `argumento`, `cartel`, `clasificacion_edad`, `genero_id`) VALUES (?,?,?,?,?)";
             $resultado = $db->prepare($sql);
-            $resultado->bindParam(1, $email, PDO::PARAM_STR);
-            $resultado->bindParam(2, $nombre, PDO::PARAM_STR);
-            $resultado->bindParam(3, $apellidos, PDO::PARAM_STR);
-            $resultado->bindParam(4, $nif, PDO::PARAM_STR);
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $resultado->bindParam(5, $hashed_password, PDO::PARAM_STR);
+            $resultado->bindParam(1, $nombre, PDO::PARAM_STR);
+            $resultado->bindParam(2, $argumento, PDO::PARAM_STR);
+            $resultado->bindParam(3, $cartel, PDO::PARAM_STR);
+            $resultado->bindParam(4, $clasificacion, PDO::PARAM_STR);
+            $resultado->bindParam(5, $generoId, PDO::PARAM_INT);
             $resultado->execute(); 
             
             $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
