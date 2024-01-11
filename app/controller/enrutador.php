@@ -33,7 +33,7 @@ switch ($ctl) {
         LogoutController::cerrar();
         break;
     default:
-        ViewController::cargarVista("indexUsuario");
+        DefaultController::inicio();
         break;
 }
 // session_destroy();
