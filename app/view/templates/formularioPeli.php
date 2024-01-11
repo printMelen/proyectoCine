@@ -1,6 +1,6 @@
 <div class="container mx-auto py-8 font-600">
   <h1 class="text-2xl font-bold mb-6 text-18.75 text-center">Añadir una película</h1>
-  <form class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+  <form class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" enctype="multipart/form-data">
     <div class="mb-4">
       <label class="block text-gray-700 text-15 mb-2" for="name">Nombre:</label>
       <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="text" id="name" name="name" placeholder="Shrek">
@@ -18,17 +18,26 @@
       <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="number" id="edadMinima" name="edadMinima" placeholder="7">
     </div>
     <div class="mb-4">
-      <label class="block text-gray-700 text-15  mb-2" for="genero">Género:</label>
-      <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="text" id="genero" name="genero" placeholder="Animación">
+    <label class="block text-gray-700 text-15  mb-2" for="genero">Género:</label>
+    <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" id="genero" name="genero">
+        <?php
+        foreach ($_SESSION['generos'] as $genero) {
+          echo "<option value='" . $genero['id']. "'>" . $genero['nombre'] . "</option>";
+        }
+        ?>
+      </select>
     </div>
     <div class="mb-4">
-      <label class="block text-gray-700 text-15 mb-2" for="nombreRol">
-        <select class="p-[10px] rounded-lg" name="rol" id="rol">
-          <option value="Director">Director</option>
-          <option value="Actriz">Actriz</option>
-          <option value="Actor">Actor</option>
-        </select>:</label>
-      <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="text" id="nombreRol" name="nombreRol" placeholder="Vicky Jenson">
+      <label class="block text-gray-700 text-15 mb-2" for="director">Director:</label>
+      <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="text" id="director" name="director" placeholder="Vicky Jenson">
+    </div>
+    <div class="mb-4">
+      <label for="actor">Actor/Actriz:
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" list="elenco" name="actor" id="actor" placeholder="Eddie Murphy">
+      </label>
+      <datalist id="elenco">
+        <option value="Eddie Murphy">
+      </datalist>
     </div>
     <button class="w-full bg-pink text-back text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300" type="submit">Añadir</button>
   </form>

@@ -26,6 +26,12 @@ switch ($ctl) {
     case 'logout':
         LogoutController::cerrar();
         break;
+    case 'formularioPeli':
+        FormularioPeliController::inicio();
+        break;
+    case 'formularioActor':
+        LogoutController::cerrar();
+        break;
     default:
         ViewController::cargarVista("indexUsuario");
         break;
