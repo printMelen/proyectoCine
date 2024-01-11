@@ -30,10 +30,10 @@ switch ($ctl) {
         FormularioPeliController::inicio();
         break;
     case 'formularioActor':
-        LogoutController::cerrar();
+        FormularioActorController::inicio();
         break;
     default:
-        ViewController::cargarVista("indexUsuario");
+        DefaultController::inicio();
         break;
 }
 // session_destroy();

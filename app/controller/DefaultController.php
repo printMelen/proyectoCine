@@ -3,6 +3,10 @@ class DefaultController
 {
     public static function inicio()
     {
-        echo "<br><h4>Estoy en DefaultController y llamo al metodo mostrarTodos() de UsuarioController</h4><br>";
+        if (isset($_SESSION["rol"])) {
+            ViewController::cargarVista("index".$_SESSION["rol"]);
+        }else{
+            ViewController::cargarVista("indexUsuario");
+        }
     }
 }
