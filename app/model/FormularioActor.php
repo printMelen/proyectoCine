@@ -1,62 +1,43 @@
 <?php
-class FormularioPeli
+class FormularioActor
 {
     public static function comprobar()
     {
+        $devolver=false;
         $_SESSION["error"]="";
+        $errors[]="";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["name"])) {
-                $errors[] = "El campo Nombre es obligatorio.";
+            if (empty($_POST["nameElenco"])) {
+                $_SESSION['error'] = "El campo Nombre es obligatorio.";
             }
         
             // Validar el campo Argumento
-            if (empty($_POST["argumento"])) {
-                $errors[] = "El campo Argumento es obligatorio.";
+            if (empty($_POST["rolElenco"])) {
+                $_SESSION['error'] = "El campo rol del elenco es obligatorio.";
             }
         
-            // Validar el campo Edad mínima
-            if (empty($_POST["edadMinima"])) {
-                $errors[] = "El campo Edad mínima es obligatorio.";
-            } elseif (!is_numeric($_POST["edadMinima"]) || $_POST["edadMinima"] < 0) {
-                $errors[] = "La Edad mínima debe ser un número positivo.";
+            var_dump($_FILES["imagenElenco"]);
+            if (empty($_FILES["imagenElenco"])) {
+                $_SESSION['error'] = "El campo imagen es obligatorio";
             }
-        
-            // Validar el campo Género
-            if (empty($_POST["genero"])) {
-                $errors[] = "El campo Género es obligatorio.";
+            // var_dump($_FILES["imagenElenco"]);
+            $imagen=FormularioActor::procesarImagen($_FILES["imagenElenco"]);
+            if ($errors[0]==""&&$_SESSION['error']=="") {
+                $devolver=true;
+                FormularioActor::insertarActor(FormularioPeli::clean_input($_POST["nameElenco"]),FormularioPeli::clean_input($_POST["rolElenco"]),$imagen);
             }
-        
-            // Validar el campo Director
-            if (empty($_POST["director"])) {
-                $errors[] = "El campo Director es obligatorio.";
-            }
-        
-            // Validar el campo Actor
-            if (empty($_POST["actor"])) {
-                $errors[] = "El campo Actor/Actriz es obligatorio.";
-            }
-            // if (empty($errors)) {
-            //     FormularioPeli::insertarPeli(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),FormularioPeli::clean_input($_POST["edadMinima"]),FormularioPeli::clean_input($_POST["director"]))
-            // } else {
-            //     // Mostrar los errores al usuario
-            //     foreach ($errors as $error) {
-            //         echo "<p>{$error}</p>";
-            //     }
-            // }
-        
         }
+        return $devolver;
     }
-    public static function insertarPeli($nombre, $argumento, $cartel, $clasificacion, $generoId)
+    public static function insertarActor($nombre, $tipo, $imagen)
     {
         try {
             $db = Conectar::conexion();
-            $sql = "INSERT INTO `peliculasc`(`nombre`, `argumento`, `cartel`, `clasificacion_edad`, `genero_id`) VALUES (?,?,?,?,?)";
+            $sql = "INSERT INTO `personalc`(`nombre`, `tipo`, `imagen`) VALUES (?,?,?)";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(1, $nombre, PDO::PARAM_STR);
-            $resultado->bindParam(2, $argumento, PDO::PARAM_STR);
-            $resultado->bindParam(3, $cartel, PDO::PARAM_STR);
-            $resultado->bindParam(4, $clasificacion, PDO::PARAM_STR);
-            $resultado->bindParam(5, $generoId, PDO::PARAM_INT);
+            $resultado->bindParam(2, $tipo, PDO::PARAM_STR);
+            $resultado->bindParam(3, $imagen, PDO::PARAM_STR);
             $resultado->execute(); 
             
             $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
@@ -73,25 +54,25 @@ class FormularioPeli
     {
         $nombreImagen = NULL;
         if (isset($imagen["name"]) && $imagen["name"] != "") {
-            $nombreImagen = FormularioPeli::subirImagen($imagen);
+            $nombreImagen = FormularioActor::subirImagen($imagen);
         } else {
-            $nombreImagen = "caratula.png";
+            $nombreImagen = "elenco.png";
         }
         return $nombreImagen;
     }
 
-    public static function  clean_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    // public static function  clean_input($data)
+    // {
+    //     $data = trim($data);
+    //     $data = stripslashes($data);
+    //     $data = htmlspecialchars($data);
+    //     return $data;
+    // }
 
     public static function subirImagen($imagen): ?string
     {
         $nombreImagen = NULL;
-        $directorioDestino = "app/view/img/caratulas/";
+        $directorioDestino = "app/view/images/elenco/";
         $extension = strtolower(pathinfo($imagen["name"], PATHINFO_EXTENSION));
         $nombre = strtolower(pathinfo($imagen["name"], PATHINFO_FILENAME));
 

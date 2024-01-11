@@ -10,9 +10,13 @@ class FormularioActorController
     }
     public static function comprobar(){
         // FormularioActor::comprobar()
-        // if () {
+        if (FormularioActor::comprobar()) {
             // $_SESSION["logeado"]=true;
             ViewController::cargarVista("indexAdmin");
+        }else{
+            ViewController::cargarVista("indexAdmin");
+
+        }
         // }else{
             // $_SESSION["logeado"]=false;
         //     ViewController::cargarVista("indexAdmin");
