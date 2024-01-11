@@ -21,14 +21,18 @@
 <body class="flex flex-row-reverse container bg-whiteAdmin max-w-screen-2xl justify-between mx-auto font-Poppins">
      <div class="container max-w-screen-xs flex flex-col h-[100%]">
           <?php include("headerAdmin.php"); ?>
-          <?php //include("buscador.php"); ?>
           <?php 
-          
-               include("formularioPeli.php"); 
-          
+               if ($_GET['peticion']=="login") {
+                    ViewController::cargarVista("formularioPeli");
+               }else{
+                    // include $_GET['peticion'].'.php';
+                    ViewController::cargarVista($_GET['peticion']);
+               }
           ?>
      </div>
+     
      <?php include("asideAdmin.php"); ?>     
+     
      <script src="assets/js/custom.js"></script>
 </body>
 </html>
