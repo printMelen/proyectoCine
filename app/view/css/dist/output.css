@@ -884,10 +884,6 @@ video {
   height: 787px;
 }
 
-.h-\[800px\] {
-  height: 800px;
-}
-
 .h-\[87px\] {
   height: 87px;
 }
@@ -898,26 +894,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[1000px\] {
-  height: 1000px;
-}
-
-.h-\[950px\] {
-  height: 950px;
-}
-
-.h-\[980px\] {
-  height: 980px;
-}
-
-.h-\[990px\] {
-  height: 990px;
-}
-
-.h-\[995px\] {
-  height: 995px;
 }
 
 .min-h-\[70px\] {

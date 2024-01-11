@@ -3,6 +3,7 @@ class FormularioPeliController
 {
     public static function inicio()
     {
+        $_SESSION['generos'] = Generos::sacarGeneros();
         FormularioPeliController::comprobar();
         // ViewController::cargarVista("loginBack");
         
