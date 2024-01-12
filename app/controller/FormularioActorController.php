@@ -12,6 +12,8 @@ class FormularioActorController
         // FormularioActor::comprobar()
         if (FormularioActor::comprobar()) {
             // $_SESSION["logeado"]=true;
+            FormularioActor::devolverElenco();
+            FormularioActor::separar();
             ViewController::cargarVista("indexAdmin");
         }else{
             ViewController::cargarVista("indexAdmin");

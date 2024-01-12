@@ -16,8 +16,8 @@ class FormularioActor
                 $_SESSION['error'] = "El campo rol del elenco es obligatorio.";
             }
         
-            var_dump($_FILES["imagenElenco"]);
-            if (empty($_FILES["imagenElenco"])) {
+            // var_dump($_FILES["imagenElenco"]);
+            if ($_FILES["imagenElenco"]['size']==0) {
                 $_SESSION['error'] = "El campo imagen es obligatorio";
             }
             // var_dump($_FILES["imagenElenco"]);
@@ -60,15 +60,7 @@ class FormularioActor
         }
         return $nombreImagen;
     }
-
-    // public static function  clean_input($data)
-    // {
-    //     $data = trim($data);
-    //     $data = stripslashes($data);
-    //     $data = htmlspecialchars($data);
-    //     return $data;
-    // }
-
+ 
     public static function subirImagen($imagen): ?string
     {
         $nombreImagen = NULL;
@@ -100,5 +92,33 @@ class FormularioActor
             }
         }
         return $nombreImagen;
+    }
+    public static function devolverElenco(){
+        $_SESSION["elenco"]="";
+            try {
+                $db = Conectar::conexion();
+                $sql = "SELECT * FROM `personalc`";
+                $resultado = $db->prepare($sql);
+                $resultado->execute(); 
+                $_SESSION["elenco"]=$resultado->fetchAll(PDO::FETCH_ASSOC);
+                $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+                $resultado = null; // obligado para cerrar la conexión
+                $db = null; 
+            } catch (PDOException $e) {
+                echo "<br>Error: " . $e->getMessage();  
+                echo "<br>Línea del error: " . $e->getLine();  
+                echo "<br>Archivo del error: " . $e->getFile();
+            }
+        }
+    public static function separar(){
+        $_SESSION["directores"]=NULL;
+        $_SESSION["actores"]=NULL;
+        foreach ($_SESSION["elenco"] as $elenco) {
+            if ($elenco['tipo']=="Director") {
+                $_SESSION["directores"][]=$elenco;
+            }else{
+                $_SESSION["actores"][]=$elenco;
+            }
+        }
     }
 }
