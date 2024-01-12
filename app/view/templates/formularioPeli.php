@@ -27,16 +27,32 @@
         ?>
       </select>
     </div>
-    <div class="mb-4">
+    <!-- <div class="mb-4">
       <label class="block text-gray-700 text-15 mb-2" for="director">Director:</label>
       <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="text" id="director" name="director" placeholder="Vicky Jenson">
+    </div> -->
+    <div class="mb-4">
+      <label for="director">Director:
+        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" list="directores" name="director" id="director" placeholder="Vicky Jenson">
+      </label>
+      <datalist id="directores">
+        <?php
+        foreach ($_SESSION['directores'] as $director) {
+          echo "<option value='" . $director['nombre']. "'></option>";
+        }
+        ?>
+      </datalist>
     </div>
     <div class="mb-4">
       <label for="actor">Actor/Actriz:
         <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" list="elenco" name="actor" id="actor" placeholder="Eddie Murphy">
       </label>
       <datalist id="elenco">
-        <option value="Eddie Murphy">
+        <?php
+        foreach ($_SESSION['actores'] as $actor) {
+          echo "<option value='" . $actor['nombre']. "'></option>";
+        }
+        ?>
       </datalist>
     </div>
     <button class="w-full bg-pink text-back text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300" type="submit">Añadir</button>

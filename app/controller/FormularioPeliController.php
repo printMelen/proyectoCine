@@ -4,6 +4,10 @@ class FormularioPeliController
     public static function inicio()
     {
         $_SESSION['generos'] = Generos::sacarGeneros();
+        if (!isset($_SESSION['directores'])||!isset($_SESSION['actores'])) {
+            FormularioActor::devolverElenco();
+            FormularioActor::separar();
+        }
         FormularioPeliController::comprobar();
         // ViewController::cargarVista("loginBack");
         
