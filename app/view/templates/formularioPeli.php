@@ -58,7 +58,7 @@
     <div class="mb-4">
     <span class="text-[#ef233c]">
         <?php
-        if ($_SESSION["errorPeli"] != "") {
+        if (isset($_SESSION["errorPeli"])) {
           echo $_SESSION["errorPeli"];
         }
         ?>
