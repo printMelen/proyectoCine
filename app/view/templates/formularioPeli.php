@@ -55,6 +55,15 @@
         ?>
       </datalist>
     </div>
+    <div class="mb-4">
+    <span class="text-[#ef233c]">
+        <?php
+        if (isset($_SESSION["errorPeli"])) {
+          echo $_SESSION["errorPeli"];
+        }
+        ?>
+      </span>
+    </div>
     <button class="w-full bg-pink text-back text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300" type="submit">Añadir</button>
   </form>
 </div>
