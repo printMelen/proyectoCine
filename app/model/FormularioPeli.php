@@ -4,6 +4,8 @@ class FormularioPeli
     public static function comprobar()
     {
         $_SESSION["error"]="";
+        $_SESSION["errorPeli"]="";
+        $errors[]="";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
                 $errors[] = "El campo Nombre es obligatorio.";
@@ -22,7 +24,7 @@ class FormularioPeli
             }
         
             // Validar el campo Género
-            if (empty($_POST["genero"])) {
+            if (!isset($_POST['genero']) || empty($_POST['genero'])) {
                 $errors[] = "El campo Género es obligatorio.";
             }
         
@@ -35,16 +37,28 @@ class FormularioPeli
             if (empty($_POST["actor"])) {
                 $errors[] = "El campo Actor/Actriz es obligatorio.";
             }
+            if ($_FILES["caratula"]['size']==0) {
+                $_SESSION['errorPeli'] = "El campo imagen es obligatorio";
+            }
+            // var_dump($_FILES["imagenElenco"]);
+            $imagen=FormularioPeli::procesarImagen($_FILES["caratula"]);
+            if ($errors[0]==""&&$_SESSION['errorPeli']=="") {
+                $devolver=true;
+                // FormularioPeli::insertarPl(FormularioPeli::clean_input($_POST["nameElenco"]),FormularioPeli::clean_input($_POST["rolElenco"]),$imagen);
+                FormularioPeli::insertarPeli(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),$imagen,FormularioPeli::clean_input($_POST["edadMinima"]),$_POST['genero']);
+            }
             // if (empty($errors)) {
-            //     FormularioPeli::insertarPeli(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),FormularioPeli::clean_input($_POST["edadMinima"]),FormularioPeli::clean_input($_POST["director"]))
             // } else {
             //     // Mostrar los errores al usuario
             //     foreach ($errors as $error) {
             //         echo "<p>{$error}</p>";
             //     }
             // }
-        
+            return $devolver;
         }
+    }
+    public static function insertarTabla(){
+
     }
     public static function insertarPeli($nombre, $argumento, $cartel, $clasificacion, $generoId)
     {
@@ -91,7 +105,7 @@ class FormularioPeli
     public static function subirImagen($imagen): ?string
     {
         $nombreImagen = NULL;
-        $directorioDestino = "app/view/img/caratulas/";
+        $directorioDestino = "app/view/images/caratula/";
         $extension = strtolower(pathinfo($imagen["name"], PATHINFO_EXTENSION));
         $nombre = strtolower(pathinfo($imagen["name"], PATHINFO_FILENAME));
 
