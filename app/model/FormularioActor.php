@@ -16,8 +16,8 @@ class FormularioActor
                 $_SESSION['error'] = "El campo rol del elenco es obligatorio.";
             }
         
-            var_dump($_FILES["imagenElenco"]);
-            if (empty($_FILES["imagenElenco"])) {
+            // var_dump($_FILES["imagenElenco"]);
+            if ($_FILES["imagenElenco"]['size']==0) {
                 $_SESSION['error'] = "El campo imagen es obligatorio";
             }
             // var_dump($_FILES["imagenElenco"]);
