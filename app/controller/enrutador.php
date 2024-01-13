@@ -7,6 +7,10 @@ if (!isset($_SESSION["logeado"])) {
 if (!isset($_SESSION['nombre'])) {
     $_SESSION['nombre'] = null;
 }
+$_SESSION["nif"]="";
+$_SESSION["nombreApellidos"]="";
+$_SESSION["correo"]="";
+
 // $_SESSION["rol"]??null;
 // $_GET['enviado']=NULL;
 switch ($ctl) {
@@ -36,7 +40,7 @@ switch ($ctl) {
         DefaultController::inicio();
         break;
 }
-if (session_status() == PHP_SESSION_ACTIVE) {
-    session_destroy();
-}
+// if (session_status() == PHP_SESSION_ACTIVE) {
+//     session_destroy();
+// }
 // session_destroy();

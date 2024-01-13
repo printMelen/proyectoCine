@@ -27,7 +27,7 @@
                <button class="w-[142px] h-[46px] bg-[#FFFFFF1A] rounded-[6.29px] ml-[27px]">Released</button>
           </div>
           <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Api de Jorge</h2>
+               <h2 class="text-white mb-[15px]">Fantasia</h2>
                <?php include("app/view/templates/carruselMovies.php"); ?>
           </div>
           <div class="mt-[30px]">

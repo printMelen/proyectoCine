@@ -14,24 +14,32 @@ class Register
             $error_message="";
             $error_correo="";
             $error_nif="";
-            $nombre = explode(",", $nombreApellidos);
             $_SESSION["nombreApellidos"]="";
             $_SESSION["nif"]="";
             $_SESSION["correo"]="";
             $dniRepe=false;
             $correoRepe=false;
+            $coma=false;
             // $_SESSION['errorReg']="";
-            
+            if (strpos($nombreApellidos, ',') !== false) {
+                $coma=true;
+                $nombre = explode(",", $nombreApellidos);
+            }
             // Validate Name and Surnames
             if (empty($nombreApellidos)) {
                 $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
                 $error_message = "No puede estar vacio";
                 //PONER EL VALUE EN NOMBRE
-            } elseif (Register::starts_with_number($nombre[0]) || Register::starts_with_number($nombre[1])) {
-                $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
-                $error_message = "El nombre o apellidos no puede empezar con un número";
+            } elseif ($coma) {
+                if (Register::starts_with_number($nombre[0]) || Register::starts_with_number($nombre[1])) {
+                    $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
+                    $error_message = "El nombre o apellidos no puede empezar con un número";
+                }else{
+                    $_SESSION["nombreApellidos"]=$nombreApellidos;
+                }
             }else{
-                $_SESSION["nombreApellidos"]=$nombreApellidos;
+                $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
+                $error_message = "No puede estar vacio";
             }
             // Validate NIF
             if (!Register::validate_nif($nif)) {
