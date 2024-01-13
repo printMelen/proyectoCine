@@ -5,16 +5,18 @@ class Login
     {
         $devolver=false;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $email = Register::clean_input($_POST["email"]);
-            $password = Register::clean_input($_POST["password"]);
+            $email = Login::clean_input($_POST["email"]);
+            // $password = Login::clean_input($_POST["password"]);
             try {
                 $db = Conectar::conexion();
                 $sql = "SELECT nombre,correo,hash_pass,activo,rol,avatar FROM usuariosc where correo=?";
                 $resultado = $db->prepare($sql);
                 $resultado->bindParam(1, $email, PDO::PARAM_STR);
-                
                 $resultado->execute(); 
                 $devolver=Login::dentro($resultado->fetchAll(PDO::FETCH_ASSOC));
+                if (!$devolver) {
+                    $_SESSION["errorLogin"]="Datos incorrectos";    
+                }
                 $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
                 $resultado = null; // obligado para cerrar la conexión
                 $db = null; 
@@ -25,6 +27,13 @@ class Login
             }
         }
         return $devolver;
+    }
+    public static function  clean_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
     public static function dentro($array){
         $devolver=false;

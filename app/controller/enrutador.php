@@ -1,6 +1,7 @@
 <?php
 session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
+// $_SESSION["errorLogin"] = $_SESSION["errorLogin"] ?? NULL;
 if (!isset($_SESSION["logeado"])) {
     $_SESSION["logeado"] = null;
 }
@@ -10,7 +11,7 @@ if (!isset($_SESSION['nombre'])) {
 $_SESSION["nif"]="";
 $_SESSION["nombreApellidos"]="";
 $_SESSION["correo"]="";
-
+$_SESSION["errorLogin"]="";
 // $_SESSION["rol"]??null;
 // $_GET['enviado']=NULL;
 switch ($ctl) {
