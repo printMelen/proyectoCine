@@ -88,7 +88,7 @@ class Register
                 $devolver=true;
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
                 // $_SESSION['correo']=$email;
-                CrearCookieController::crear($email);
+                CrearCookieController::crear($email,$nombre[0]);
                 ControllerCorreo::enviarCorreo($_SESSION['correo']);
             }
             

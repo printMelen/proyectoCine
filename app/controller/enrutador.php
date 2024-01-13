@@ -23,6 +23,10 @@ switch ($ctl) {
     case 'validar':
         // echo $_COOKIE['correoUsuario'];
         ValidarController::validar();
+        $_SESSION["logeado"]=true;
+        $_SESSION["rol"]="Usuario";
+        $_SESSION["nombre"]=$_COOKIE['nombre'];
+        $_SESSION["avatar"]="avatarSudadera.png";
         break;
     case 'movies':
         MoviesController::inicio();
