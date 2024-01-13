@@ -17,7 +17,7 @@ switch ($ctl) {
         LoginController::inicio();
         break;
     case 'validar':
-        echo $_COOKIE['correoUsuario'];
+        // echo $_COOKIE['correoUsuario'];
         ValidarController::validar();
         break;
     case 'movies':
