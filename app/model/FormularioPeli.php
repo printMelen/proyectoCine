@@ -8,8 +8,16 @@ class FormularioPeli
         $errors[]="";
         $devolver=false;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            
             if (empty($_POST["name"])) {
                 $_SESSION['errorPeli'] = "El campo Nombre es obligatorio.";
+            }else{
+                foreach (FormularioPeli::devolverPelis() as $nombrePelis) {
+                    if($nombrePelis['nombre']==FormularioPeli::clean_input($_POST["name"])){
+                        $_SESSION['errorPeli'] = "Ya hay una película con ese nombre";
+                        break;
+                    }
+                }
             }
         
             // Validar el campo Argumento
@@ -42,10 +50,13 @@ class FormularioPeli
                 $_SESSION['errorPeli'] = "El campo imagen es obligatorio";
             }
             
-            $imagen=FormularioPeli::procesarImagen($_FILES["caratula"]);
+            
             if ($_SESSION['errorPeli']=="") {
-                $devolver=true;
-                FormularioPeli::crear(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),$imagen,FormularioPeli::clean_input($_POST["edadMinima"]),$_POST['genero'],FormularioPeli::clean_input($_POST["actor"]),FormularioPeli::clean_input($_POST["director"]));
+                if (FormularioPeli::procesarImagen($_FILES["caratula"])!=null) {
+                    $imagen=FormularioPeli::procesarImagen($_FILES["caratula"]);
+                    $devolver=true;
+                    FormularioPeli::crear(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),$imagen,FormularioPeli::clean_input($_POST["edadMinima"]),$_POST['genero'],FormularioPeli::clean_input($_POST["actor"]),FormularioPeli::clean_input($_POST["director"]));
+                }
             }
             
             return $devolver;
@@ -130,6 +141,24 @@ class FormularioPeli
         // Cerrar la conexión
         $db = null;
     }
+    public static function devolverPelis(){
+        $peliculas="";
+            try {
+                $db = Conectar::conexion();
+                $sql = "SELECT nombre FROM `peliculasc`";
+                $resultado = $db->prepare($sql);
+                $resultado->execute(); 
+                $peliculas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+                $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+                $resultado = null; // obligado para cerrar la conexión
+                $db = null; 
+            } catch (PDOException $e) {
+                echo "<br>Error: " . $e->getMessage();  
+                echo "<br>Línea del error: " . $e->getLine();  
+                echo "<br>Archivo del error: " . $e->getFile();
+            }
+            return $peliculas;
+        }
     public static function  clean_input($data)
     {
         $data = trim($data);
