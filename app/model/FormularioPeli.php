@@ -52,11 +52,11 @@ class FormularioPeli
             
             
             if ($_SESSION['errorPeli']=="") {
-                if (FormularioPeli::procesarImagen($_FILES["caratula"])!=null) {
+                // if (FormularioPeli::procesarImagen($_FILES["caratula"])!=null) {
                     $imagen=FormularioPeli::procesarImagen($_FILES["caratula"]);
                     $devolver=true;
                     FormularioPeli::crear(FormularioPeli::clean_input($_POST["name"]),FormularioPeli::clean_input($_POST["argumento"]),$imagen,FormularioPeli::clean_input($_POST["edadMinima"]),$_POST['genero'],FormularioPeli::clean_input($_POST["actor"]),FormularioPeli::clean_input($_POST["director"]));
-                }
+                // }
             }
             
             return $devolver;
