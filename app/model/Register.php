@@ -13,7 +13,7 @@ class Register
             $confirm_password = Register::clean_input($_POST["confPassword"]);
             $error_message="";
             $nombre = explode(",", $nombreApellidos);
-            
+            // $_SESSION['errorReg']="";
             
             // Validate Name and Surnames
             if (empty($nombreApellidos)) {
@@ -22,34 +22,47 @@ class Register
                 //PONER EL VALUE EN NOMBRE
             } elseif (Register::starts_with_number($nombre[0]) || Register::starts_with_number($nombre[1])) {
                 $_SESSION["nombreApellidos"]="Nombre,Apellido1 Apellido2";
-                $error_message = "Name and Surnames cannot start with a number.";
+                $error_message = "El nombre o apellidos no puede empezar con un número";
             }else{
                 $_SESSION["nombreApellidos"]=$nombreApellidos;
             }
             // Validate NIF
             if (!Register::validate_nif($nif)) {
                 $_SESSION["nif"]="12345678L";
-                $error_message = "Invalid NIF format.";
+                $error_message = "Formato de nif no válido";
             }else{
+                foreach (Register::devolverCorreosNifs() as $correoNifs) {
+                    if($correoNifs['NIF']==$nif){
+                        $_SESSION["nif"] = "Ya hay una cuenta con ese nif";
+                        $error_message = "Ya hay una cuenta con ese nif";
+                        break;
+                    }
+                }
                 $_SESSION["nif"]=$nif;
             }
             // Validate Email
             if (!Register::validate_email($email)) {
                 $_SESSION["correo"]="correo@gmail.com";
-                $error_message = "Invalid email address.";
+                $error_message = "Formato de correo no válido";
             }else{
+                foreach (Register::devolverCorreosNifs() as $correoNifs) {
+                    if($correoNifs['correo']==$email){
+                        $_SESSION["correo"] = "Ya hay una cuenta con ese correo";
+                        $error_message = "Ya hay una cuenta con ese correo";
+                        break;
+                    }
+                }
                 $_SESSION["correo"]=$email;
             }
             // Validate Password and Confirm Password
             if (empty($password) || empty($confirm_password) || $password !== $confirm_password) {
-                echo $error_message = "Password and Confirm Password do not match.";
+                $error_message = "Las contraseñas no coinciden";
             }
             // If all validations pass, you can proceed with registration
             if ($error_message=="") {
                 $devolver=true;
-                echo "Registration successful!";
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
-                $_SESSION['correo']=$email;
+                // $_SESSION['correo']=$email;
                 CrearCookieController::crear($email);
                 ControllerCorreo::enviarCorreo($_SESSION['correo']);
             }
@@ -57,7 +70,24 @@ class Register
         }
         return $devolver;
     }
-
+    public static function devolverCorreosNifs(){
+        $correoNif="";
+            try {
+                $db = Conectar::conexion();
+                $sql = "SELECT correo,NIF FROM `usuariosc`";
+                $resultado = $db->prepare($sql);
+                $resultado->execute(); 
+                $correoNif=$resultado->fetchAll(PDO::FETCH_ASSOC);
+                $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+                $resultado = null; // obligado para cerrar la conexión
+                $db = null; 
+            } catch (PDOException $e) {
+                echo "<br>Error: " . $e->getMessage();  
+                echo "<br>Línea del error: " . $e->getLine();  
+                echo "<br>Archivo del error: " . $e->getFile();
+            }
+            return $correoNif;
+        }
     public static function registrar($nombre, $apellidos, $nif, $email, $password)
     {
         try {
