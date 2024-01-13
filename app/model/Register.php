@@ -12,7 +12,14 @@ class Register
             $password = Register::clean_input($_POST["password"]);
             $confirm_password = Register::clean_input($_POST["confPassword"]);
             $error_message="";
+            $error_correo="";
+            $error_nif="";
             $nombre = explode(",", $nombreApellidos);
+            $_SESSION["nombreApellidos"]="";
+            $_SESSION["nif"]="";
+            $_SESSION["correo"]="";
+            $dniRepe=false;
+            $correoRepe=false;
             // $_SESSION['errorReg']="";
             
             // Validate Name and Surnames
@@ -28,30 +35,40 @@ class Register
             }
             // Validate NIF
             if (!Register::validate_nif($nif)) {
-                $_SESSION["nif"]="12345678L";
-                $error_message = "Formato de nif no válido";
+                $_SESSION["nif"]="Formato de nif no válido ej: 12345678L";
+                $error_nif = "Formato de nif no válido ej: 12345678";
+                $error_message = "Formato de nif no válido ej: 12345678";
             }else{
                 foreach (Register::devolverCorreosNifs() as $correoNifs) {
                     if($correoNifs['NIF']==$nif){
                         $_SESSION["nif"] = "Ya hay una cuenta con ese nif";
+                        $dniRepe=true;
+                        $error_nif = "Ya hay una cuenta con ese nif";
                         $error_message = "Ya hay una cuenta con ese nif";
                         break;
                     }
                 }
+            }
+            if (!$dniRepe&&$error_nif=="") {
                 $_SESSION["nif"]=$nif;
             }
             // Validate Email
             if (!Register::validate_email($email)) {
-                $_SESSION["correo"]="correo@gmail.com";
-                $error_message = "Formato de correo no válido";
+                $_SESSION["correo"]="Formato de correo no válido ej: correo@gmail.com";
+                $error_correo = "Formato de correo no válido ej: correo@gmail.com";
+                $error_message = "Formato de correo no válido ej: correo@gmail.com";
             }else{
                 foreach (Register::devolverCorreosNifs() as $correoNifs) {
                     if($correoNifs['correo']==$email){
                         $_SESSION["correo"] = "Ya hay una cuenta con ese correo";
+                        $correoRepe=true;
+                        $error_correo = "Ya hay una cuenta con ese correo";
                         $error_message = "Ya hay una cuenta con ese correo";
                         break;
                     }
                 }
+            }
+            if (!$correoRepe&&$error_correo=="") {
                 $_SESSION["correo"]=$email;
             }
             // Validate Password and Confirm Password

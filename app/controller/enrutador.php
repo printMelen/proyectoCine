@@ -36,4 +36,7 @@ switch ($ctl) {
         DefaultController::inicio();
         break;
 }
+if (session_status() == PHP_SESSION_ACTIVE) {
+    session_destroy();
+}
 // session_destroy();
