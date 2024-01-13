@@ -9,6 +9,13 @@ class FormularioActor
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["nameElenco"])) {
                 $_SESSION['error'] = "El campo Nombre es obligatorio.";
+            }else{
+                foreach (FormularioActor::devolverElenco() as $nombreElenco) {
+                    if($nombreElenco['nombre']==FormularioActor::clean_input($_POST["nameElenco"])){
+                        $_SESSION['error'] = "Ya hay un miembro del elenco con ese nombre";
+                        break;
+                    }
+                }
             }
         
             // Validar el campo Argumento
@@ -21,13 +28,20 @@ class FormularioActor
                 $_SESSION['error'] = "El campo imagen es obligatorio";
             }
             // var_dump($_FILES["imagenElenco"]);
-            $imagen=FormularioActor::procesarImagen($_FILES["imagenElenco"]);
             if ($errors[0]==""&&$_SESSION['error']=="") {
                 $devolver=true;
-                FormularioActor::insertarActor(FormularioPeli::clean_input($_POST["nameElenco"]),FormularioPeli::clean_input($_POST["rolElenco"]),$imagen);
+                $imagen=FormularioActor::procesarImagen($_FILES["imagenElenco"]);
+                FormularioActor::insertarActor(FormularioActor::clean_input($_POST["nameElenco"]),FormularioActor::clean_input($_POST["rolElenco"]),$imagen);
             }
         }
         return $devolver;
+    }
+    public static function  clean_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
     public static function insertarActor($nombre, $tipo, $imagen)
     {
@@ -95,12 +109,14 @@ class FormularioActor
     }
     public static function devolverElenco(){
         $_SESSION["elenco"]="";
+        $elenco="";
             try {
                 $db = Conectar::conexion();
                 $sql = "SELECT * FROM `personalc`";
                 $resultado = $db->prepare($sql);
                 $resultado->execute(); 
                 $_SESSION["elenco"]=$resultado->fetchAll(PDO::FETCH_ASSOC);
+                $elenco=$_SESSION["elenco"];
                 $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
                 $resultado = null; // obligado para cerrar la conexión
                 $db = null; 
@@ -109,6 +125,7 @@ class FormularioActor
                 echo "<br>Línea del error: " . $e->getLine();  
                 echo "<br>Archivo del error: " . $e->getFile();
             }
+            return $elenco;
         }
     public static function separar(){
         $_SESSION["directores"]=NULL;
