@@ -22,11 +22,14 @@
      <div class="container max-w-screen-xs flex flex-col h-[100%]">
           <?php include("headerAdmin.php"); ?>
           <?php 
+               $_GET['peticion']=$_GET['peticion']??null;
                if ($_GET['peticion']=="login") {
-                    ViewController::cargarVista("formularioPeli");
-               }else{
+                    ViewController::cargarVista("landingAdmin");
+               // }elseif(isset($_GET['peticion'])){
                     // include $_GET['peticion'].'.php';
+               }else{
                     ViewController::cargarVista($_GET['peticion']);
+                    // ViewController::cargarVista("indexAdmin");
                }
           ?>
      </div>
