@@ -2,7 +2,6 @@
 class Validar{
     public static function validar(){
         $db = Conectar::conexion();
-        $sql = "UPDATE usuariosc SET activo = '1' WHERE 'correo' = ?";
         $sql="UPDATE usuariosc SET activo = 1 WHERE correo = ?";
         $resultado = $db->prepare($sql);
         $resultado->bindParam(1, $_COOKIE['correoUsuario'], PDO::PARAM_STR);

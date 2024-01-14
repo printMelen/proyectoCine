@@ -1,6 +1,7 @@
 <?php
 class CrearCookie{
-    public static function crear($email){
-        setcookie('correoUsuario', $email, time()+60*30);
+    public static function crear($email,$nombre){
+        setcookie('correoUsuario', $email, 0);
+        setcookie('nombre', $nombre, 0);
     }
 }

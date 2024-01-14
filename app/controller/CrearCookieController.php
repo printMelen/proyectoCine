@@ -1,8 +1,8 @@
 <?php
 class CrearCookieController
 {
-    public static function crear($email)
+    public static function crear($email,$nombre)
     {
-        CrearCookie::crear($email);
+        CrearCookie::crear($email,$nombre);
     }
 }

@@ -16,7 +16,7 @@ class ControllerCorreo
         //Creamos el contenido del asunto 
         $subject = "PlayOn correo de validación";
         //Cuerpo del mensaje
-        $message = "Correo de validación para activar tu cuenta en PlayOn:<br> <a href='http://localhost/dwes/proyectoCine/index.php?peticion=validar' target='_blank'>click aquí</a><br> No conteste a este mensaje es automático";
+        $message = "Correo de validación para activar tu cuenta en PlayOn:<br> <a href='http://143.47.43.204:8080/alvaro/proyectoCine/index.php?peticion=validar' target='_blank'>click aquí</a><br> No conteste a este mensaje es automático";
 
 
         try {
