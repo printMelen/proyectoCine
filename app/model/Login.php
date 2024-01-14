@@ -51,4 +51,23 @@ class Login
         }
         return $devolver;
     }
+    public static function devolverAvatar($correo){
+        $resultados="";
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT avatar FROM usuariosc where correo=?";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(1, $correo, PDO::PARAM_STR);
+            $resultado->execute(); 
+            $resultados=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+            $resultado = null; // obligado para cerrar la conexión
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $resultados;
+    }
 }

@@ -1,13 +1,10 @@
 <?php
 session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
+$_SESSION["logeado"] = $_SESSION["logeado"] ?? NULL;
+$_SESSION['nombre'] = $_SESSION['nombre'] ?? NULL;
 // $_SESSION["errorLogin"] = $_SESSION["errorLogin"] ?? NULL;
-if (!isset($_SESSION["logeado"])) {
-    $_SESSION["logeado"] = null;
-}
-if (!isset($_SESSION['nombre'])) {
-    $_SESSION['nombre'] = null;
-}
+
 $_SESSION["nif"]="";
 $_SESSION["nombreApellidos"]="";
 $_SESSION["correo"]="";
@@ -24,10 +21,6 @@ switch ($ctl) {
     case 'validar':
         // echo $_COOKIE['correoUsuario'];
         ValidarController::validar();
-        $_SESSION["logeado"]=true;
-        $_SESSION["rol"]="Usuario";
-        $_SESSION["nombre"]=$_COOKIE['nombre'];
-        $_SESSION["avatar"]="avatarSudadera.png";
         break;
     case 'movies':
         MoviesController::inicio();
