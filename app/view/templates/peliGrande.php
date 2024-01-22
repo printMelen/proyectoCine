@@ -19,11 +19,10 @@
 </head>
 
 <body class="flex flex-row-reverse container bg-whiteAdmin max-w-screen-2xl justify-between mx-auto font-Poppins">
-    <?php include("header.php"); ?>
+     <?php include("header.php"); ?>
      
     
-    <?php include("footer.php"); ?>     
-     
+     <?php include("footer.php"); ?>     
      <script src="assets/js/custom.js"></script>
 </body>
 </html>

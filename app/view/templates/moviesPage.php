@@ -26,22 +26,8 @@
                <button class="w-[142px] h-[46px] bg-[#FFFFFF4C] rounded-[6.29px]">Genres</button>
                <button class="w-[142px] h-[46px] bg-[#FFFFFF1A] rounded-[6.29px] ml-[27px]">Released</button>
           </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Fantasia</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Comedia</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Familia</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Drama</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
+          <?php include("app/view/templates/carruselMovies.php"); ?>
+          
      </main>
      <?php include("app/view/templates/footer.php"); ?>
      <script src="../js/custom.js"></script>

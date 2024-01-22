@@ -6,7 +6,7 @@
         <?php
         for ($i = 0; $i < 6; $i++) {
             echo <<<EOT
-            <a href="#">
+            <a href="index.php?peticion=moviePreview?id=$i">
                 <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/joker.jpg" alt="" srcset="">
             </a>
             EOT;
