@@ -16,7 +16,11 @@
             <span>
             <?php echo $_SESSION['datosPelis'][$i+2]['nombre_genero']?>
             </span>
-            <span>2:21</span>
+            <span>
+                <?php
+                    echo random_int(1,6).":".random_int(0,6)."0";
+                ?>
+            </span>
             <span>
             <?php
                 echo $_SESSION['datosPelis'][$i+2]['clasificacion_edad'];
