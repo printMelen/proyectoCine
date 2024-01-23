@@ -3,6 +3,8 @@ class MoviePreviewController
 {
     public static function inicio()
     {
-        ViewController::cargarVista("peliGrande");
+        if (isset($_GET['id'])) {
+            ViewController::cargarVista("peliGrande");
+        }
     }
 }
