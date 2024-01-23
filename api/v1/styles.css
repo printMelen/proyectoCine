@@ -1,0 +1,111 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #333;
+    background-color: #f7f7f7;
+
+}
+
+.container {
+    margin: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+span.v {
+    color: rgb(29, 207, 29);
+}
+
+span.r {
+    color: #89b603;
+}
+
+span.a {
+    color: #e100e1;
+}
+
+span.n {
+    color: #ffa500;
+}
+
+code {
+    font-family: Consolas, Monaco, Courier New, Courier, monospace;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    color: #002166;
+    display: block;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+
+h1 {
+    color: #0066cc;
+    background-color: #fff;
+    border-bottom: 2px solid #ccc;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 0;
+
+}
+
+h2 {
+    color: #333333;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 1em;
+    text-align: left;
+}
+
+.divbody {
+    padding: 0.5em;
+    margin: 0 10px 0 10px;
+}
+
+.api-endpoint {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.api-endpoint code {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.api-endpoint p {
+    margin-left: 15px;
+    color: #777;
+}
+
+.json {
+    background-color: #282c34;
+    color: #c3c8d3;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.json-key {
+    color: #e06c75;
+}
+
+.json-brace {
+    color: #e7c712;
+}
+
+.json-bracket {
+    color: #61afef;
+    /* Azul más claro para las llaves y corchetes */
+}
+
+summary {
+    color: #0066cc;
+    font-weight: bold;
+}
