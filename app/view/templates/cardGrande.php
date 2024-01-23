@@ -2,7 +2,11 @@
     <img class="w-[100%] h-[100%]" src="app/view/images/caratula/<?php echo $_SESSION['datosPelis'][$i]['cartel'];
     ?>" alt="">
     <div class="flex justify-between pt-[28px]">
-        <span>9.5</span>
+        <span>
+            <?php
+                echo rand(1,9).".".rand(0,9);
+            ?>
+        </span>
         <span>2023</span>
         <div class="flex gap-[30px]">
             <span>
