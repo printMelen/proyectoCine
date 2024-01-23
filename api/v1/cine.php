@@ -19,6 +19,6 @@ switch ($method) {
         Borrar::gestion();
         break;
     default:  //METODO NO SOPORTADO       
-        header("HTTP/1.0 400 Bad Request");
+        header("HTTP/1.0 400 Bad Request");
         break;
 }

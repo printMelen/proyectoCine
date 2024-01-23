@@ -6,6 +6,7 @@ spl_autoload_register(function ($clase) {
         'app/model/' . $clase . '.php',
         'app/view/templates/' . $clase . '.php',
         'cors/' . $clase . '.php',
+        'controladorApi/' . $clase . '.php',
     ];
 
     foreach ($paths as $path) {
