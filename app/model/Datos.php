@@ -1,10 +1,10 @@
 <?php
-class Imagenes{
-    public static function sacarImagenes(){
+class Datos{
+    public static function sacarDatos(){
         $devolver="";
             try {
                 $db = Conectar::conexion();
-                $sql = "SELECT cartel FROM `peliculasc`";
+                $sql = "SELECT * FROM `peliculasc`";
                 $resultado = $db->prepare($sql);
                 $resultado->execute(); 
                 $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
