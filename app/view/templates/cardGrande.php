@@ -5,7 +5,9 @@
         <span>9.5</span>
         <span>2023</span>
         <div class="flex gap-[30px]">
-            <span>Action movie</span>
+            <span>
+                <?php echo $_SESSION['datosPelis'][$i]['nombre_genero']?>
+            </span>
             <span>2:21</span>
             <span>
                 <?php

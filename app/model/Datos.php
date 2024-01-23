@@ -4,7 +4,8 @@ class Datos{
         $devolver="";
             try {
                 $db = Conectar::conexion();
-                $sql = "SELECT * FROM `peliculasc`";
+                $sql = "SELECT peliculasc.*, generoc.nombre AS nombre_genero FROM peliculasc JOIN generoc ON peliculasc.genero_id = generoc.id;";
+                // $sql = "SELECT * FROM `peliculasc`";
                 $resultado = $db->prepare($sql);
                 $resultado->execute(); 
                 $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -17,5 +18,21 @@ class Datos{
                 echo "<br>Archivo del error: " . $e->getFile();
             }
             return $devolver;
-        }
+    }
+    // public static function sacarGenero($devolver){
+    //     try {
+    //         $db = Conectar::conexion();
+    //         $sql = "SELECT nombre FROM `generoc` where id=$devolver";
+    //         $resultado = $db->prepare($sql);
+    //         $resultado->execute(); 
+    //         $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
+    //         $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+    //         $resultado = null; // obligado para cerrar la conexión
+    //         $db = null; 
+    //     } catch (PDOException $e) {
+    //         echo "<br>Error: " . $e->getMessage();  
+    //         echo "<br>Línea del error: " . $e->getLine();  
+    //         echo "<br>Archivo del error: " . $e->getFile();
+    //     }
+    // }
 }
