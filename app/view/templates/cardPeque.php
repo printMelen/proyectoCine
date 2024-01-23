@@ -4,10 +4,14 @@
     <div class="flex flex-wrap justify-between pt-[22px]">
         <span>
             <?php
-                echo rand(1,9).".".rand(0,9);
+                echo random_int(1,9).".".random_int(0,9);
             ?>
         </span>
-        <span>2023</span>
+        <span>
+            <?php
+                echo random_int(1950, date("Y"));
+            ?>
+        </span>
         <div class="flex gap-[30px]">
             <span>
             <?php echo $_SESSION['datosPelis'][$i+2]['nombre_genero']?>
