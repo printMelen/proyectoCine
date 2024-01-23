@@ -29,15 +29,16 @@
           </div>
           <div class="flex flex-wrap gap-[55px] h-[466px] justify-center">
                <?php
+               for ($i=0; $i < 2; $i++) { 
                     include("app/view/templates/cardGrande.php");
-                    include("app/view/templates/cardGrande.php");
+               }
                ?>
           </div>
           <div class="flex flex-wrap gap-[58px] mt-[61px] h-[396px] justify-center">
                <?php
+               for ($i=0; $i < count($_SESSION['imgPelis'])-2; $i++) { 
                     include("app/view/templates/cardPeque.php");
-                    include("app/view/templates/cardPeque.php");
-                    include("app/view/templates/cardPeque.php");
+               }
                ?>
           </div>
           <div class="mx-auto bg-backLambo bg-no-repeat w-[1431px] h-[725px] mt-[20px]">
