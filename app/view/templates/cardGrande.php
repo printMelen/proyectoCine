@@ -28,7 +28,13 @@
             </span>
         </div>
         <div>
-            <span>Director: Louis Leterrier</span>
+            <span>
+                <?php
+                if ($_SESSION['datosPelis'][$i]['nombre_director']!=NULL) {
+                    echo "Director: ". $_SESSION['datosPelis'][$i]['nombre_director'];
+                }
+                ?>
+            </span>
         </div>
     </div>
     <div class="flex justify-between mt-[37px] items-center h-[53px]">

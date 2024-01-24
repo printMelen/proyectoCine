@@ -13,11 +13,11 @@ $_SESSION["errorLogin"]="";
 if (!isset($_SESSION['datosPelis'])) {
     DatosController::inicio();
 }else{
-    // echo "<pre>";
-    // for ($i=0; $i < count($_SESSION['datosPelis']); $i++) { 
-    //     var_dump($_SESSION['datosPelis'][$i]);
-    // }
-    // echo "</pre>";
+    echo "<pre>";
+    for ($i=0; $i < count($_SESSION['datosPelis']); $i++) { 
+        var_dump($_SESSION['datosPelis'][$i]);
+    }
+    echo "</pre>";
 }
 // $_SESSION["rol"]??null;
 // $_GET['enviado']=NULL;

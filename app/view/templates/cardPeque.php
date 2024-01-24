@@ -29,7 +29,13 @@
         </div>
     </div>
     <div class="mt-[26px]">
-        <span class="">Director: Louis Leterrier</span>
+        <span class="">
+            <?php
+                if ($_SESSION['datosPelis'][$i+2]['nombre_director']!=NULL) {
+                    echo "Director: ". $_SESSION['datosPelis'][$i+2]['nombre_director'];
+                }
+                ?>
+        </span>
     </div>
     <div class="flex justify-between mt-[32px] items-center h-[53px]">
         <div>
