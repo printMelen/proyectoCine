@@ -26,21 +26,16 @@
                <button class="w-[142px] h-[46px] bg-[#FFFFFF4C] rounded-[6.29px]">Genres</button>
                <button class="w-[142px] h-[46px] bg-[#FFFFFF1A] rounded-[6.29px] ml-[27px]">Released</button>
           </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Fantasia</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Comedia</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Familia</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
-          </div>
-          <div class="mt-[30px]">
-               <h2 class="text-white mb-[15px]">Drama</h2>
-               <?php include("app/view/templates/carruselMovies.php"); ?>
+          <div class="container max-w-screen-1400 flex flex-wrap gap-[40px] mx-auto justify-center my-[20px]">
+               <?php
+               for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
+                    echo <<<EOT
+                         <a href="index.php?peticion=moviePreview&id=$i">
+                              <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
+                         </a>
+                    EOT;
+               }
+               ?>
           </div>
      </main>
      <?php include("app/view/templates/footer.php"); ?>

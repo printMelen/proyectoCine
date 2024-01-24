@@ -4,11 +4,21 @@ $ctl = $_REQUEST['peticion'] ?? NULL;
 $_SESSION["logeado"] = $_SESSION["logeado"] ?? NULL;
 $_SESSION['nombre'] = $_SESSION['nombre'] ?? NULL;
 // $_SESSION["errorLogin"] = $_SESSION["errorLogin"] ?? NULL;
-
 $_SESSION["nif"]="";
 $_SESSION["nombreApellidos"]="";
 $_SESSION["correo"]="";
 $_SESSION["errorLogin"]="";
+
+
+// if (!isset($_SESSION['datosPelis'])) {
+    DatosController::inicio();
+// }else{
+    // echo "<pre>";
+    // for ($i=0; $i < count($_SESSION['datosPelis']); $i++) { 
+    //     var_dump($_SESSION['datosPelis'][$i]);
+    // }
+    // echo "</pre>";
+// }
 // $_SESSION["rol"]??null;
 // $_GET['enviado']=NULL;
 switch ($ctl) {
@@ -24,6 +34,9 @@ switch ($ctl) {
         break;
     case 'movies':
         MoviesController::inicio();
+        break;
+    case 'moviePreview':
+        MoviePreviewController::inicio();
         break;
     case 'logout':
         LogoutController::cerrar();

@@ -1,16 +1,41 @@
 <div class="grid grid-rows-[190px_40px_40px_42px] py-[20px] px-[30px] h-[396px] w-[415px] bg-[#1D1731] rounded-[15.8px]">
-    <img src="app/view/images/sirenita.svg" alt="">
+    <img class="w-[100%] h-[100%]" src="app/view/images/caratula/<?php echo $_SESSION['datosPelis'][$i+2]['cartel'];
+    ?>" alt="">
     <div class="flex flex-wrap justify-between pt-[22px]">
-        <span>9.5</span>
-        <span>2023</span>
+        <span>
+            <?php
+                echo random_int(1,9).".".random_int(0,9);
+            ?>
+        </span>
+        <span>
+            <?php
+                echo random_int(1950, date("Y"));
+            ?>
+        </span>
         <div class="flex gap-[30px]">
-            <span>Action movie</span>
-            <span>2:21</span>
-            <span>16+</span>
+            <span>
+            <?php echo $_SESSION['datosPelis'][$i+2]['nombre_genero']?>
+            </span>
+            <span>
+                <?php
+                    echo random_int(1,6).":".random_int(0,6)."0";
+                ?>
+            </span>
+            <span>
+            <?php
+                echo $_SESSION['datosPelis'][$i+2]['clasificacion_edad'];
+            ?>
+            </span>
         </div>
     </div>
     <div class="mt-[26px]">
-        <span class="">Director: Louis Leterrier</span>
+        <span class="">
+            <?php
+                if ($_SESSION['datosPelis'][$i+2]['nombre_director']!=NULL) {
+                    echo "Director: ". $_SESSION['datosPelis'][$i+2]['nombre_director'];
+                }
+                ?>
+        </span>
     </div>
     <div class="flex justify-between mt-[32px] items-center h-[53px]">
         <div>
