@@ -9,7 +9,6 @@ class Datos{
                 LEFT JOIN peliculas_personalc ON peliculasc.id = peliculas_personalc.pelicula_id
                 LEFT JOIN personalc ON peliculas_personalc.personal_id = personalc.id AND personalc.tipo = 'Director' GROUP BY peliculasc.id;
                 ";
-                // $sql = "SELECT * FROM `peliculasc`";
                 $resultado = $db->prepare($sql);
                 $resultado->execute(); 
                 $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -23,20 +22,4 @@ class Datos{
             }
             return $devolver;
     }
-    // public static function sacarGenero($devolver){
-    //     try {
-    //         $db = Conectar::conexion();
-    //         $sql = "SELECT nombre FROM `generoc` where id=$devolver";
-    //         $resultado = $db->prepare($sql);
-    //         $resultado->execute(); 
-    //         $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
-    //         $resultado->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
-    //         $resultado = null; // obligado para cerrar la conexión
-    //         $db = null; 
-    //     } catch (PDOException $e) {
-    //         echo "<br>Error: " . $e->getMessage();  
-    //         echo "<br>Línea del error: " . $e->getLine();  
-    //         echo "<br>Archivo del error: " . $e->getFile();
-    //     }
-    // }
 }
