@@ -785,6 +785,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-\[30px\] {
+  margin-top: 30px;
+}
+
 .block {
   display: block;
 }
