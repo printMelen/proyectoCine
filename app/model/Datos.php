@@ -4,10 +4,12 @@ class Datos{
         $devolver="";
             try {
                 $db = Conectar::conexion();
-                $sql = "SELECT peliculasc.*, generoc.nombre AS nombre_genero,personalc.nombre AS nombre_director FROM peliculasc 
+                $sql = "SELECT peliculasc.*, 
+                generoc.nombre AS nombre_genero,
+                GROUP_CONCAT(personalc.nombre) AS nombre_director FROM peliculasc 
                 LEFT JOIN generoc ON peliculasc.genero_id = generoc.id
                 LEFT JOIN peliculas_personalc ON peliculasc.id = peliculas_personalc.pelicula_id
-                LEFT JOIN personalc ON peliculas_personalc.personal_id = personalc.id AND personalc.tipo = 'Director' GROUP BY peliculasc.id,generoc.nombre,personalc.nombre;
+                LEFT JOIN personalc ON peliculas_personalc.personal_id = personalc.id AND personalc.tipo = 'Director' GROUP BY peliculasc.id,generoc.nombre;
                 ";
                 $resultado = $db->prepare($sql);
                 $resultado->execute(); 
