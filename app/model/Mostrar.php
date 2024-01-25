@@ -9,26 +9,24 @@ class Mostrar{
             peliculasc.id AS id_pelicula, 
             peliculasc.nombre AS nombre_pelicula, 
             peliculasc.cartel AS caratula,
-            generoc.nombre AS nombre_genero, 
-            personalc.nombre AS nombre_personal, 
-            personalc.tipo AS tipo_personal
+            generoc.nombre AS nombre_genero 
             FROM 
             peliculasc 
             LEFT JOIN 
-            generoc ON peliculasc.genero_id = generoc.id 
-            LEFT JOIN 
-            peliculas_personalc ON peliculasc.id = peliculas_personalc.pelicula_id 
-            LEFT JOIN 
-            personalc ON peliculas_personalc.personal_id = personalc.id
+            generoc ON peliculasc.genero_id = generoc.id
             where peliculasc.id=:id;
             ";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":id", $id);
             $resultado->execute(); 
-            $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($devolver as &$pelicula) {
-                $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
-                // $pelicula['elenco'];
+            $devolver=$resultado->fetch(PDO::FETCH_ASSOC);
+            $devolver['caratula'] = CMostrar::getRuta() . $devolver['caratula'];
+            foreach (Mostrar::obtenerElenco() as $actor) {
+                if ($actor['id_peli']==$id) {
+                    unset($actor['id_peli']);
+                    $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+                    $devolver['elenco'][]=$actor;
+                }
             }
             $resultado->closeCursor();
             $resultado = null;
@@ -40,11 +38,12 @@ class Mostrar{
         }
         return $devolver;
     }
-    public static function obtenerElenco($i){
+    public static function obtenerElenco(){
         $devolver = array();
         try {
             $db = Conectar::conexion();
             $sql = "SELECT  
+            peliculasc.id AS id_peli, 
             personalc.id AS id_personal, 
             personalc.nombre AS nombre_personal, 
             personalc.imagen AS imagen_personal, 
@@ -56,17 +55,11 @@ class Mostrar{
             LEFT JOIN 
             peliculas_personalc ON peliculasc.id = peliculas_personalc.pelicula_id 
             LEFT JOIN 
-            personalc ON peliculas_personalc.personal_id = personalc.id
-            where peliculasc.id=:id;
+            personalc ON peliculas_personalc.personal_id = personalc.id;
             ";
             $resultado = $db->prepare($sql);
-            $resultado->bindParam(":id", $id);
             $resultado->execute(); 
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($devolver as &$pelicula) {
-                $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
-                // $pelicula['elenco'];
-            }
             $resultado->closeCursor();
             $resultado = null;
             $db = null; 
