@@ -67,7 +67,34 @@ class Mostrar{
         return $elenco;
     }
     public static function getActores(){
-        
+        $elenco = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                personalc.id AS id_personal, 
+                personalc.nombre AS nombre_personal, 
+                personalc.imagen AS imagen_personal,
+                personalc.tipo AS rol_personal 
+                FROM 
+                personalc
+                GROUP BY 
+                personalc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $elenco=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($elenco as &$actor) {
+                $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+            }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $elenco;
     }
     public static function getSesiones($id){
         
