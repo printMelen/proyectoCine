@@ -71,28 +71,47 @@ class Mostrar{
         return $devolver;
     }
     public static function getPeliculas(){
-        $devolver = array();
+        $devolver["id_pelicula"] = "";
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
-                peliculasc.id AS id_pelicula, 
-                peliculasc.nombre AS nombre_pelicula, 
-                generoc.nombre AS genero, 
-                peliculasc.cartel AS caratula
-                FROM 
-                peliculasc 
-                LEFT JOIN 
-                generoc ON peliculasc.genero_id = generoc.id 
-                GROUP BY 
-                peliculasc.id;
+            peliculasc.id AS id_pelicula, 
+            peliculasc.nombre AS nombre_pelicula, 
+            peliculasc.cartel AS caratula,
+            generoc.nombre AS nombre_genero 
+            FROM 
+            peliculasc 
+            LEFT JOIN 
+            generoc ON peliculasc.genero_id = generoc.id;
             ";
             $resultado = $db->prepare($sql);
             $resultado->execute(); 
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($devolver as &$pelicula) {
-                $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
-                // $pelicula['elenco'];
+            // foreach ($devolver as &$pelicula) {
+            //     $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
+            // }
+            // foreach (Mostrar::obtenerElenco() as $actor) {
+            //     if ($actor['id_peli']==$devolver['id_pelicula']) {
+            //         unset($actor['id_peli']);
+            //         $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+            //         $devolver['elenco'][]=$actor;
+            //     }
+            // }
+            // Parte del bucle foreach corregida
+            foreach (Mostrar::obtenerElenco() as $key => $actor) {
+                echo "<pre>";
+                // var_dump($actor);
+                echo $actor['id_peli'];
+                echo "</pre>";
+                foreach ($devolver as $pelicula) {
+                    if ($actor['id_peli'] == $pelicula["id_pelicula"]) {
+                        // unset($actor['id_peli']);
+                        $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+                        $pelicula['elenco'][] = $actor;
+                    }
+                }
             }
+
             $resultado->closeCursor();
             $resultado = null;
             $db = null; 
@@ -163,6 +182,5 @@ class Mostrar{
         return $elenco;
     }
     public static function getSesiones($id){
-        
     }
 }
