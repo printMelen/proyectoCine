@@ -2,6 +2,7 @@
 
 class Mostrar{
     public static function getPelicula($id){
+
     }
     public static function getPeliculas(){
         $devolver = array();
@@ -24,11 +25,8 @@ class Mostrar{
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
             foreach ($devolver as &$pelicula) {
                 $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
+                $pelicula['elenco'];
             }
-            // $devolver['caratula']=CMostrar::getRuta().$devolver['caratula'];
-            // echo "<pre>";
-            // var_dump($devolver);
-            // echo "</pre>";
             $resultado->closeCursor();
             $resultado = null;
             $db = null; 
@@ -40,7 +38,33 @@ class Mostrar{
         return $devolver;  
     }
     public static function getActor($id){
-        
+        $elenco = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                personalc.id AS id_personal, 
+                personalc.nombre AS nombre_personal, 
+                personalc.imagen AS imagen_personal,
+                personalc.tipo AS rol_personal 
+                FROM 
+                personalc where personalc.id = :id
+                GROUP BY 
+                personalc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":id", $id);
+            $resultado->execute(); 
+            $elenco=$resultado->fetch(PDO::FETCH_ASSOC);
+            $elenco['imagen_personal']= CMostrar::getRuta().$elenco['imagen_personal'];
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $elenco;
     }
     public static function getActores(){
         
