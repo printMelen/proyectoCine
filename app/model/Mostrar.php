@@ -25,7 +25,7 @@ class Mostrar{
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
             foreach ($devolver as &$pelicula) {
                 $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
-                $pelicula['elenco'];
+                // $pelicula['elenco'];
             }
             $resultado->closeCursor();
             $resultado = null;
