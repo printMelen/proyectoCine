@@ -1,5 +1,5 @@
 <?php
-class Actualizar
+class CActualizar
 {
     public static function gestion()
     {

@@ -7,16 +7,16 @@ Cors::handleCors();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'GET': //mostrar           
-        Mostrar::gestion();
+        CMostrar::gestion();
         break;
     case 'POST': //insertar   
-        Insertar::gestion();
+        CInsertar::gestion();
         break;
     case 'PUT': //actualizar
-        Actualizar::gestion();
+        CActualizar::gestion();
         break;
     case 'DELETE': //borrar
-        Borrar::gestion();
+        CBorrar::gestion();
         break;
     default:  //METODO NO SOPORTADO       
         header("HTTP/1.0 400 Bad Request");

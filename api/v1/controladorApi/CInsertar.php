@@ -14,7 +14,7 @@
         6. 500 : Internal Server Error → Se ha producido un error interno
                  header("HTTP/1.0 500 Internal Server Error");
    */
-class Insertar
+class CInsertar
 {
    
     public static function gestion()

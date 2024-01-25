@@ -2,8 +2,10 @@
 spl_autoload_register(function ($clase) {
     $paths = [
         'database/' . $clase . '.php',
+        '../../database/' . $clase . '.php',
         'app/controller/' . $clase . '.php',
         'app/model/' . $clase . '.php',
+        '../../app/model/' . $clase . '.php',
         'app/view/templates/' . $clase . '.php',
         'cors/' . $clase . '.php',
         'controladorApi/' . $clase . '.php',

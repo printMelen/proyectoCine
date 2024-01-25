@@ -1,5 +1,5 @@
 <?php
-class Borrar
+class CBorrar
 {
     public static function gestion()
     {
