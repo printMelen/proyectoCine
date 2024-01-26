@@ -87,31 +87,15 @@ class Mostrar{
             $resultado = $db->prepare($sql);
             $resultado->execute(); 
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
-            // foreach ($devolver as &$pelicula) {
-            //     $pelicula['caratula'] = CMostrar::getRuta() . $pelicula['caratula'];
-            // }
-            // foreach (Mostrar::obtenerElenco() as $actor) {
-            //     if ($actor['id_peli']==$devolver['id_pelicula']) {
-            //         unset($actor['id_peli']);
-            //         $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
-            //         $devolver['elenco'][]=$actor;
-            //     }
-            // }
-            // Parte del bucle foreach corregida
-            foreach (Mostrar::obtenerElenco() as $key => $actor) {
-                echo "<pre>";
-                // var_dump($actor);
-                echo $actor['id_peli'];
-                echo "</pre>";
-                foreach ($devolver as $pelicula) {
-                    if ($actor['id_peli'] == $pelicula["id_pelicula"]) {
-                        // unset($actor['id_peli']);
+            foreach ($devolver as $indi => $pelicula) {
+                foreach (Mostrar::obtenerElenco() as $actor) {
+                    if ($actor['id_peli']==$pelicula["id_pelicula"]) {
+                        unset($actor['id_peli']);
                         $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
-                        $pelicula['elenco'][] = $actor;
+                        $devolver[$indi]['elenco'][]=$actor;
                     }
                 }
             }
-
             $resultado->closeCursor();
             $resultado = null;
             $db = null; 
