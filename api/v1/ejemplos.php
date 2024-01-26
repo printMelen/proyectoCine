@@ -93,7 +93,12 @@ $json3 = [
     ]
 ];
 
-$json4 = [];
+$json4 = [
+    "id_personal" => 1,
+    "nombre_personal" => "Humphrey Bogart",
+    "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/bogart.jpg",
+    "rol_personal" => "Actor"
+];
 
 $json5 = [];
 
