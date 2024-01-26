@@ -166,5 +166,6 @@ class Mostrar{
         return $elenco;
     }
     public static function getSesiones($id){
+
     }
 }

@@ -72,7 +72,26 @@ $json2 = [
     ]
 ];
 
-$json3 = [];
+$json3 = [
+    [
+        "id_personal" => 1,
+        "nombre_personal" => "Humphrey Bogart",
+        "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/bogart.jpg",
+        "rol_personal" => "Actor"
+    ],
+    [
+        "id_personal" => 2,
+        "nombre_personal" => "Michael Curtiz",
+        "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/curtiz.jpg",
+        "rol_personal" => "Director"
+    ],
+    [
+        "id_personal" => 3,
+        "nombre_personal" => "Marlon Brando",
+        "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/brando.jpg",
+        "rol_personal" => "Actor"
+    ]
+];
 
 $json4 = [];
 
