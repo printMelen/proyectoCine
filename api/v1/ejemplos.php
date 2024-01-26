@@ -100,6 +100,25 @@ $json4 = [
     "rol_personal" => "Actor"
 ];
 
-$json5 = [];
+$json5 = [
+    [
+        "id_sesion" => 1,
+        "nombre_sala" => "Sala 3D",
+        "nombre_peli" => "Casablanca",
+        "dia_sesion" => "2024-01-24",
+        "hora_sesion" => "17:00:00",
+        "asientos_libres" => 118,
+        "asientos_ocupados" => 2
+    ],
+    [
+        "id_sesion" => 2,
+        "nombre_sala" => "Sala VIP",
+        "nombre_peli" => "El Padrino",
+        "dia_sesion" => "2024-01-25",
+        "hora_sesion" => "20:00:00",
+        "asientos_libres" => 85,
+        "asientos_ocupados" => 5
+    ]
+];
 
 $json6 = [];
