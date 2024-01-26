@@ -121,4 +121,21 @@ $json5 = [
     ]
 ];
 
-$json6 = [];
+$json6 = [
+    [
+        "id_sesion" => 2,
+        "nombre_sala" => "Sala VIP",
+        "nombre_peli" => "El Padrino",
+        "dia_sesion" => "2024-01-25",
+        "hora_sesion" => "20:00:00",
+        "asientos_libres" => 85,
+        "asientos_ocupados" => 5
+    ],
+    [
+        "id_sesion" => 4,
+        "nombre_sala" => null,
+        "nombre_peli" => "2001: Odisea del espacio",
+        "dia_sesion" => "2024-01-25",
+        "hora_sesion" => "23:00:00"
+    ]
+];
