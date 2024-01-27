@@ -14,7 +14,7 @@
         6. 500 : Internal Server Error → Se ha producido un error interno
                  header("HTTP/1.0 500 Internal Server Error");
    */
-class Insertar
+class CInsertar
 {
     const PATH = './imgs/';
     public static function gestion()
@@ -138,9 +138,9 @@ class Insertar
 
     private static function registrarAlimento($data)
     {
-        $idAlimento = null;
-        $idAlimento = Alimentos::insertar($data);
-        return $idAlimento;
+        $idPeli = null;
+        $idPeli = Insertar::insertarPeli($data);
+        return $idPeli;
 
         // Aquí puedes manejar la inserción de los datos del alimento en la base de datos.
         // Debes devolver el id del alimento insertado
