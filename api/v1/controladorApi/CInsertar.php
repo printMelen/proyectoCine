@@ -96,7 +96,7 @@ class CInsertar
             $valor = false;
         } else {
             // Decode the base64-encoded image data
-            $quitarCabecera = explode(',', $imagen64);
+            $quitarCabecera = explode(';', $imagen64);
 
             // Ensure that $quitarCabecera has at least two elements before accessing index 1
             if (isset($quitarCabecera[1])) {
@@ -106,7 +106,9 @@ class CInsertar
                 // Example: if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
                 //              $valor = false;
                 //          }
-
+                if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif','bmp','webp'])) {
+                    $valor = false;
+                }
                 // Ensure that the image directory exists and has the necessary permissions
 
                 // Establezco la extensión del fichero
@@ -125,7 +127,8 @@ class CInsertar
 
     private static function guardarImagen($imagen64, $nombre, $extension)
     {
-        $nuevo_fichero_ruta = './imgs/' . $nombre . time() . '.' . $extension;
+        $nombre_sin_espacios = strtolower(str_replace(' ', '_', $nombre));
+        $nuevo_fichero_ruta = self::PATH . $nombre_sin_espacios . time() . '.' . $extension;
         $nombre_fichero = $nombre . time() . '.' . $extension;
 
         // Ensure that the directory has the necessary permissions for writing
