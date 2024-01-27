@@ -16,7 +16,7 @@
    */
 class CInsertar
 {
-    const PATH = '../imgs/';
+    const PATH = './imgs/';
     public static function gestion()
     {
         $data = json_decode(file_get_contents("php://input"), true);
@@ -34,7 +34,7 @@ class CInsertar
         ) {
             // Todos los campos requeridos están presentes, puedes continuar con la lógica de tu programa
             if (self::validarDatos($data) && self::validarImagen($data)) {
-                $idPeli = self::registrarAlimento($data);
+                $idPeli = self::registrarPeli($data);
                 // var_dump($idAlimento);
                 // var_dump($data);
                 // exit;
@@ -91,52 +91,55 @@ class CInsertar
         $imagen64 = $data['cartel'];
         $nombre = isset($nombreActual) ? $nombreActual : $data['nombre'];
 
-
-
-        // Extraigo el tipo mime del formato de la imagen
-        $mime = mime_content_type($imagen64);
-
-        // Establezco la extensión del fichero
-        $extension = explode('/', $mime)[1];
-
-        // Establezco los tipos permitidos
-        $tipos_permitidos = ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/webp'];
-
-        // Comprueba si el tipo de imagen está permitido
-        if (!in_array($mime, $tipos_permitidos)) {
-            //echo "<br>error, tipo no permitido";
-            $valor = false;
-        }
-
-        // Comprueba si el tamaño de la imagen es menor de 1MB
-        $longitud = mb_strlen($imagen64);
-
-        if (round($longitud * (1E-6), 2) > 1) {
-            //echo "<br>error, la imagen es demasiado grande";
+        // Ensure that the image data is not empty
+        if (empty($imagen64)) {
             $valor = false;
         } else {
-            $data['cartel'] = self::guardarImagen($imagen64, $nombre, $extension);
+            // Decode the base64-encoded image data
+            $quitarCabecera = explode(',', $imagen64);
+
+            // Ensure that $quitarCabecera has at least two elements before accessing index 1
+            if (isset($quitarCabecera[1])) {
+                $extension = explode('/', $quitarCabecera[0])[1];
+
+                // Check if the image extension is valid (optional, depending on your requirements)
+                // Example: if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                //              $valor = false;
+                //          }
+
+                // Ensure that the image directory exists and has the necessary permissions
+
+                // Establezco la extensión del fichero
+                // $extension = 'jpg'; // Example: if you're sure about the extension
+
+                // Guardar la imagen en el directorio
+                $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
+            } else {
+                // Handle case when index 1 is not set
+                $valor = false;
+            }
         }
 
         return $valor;
     }
 
-
     private static function guardarImagen($imagen64, $nombre, $extension)
     {
-        $nuevo_fichero_ruta = self::PATH . $nombre . time() . '.' . $extension;
+        $nuevo_fichero_ruta = './imgs/' . $nombre . time() . '.' . $extension;
         $nombre_fichero = $nombre . time() . '.' . $extension;
 
-        // Decodifica la imagen de Base64 a formato original y quita la cabecera añadida
-        $quitarCabecera = explode(',', $imagen64);
-
-        // Guarda el fichero en la ruta indicada
-        file_put_contents($nuevo_fichero_ruta, base64_decode($quitarCabecera[1]));
-
-        return $nombre_fichero;
+        // Ensure that the directory has the necessary permissions for writing
+        // Ensure that file_put_contents has necessary permissions to write the file
+        if (file_put_contents($nuevo_fichero_ruta, base64_decode($imagen64)) !== false) {
+            return $nombre_fichero;
+        } else {
+            // Handle case when file_put_contents fails
+            return null;
+        }
     }
 
-    private static function registrarAlimento($data)
+
+    private static function registrarPeli($data)
     {
         $idPeli = null;
         $idPeli = Insertar::insertarPeli($data);

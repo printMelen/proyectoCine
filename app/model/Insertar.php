@@ -28,6 +28,7 @@ class Insertar
     public static function insertarPeli($peli){
         $id=false;
         $genero=self::buscarGenero($peli);
+        // var_dump($genero);
         try {
             $db = Conectar::conexion();
             $sql = "INSERT INTO `peliculasc`
@@ -40,7 +41,7 @@ class Insertar
             $resultado->bindParam(":argumento", $peli['argumento']);
             $resultado->bindParam(":cartel", $peli['cartel']);
             $resultado->bindParam(":clasificacion_edad", $peli['clasificacion_edad']);
-            $resultado->bindParam(":genero_id", $genero);
+            $resultado->bindParam(":genero_id", $genero['id']);
             $resultado->execute(); 
             $resultado->fetchAll(PDO::FETCH_ASSOC);
             if ($resultado) {
