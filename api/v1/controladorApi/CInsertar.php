@@ -16,7 +16,7 @@
    */
 class CInsertar
 {
-    const PATH = './imgs/';
+    const PATH = '../imgs/';
     public static function gestion()
     {
         $data = json_decode(file_get_contents("php://input"), true);
@@ -34,16 +34,16 @@ class CInsertar
         ) {
             // Todos los campos requeridos están presentes, puedes continuar con la lógica de tu programa
             if (self::validarDatos($data) && self::validarImagen($data)) {
-                $idAlimento = self::registrarAlimento($data);
+                $idPeli = self::registrarAlimento($data);
                 // var_dump($idAlimento);
                 // var_dump($data);
                 // exit;
-                if ($idAlimento) {
+                if ($idPeli) {
                     // Si la operación fue exitosa, envía una respuesta con el id del alimento
-                    self::enviarRespuesta(true, $idAlimento);
+                    self::enviarRespuesta(true, $idPeli);
                 } else {
                     // Si hubo un error, envía un mensaje de error
-                    self::enviarRespuesta(false, "Hubo un error al registrar el alimento");
+                    self::enviarRespuesta(false, "Hubo un error al registrar la película");
                 }
             } else {
                 $mensaje = "Valor de campo no válido en JSON recibido";
@@ -74,11 +74,11 @@ class CInsertar
         }
 
         // Verificar si los campos numéricos son realmente números
-        if (
-            !is_numeric($data['clasificacion_edad'])
-        ) {
-            $correcto = false;
-        }
+        // if (
+        //     !is_numeric($data['clasificacion_edad'])
+        // ) {
+        //     $correcto = false;
+        // }
 
         // Si todos los controles pasan, los datos son válidos
         return $correcto;
@@ -115,7 +115,7 @@ class CInsertar
             //echo "<br>error, la imagen es demasiado grande";
             $valor = false;
         } else {
-            $data['imagen'] = self::guardarImagen($imagen64, $nombre, $extension);
+            $data['cartel'] = self::guardarImagen($imagen64, $nombre, $extension);
         }
 
         return $valor;
