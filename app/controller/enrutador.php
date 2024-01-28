@@ -14,9 +14,9 @@ $_SESSION["errorLogin"]="";
     DatosController::inicio();
 // }else{
     // echo "<pre>";
-    // for ($i=0; $i < count($_SESSION['datosPelis']); $i++) { 
-    //     var_dump($_SESSION['datosPelis'][$i]);
-    // }
+    // var_dump($_SESSION['datosPelis']);
+    // // for ($i=0; $i < count($_SESSION['datosPelis']); $i++) { 
+    // // }
     // echo "</pre>";
 // }
 // $_SESSION["rol"]??null;

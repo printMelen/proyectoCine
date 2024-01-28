@@ -74,6 +74,15 @@ include "ejemplos.php";
                     <pre class="json"><?= style_json($json6) ?></pre>
                 </details>
             </div>
+            
+            <div class="api-endpoint">
+                <code><span class='n'>POST</span> /cine/peliculas</code>
+                <p>Permite insertar una película, son obligatorios los campos: nombre, argumento, clasificacion_edad, genero y cartel. El cartel debe adjuntarse al JSON den formato base64</p>
+                <details>
+                    <summary>Ejemplo JSON</summary>
+                    <pre class="json"><?= style_json($json7) ?></pre>
+                </details>
+            </div>
         </div>
     </div>
 </body>

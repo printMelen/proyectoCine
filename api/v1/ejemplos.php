@@ -72,10 +72,71 @@ $json2 = [
     ]
 ];
 
-$json3 = [];
+$json3 = [
+    [
+        "id_personal" => 1,
+        "nombre_personal" => "Humphrey Bogart",
+        "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/bogart.jpg",
+        "rol_personal" => "Actor"
+    ],
+    [
+        "id_personal" => 2,
+        "nombre_personal" => "Michael Curtiz",
+        "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/curtiz.jpg",
+        "rol_personal" => "Director"
+    ],
+    [
+        "id_personal" => 3,
+        "nombre_personal" => "Marlon Brando",
+        "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/brando.jpg",
+        "rol_personal" => "Actor"
+    ]
+];
 
-$json4 = [];
+$json4 = [
+    "id_personal" => 1,
+    "nombre_personal" => "Humphrey Bogart",
+    "imagen_personal" => "http://localhost:80/dwes/proyectoCine/api/v1/imgs/bogart.jpg",
+    "rol_personal" => "Actor"
+];
 
-$json5 = [];
+$json5 = [
+    [
+        "id_sesion" => 1,
+        "nombre_sala" => "Sala 3D",
+        "nombre_peli" => "Casablanca",
+        "dia_sesion" => "2024-01-24",
+        "hora_sesion" => "17:00:00",
+        "asientos_libres" => 118,
+        "asientos_ocupados" => 2
+    ],
+    [
+        "id_sesion" => 2,
+        "nombre_sala" => "Sala VIP",
+        "nombre_peli" => "El Padrino",
+        "dia_sesion" => "2024-01-25",
+        "hora_sesion" => "20:00:00",
+        "asientos_libres" => 85,
+        "asientos_ocupados" => 5
+    ]
+];
 
-$json6 = [];
+$json6 = [
+    [
+        "id_sesion" => 2,
+        "nombre_sala" => "Sala VIP",
+        "nombre_peli" => "El Padrino",
+        "dia_sesion" => "2024-01-25",
+        "hora_sesion" => "20:00:00",
+        "asientos_libres" => 85,
+        "asientos_ocupados" => 5
+    ],
+    [
+        "id_sesion" => 4,
+        "nombre_sala" => null,
+        "nombre_peli" => "2001: Odisea del espacio",
+        "dia_sesion" => "2024-01-25",
+        "hora_sesion" => "23:00:00"
+    ]
+];
+$json7=[];

@@ -59,13 +59,30 @@
                     ?>
                </p>
                <div class="flex flex-col justify-around mt-5">
-               <span class="">
-                    <?php
-                    if ($_SESSION['datosPelis'][$_GET['id']]['nombre_director']!=NULL) {
-                         echo "Director: ". $_SESSION['datosPelis'][$_GET['id']]['nombre_director'];
-                    }
-                    ?>
-               </span>
+                    <div>
+                         <span class="text-[#9E9E9E]">
+                              Director:
+                         </span>
+                         <span class="">
+                              <?php
+                              if ($_SESSION['datosPelis'][$_GET['id']]['nombre_director']!=NULL) {
+                                   echo $_SESSION['datosPelis'][$_GET['id']]['nombre_director'];
+                              }
+                              ?>
+                         </span>
+                    </div>
+                    <div>
+                         <span class="text-[#9E9E9E]">
+                              Actor/Actriz: 
+                         </span>
+                         <span class="">
+                              <?php
+                              if ($_SESSION['datosPelis'][$_GET['id']]['nombre_actor']!=NULL) {
+                                   echo $_SESSION['datosPelis'][$_GET['id']]['nombre_actor'];
+                              }
+                              ?>
+                         </span>
+                    </div>
                </div>
             </div>   
             <div class="bg-pink basis-2/3 h-[673px]">

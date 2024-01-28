@@ -1,5 +1,5 @@
 <?php
-class Mostrar
+class CMostrar
 {
     public static function getRuta()
     {
@@ -20,21 +20,28 @@ class Mostrar
             switch ($recurso) {
                 case 'peliculas':
                     if ($id) {
-                        self::getPelicula($id);
+                        $datos=Mostrar::getPelicula($id);
                     } else {
-                        self::getPeliculas();
+                        $datos=Mostrar::getPeliculas();
                     }
+                    self::enviarRespuesta($datos);
                     break;
                 case 'actores':
                     if ($id) {
-                        self::getActor($id);
+                        $datos=Mostrar::getActor($id);
                     } else {
-                        self::getActores();
+                        $datos=Mostrar::getActores();
                     }
+                    self::enviarRespuesta($datos);
                     break;
                 case 'sesiones':
                     $dia = isset($_GET['dia']) ? $_GET['dia'] : null;
-                    self::getSesiones($dia);
+                    if ($dia) {
+                        $datos=Mostrar::getSesionDia($dia);
+                    }else{
+                        $datos=Mostrar::getSesiones();
+                    }
+                    self::enviarRespuesta($datos);
                     break;
                 default:
                     $mensaje = ["error" => "Endpoint no especificado"];
