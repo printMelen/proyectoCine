@@ -106,16 +106,23 @@ class CInsertar
                 // Example: if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
                 //              $valor = false;
                 //          }
-                if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif','bmp','webp'])) {
+                if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'])) {
                     $valor = false;
                 }
                 // Ensure that the image directory exists and has the necessary permissions
 
                 // Establezco la extensión del fichero
                 // $extension = 'jpg'; // Example: if you're sure about the extension
+                $longitud = mb_strlen($imagen64);
 
+                if (round($longitud * (1E-6), 2) > 1) {
+                    //echo "<br>error, la imagen es demasiado grande";
+                    $valor = false;
+                } else {
+                    $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
+                }
                 // Guardar la imagen en el directorio
-                $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
+                // $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
             } else {
                 // Handle case when index 1 is not set
                 $valor = false;
@@ -127,18 +134,17 @@ class CInsertar
 
     private static function guardarImagen($imagen64, $nombre, $extension)
     {
+        $nombreDev=null;
         $nombre_sin_espacios = strtolower(str_replace(' ', '_', $nombre));
         $nuevo_fichero_ruta = self::PATH . $nombre_sin_espacios . time() . '.' . $extension;
-        $nombre_fichero = $nombre . time() . '.' . $extension;
+        $nombre_fichero = $nombre_sin_espacios . time() . '.' . $extension;
 
         // Ensure that the directory has the necessary permissions for writing
         // Ensure that file_put_contents has necessary permissions to write the file
         if (file_put_contents($nuevo_fichero_ruta, base64_decode($imagen64)) !== false) {
-            return $nombre_fichero;
-        } else {
-            // Handle case when file_put_contents fails
-            return null;
+            $nombreDev= $nombre_fichero;
         }
+        return $nombreDev;
     }
 
 
