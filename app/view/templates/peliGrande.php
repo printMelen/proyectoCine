@@ -84,11 +84,19 @@
                          </span>
                     </div>
                </div>
-               <div>
-                    <!-- <select name="fechas" id="fechas">
-
-                         <option value=""></option>
-                    </select> -->
+               <div class="my-6">
+                    <span class="block mb-2">Días de proyección:</span>
+                    <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
+                         <?php
+                              foreach ($_SESSION['fechas'] as $key => $fecha) {
+                                   $fecha_formateada = date("d/m/Y", strtotime($fecha['fecha']));
+                                   echo <<<EOT
+                                        <option value="$key">$fecha_formateada</option>
+                                   EOT;                                  
+                              }
+                         ?>
+                         
+                    </select>
                </div>
                <!-- botones -->
                <div class="flex items-center gap-5">

@@ -30,7 +30,7 @@ class Fecha{
     }
     public static function formatearFecha($fechas){
         $final=array();
-        foreach ($fechas as $key => $fecha) {
+        foreach ($fechas as $key => &$fecha) {
             foreach ($final as $key => $fin) {
                 if ($fin['fecha']==$fecha['fecha']) {
                     unset($final[$key]);
