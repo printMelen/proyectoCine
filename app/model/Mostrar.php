@@ -9,6 +9,7 @@ class Mostrar{
             peliculasc.id AS id_pelicula, 
             peliculasc.nombre AS nombre_pelicula, 
             peliculasc.cartel AS caratula,
+            peliculasc.argumento AS argumento,
             generoc.nombre AS nombre_genero 
             FROM 
             peliculasc 
@@ -78,6 +79,7 @@ class Mostrar{
             peliculasc.id AS id_pelicula, 
             peliculasc.nombre AS nombre_pelicula, 
             peliculasc.cartel AS caratula,
+            peliculasc.argumento AS argumento,
             generoc.nombre AS nombre_genero 
             FROM 
             peliculasc 

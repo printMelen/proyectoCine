@@ -5,9 +5,9 @@ class MoviePreviewController
     {
         if (isset($_GET['id'])) {
             $_SESSION['fechas']=Fecha::formatearFecha(Fecha::sacarFecha());
-            echo "<pre>";
-            var_dump($_SESSION['fechas']);
-            echo "</pre>";
+            // echo "<pre>";
+            // var_dump($_SESSION['fechas']);
+            // echo "</pre>";
             ViewController::cargarVista("peliGrande");
         }
     }
