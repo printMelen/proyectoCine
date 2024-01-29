@@ -108,6 +108,46 @@ class Mostrar{
         }
         return $devolver;  
     }
+    public static function buscarPelicula($nombre){
+        $devolver=array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+            peliculasc.id AS id_pelicula, 
+            peliculasc.nombre AS nombre_pelicula, 
+            peliculasc.cartel AS caratula,
+            peliculasc.argumento AS argumento,
+            generoc.nombre AS nombre_genero 
+            FROM 
+            peliculasc 
+            LEFT JOIN 
+            generoc ON peliculasc.genero_id = generoc.id
+            where peliculasc.nombre=:nombre;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":nombre", $nombre);
+            $resultado->execute(); 
+            $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($devolver as $indi => $pelicula) {
+                foreach (Mostrar::obtenerElenco() as $actor) {
+                    if ($actor['id_peli']==$pelicula["id_pelicula"]) {
+                        unset($actor['id_peli']);
+                        $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+                        $devolver[$indi]['elenco'][]=$actor;
+                    }
+                }
+            }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $devolver;
+    }
+
     public static function getActor($id){
         $elenco = array();
         try {
