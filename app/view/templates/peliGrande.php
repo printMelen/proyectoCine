@@ -22,7 +22,7 @@
      <?php include("header.php"); ?>
      <main class="mt-5">
           <div class="flex items-center">
-            <div class="basis-1/3 h-[602px]">
+            <div class="basis-1/3 h-[602px] ">
                <h1 class="text-3xl text-center mb-5">
                     <?php
                          echo $_SESSION['datosPelis'][$_GET['id']]['nombre'];
@@ -83,6 +83,27 @@
                               ?>
                          </span>
                     </div>
+               </div>
+               <div>
+                    <!-- <select name="fechas" id="fechas">
+
+                         <option value=""></option>
+                    </select> -->
+               </div>
+               <!-- botones -->
+               <div class="flex items-center gap-5">
+                    <a href="#">
+                         <button class="w-[161px] h-[59px] bg-greyBotones rounded-[6.26px]">Trailer</button>                    
+                    </a>
+                    <a href="#">
+                         <button class="w-[161px] h-[59px] bg-pink rounded-[6.26px]">Comprar</button>                    
+                    </a>
+                    <a href="#">
+                         <img src="app/view/images/corazon.svg" alt="">
+                    </a>
+                    <a href="#">
+                         <img src="app/view/images/bookmark.svg" alt="">
+                    </a>
                </div>
             </div>   
             <div class="bg-pink basis-2/3 h-[673px]">
