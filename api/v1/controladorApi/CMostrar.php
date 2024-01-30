@@ -37,7 +37,15 @@ class CMostrar
                     if ($id) {
                         $datos=Mostrar::getActor($id);
                     } else {
-                        $datos=Mostrar::getActores();
+                        if (isset($_GET['buscar'])) {
+                            if ($_GET['buscar']!=null) {
+                                $datos=Mostrar::buscarActores($_GET['buscar']);
+                            }else{
+                                $datos=Mostrar::getActores();                            
+                            }
+                        }else{
+                            $datos=Mostrar::getActores();                            
+                        }
                     }
                     self::enviarRespuesta($datos);
                     break;
