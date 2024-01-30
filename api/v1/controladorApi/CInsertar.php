@@ -27,48 +27,97 @@ class CInsertar
 
         // var_dump($data);
         // exit;
-
-        if (
-            isset($data['nombre']) && isset($data['argumento']) && isset($data['clasificacion_edad'])
-            && isset($data['genero']) && isset($data['cartel'])
-        ) {
-            // Todos los campos requeridos están presentes, puedes continuar con la lógica de tu programa
-            if (self::validarDatos($data) && self::validarImagen($data)) {
-                $idPeli = self::registrarPeli($data);
-                // var_dump($idAlimento);
-                // var_dump($data);
-                // exit;
-                if ($idPeli) {
-                    // Si la operación fue exitosa, envía una respuesta con el id del alimento
-                    self::enviarRespuesta(true, $idPeli);
-                } else {
-                    // Si hubo un error, envía un mensaje de error
-                    self::enviarRespuesta(false, "Hubo un error al registrar la película");
-                }
-            } else {
-                $mensaje = "Valor de campo no válido en JSON recibido";
-                self::enviarRespuesta(false, $mensaje);
-                // El valor de alguno de los campos requeridos no es válido o bien la imagen no es válida,
-                // debes manejar este caso enviando un CÓDIGO 400 bad request al cliente
-                // y un mensaje de error en formato JSON
-                // Ejemplo: {"error": "valor de campo no válido en JSON recibido"}      
-            }
+        if (!isset($_SERVER['PATH_INFO'])) {
+            $mensaje = ["error" => "Endpoint no especificado"];
+            $error = "400 Bad Request";
+            self::enviarRespuesta(NULL, $error, $mensaje);
         } else {
-            $mensaje = "Faltan campos requeridos en JSON recibido";
-            self::enviarRespuesta(false, $mensaje);
-            // Al menos uno de los campos requeridos no está presente,
-            // debes manejar este caso enviando un CÓDIGO 400 bad request al cliente
-            // y un mensaje de error en formato JSON
-            // Ejemplo: {"error": "Faltan campos requeridos en JSON recibido"}
-        }
+            $rutaPathSinBarra = explode('/', $_SERVER['PATH_INFO']);
+            $recurso = $rutaPathSinBarra[1];
+            // $id = isset($rutaPathSinBarra[2]) ? $rutaPathSinBarra[2] : null;
+            switch ($recurso) {
+                case 'peliculas':
+                    if (
+                        isset($data['nombre']) && isset($data['argumento']) && isset($data['clasificacion_edad'])
+                        && isset($data['genero']) && isset($data['cartel']) 
+                    ) {
+                        // Todos los campos requeridos están presentes, puedes continuar con la lógica de tu programa
+                        if (self::validarDatos($data) && self::validarImagen($data)) {
+                            $idPeli = self::registrarPeli($data);
+                            // var_dump($idAlimento);
+                            // var_dump($data);
+                            // exit;
+                            if ($idPeli) {
+                                // Si la operación fue exitosa, envía una respuesta con el id del alimento
+                                self::enviarRespuesta(true, $idPeli);
+                            } else {
+                                // Si hubo un error, envía un mensaje de error
+                                self::enviarRespuesta(false, "Hubo un error al registrar la película");
+                            }
+                        } else {
+                            $mensaje = "Valor de campo no válido en JSON recibido";
+                            self::enviarRespuesta(false, $mensaje);
+                            // El valor de alguno de los campos requeridos no es válido o bien la imagen no es válida,
+                            // debes manejar este caso enviando un CÓDIGO 400 bad request al cliente
+                            // y un mensaje de error en formato JSON
+                            // Ejemplo: {"error": "valor de campo no válido en JSON recibido"}      
+                        }
+                    }else{
+                            $mensaje = "Faltan campos requeridos en JSON recibido";
+                            self::enviarRespuesta(false, $mensaje);
+                            // Al menos uno de los campos requeridos no está presente,
+                            // debes manejar este caso enviando un CÓDIGO 400 bad request al cliente
+                            // y un mensaje de error en formato JSON
+                            // Ejemplo: {"error": "Faltan campos requeridos en JSON recibido"}
+                    }
+                    break;
+                case 'actores':
+                    if(isset($data['nombre']) && isset($data['tipo']) && isset($data['imagen'])){
+                        // Todos los campos requeridos están presentes, puedes continuar con la lógica de tu programa
+                        if (self::validarImagen($data)) {
+                            $idActor = self::registrarActor($data);
+                            // var_dump($idAlimento);
+                            // var_dump($data);
+                            // exit;
+                            if ($idActor) {
+                                // Si la operación fue exitosa, envía una respuesta con el id del alimento
+                                self::enviarRespuesta(true, $idActor);
+                            } else {
+                                // Si hubo un error, envía un mensaje de error
+                                self::enviarRespuesta(false, "Hubo un error al registrar la película");
+                            }
+                        } else {
+                            $mensaje = "Valor de campo no válido en JSON recibido";
+                            self::enviarRespuesta(false, $mensaje);
+                            // El valor de alguno de los campos requeridos no es válido o bien la imagen no es válida,
+                            // debes manejar este caso enviando un CÓDIGO 400 bad request al cliente
+                            // y un mensaje de error en formato JSON
+                            // Ejemplo: {"error": "valor de campo no válido en JSON recibido"}      
+                        }
+                    }else{
+                            $mensaje = "Valor de campo no válido en JSON recibido";
+                            self::enviarRespuesta(false, $mensaje);
+                            // El valor de alguno de los campos requeridos no es válido o bien la imagen no es válida,
+                            // debes manejar este caso enviando un CÓDIGO 400 bad request al cliente
+                            // y un mensaje de error en formato JSON
+                            // Ejemplo: {"error": "valor de campo no válido en JSON recibido"}  
+                        }
+                    break;
+                default:
+                    $mensaje = ["error" => "Endpoint no especificado"];
+                    $error = "400 Bad Request";
+                    self::enviarRespuesta(NULL, $error, $mensaje);
+                    break;
+                }
+            }
     }
     private static function validarDatos($data)
     {
         $correcto = true;
         // Verificar si todos los campos necesarios están presentes y no son nulos
         if (
-            !isset($data['nombre']) || !isset($data['argumento']) || !isset($data['clasificacion_edad']) ||
-            !isset($data['genero']) || !isset($data['cartel'])
+            (!isset($data['nombre']) || !isset($data['argumento']) || !isset($data['clasificacion_edad']) ||
+            !isset($data['genero']))
         ) {
             $correcto = false;
         }
@@ -88,7 +137,11 @@ class CInsertar
     public static function validarImagen(&$data, $nombreActual = null)
     {
         $valor = true;
-        $imagen64 = $data['cartel'];
+        if (!isset($data['cartel'])) {
+            $imagen64 = $data['imagen'];
+        }else{
+            $imagen64 = $data['cartel'];
+        }
         $nombre = isset($nombreActual) ? $nombreActual : $data['nombre'];
 
         // Ensure that the image data is not empty
@@ -119,7 +172,11 @@ class CInsertar
                     //echo "<br>error, la imagen es demasiado grande";
                     $valor = false;
                 } else {
-                    $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
+                    if (!isset($data['cartel'])) {
+                        $data['imagen'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
+                    }else{
+                        $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
+                    }
                 }
                 // Guardar la imagen en el directorio
                 // $data['cartel'] = self::guardarImagen($quitarCabecera[1], $nombre, $extension);
@@ -153,6 +210,20 @@ class CInsertar
         $idPeli = null;
         $idPeli = Insertar::insertarPeli($data);
         return $idPeli;
+
+        // Aquí puedes manejar la inserción de los datos del alimento en la base de datos.
+        // Debes devolver el id del alimento insertado
+        //El id es autoincremental, por lo que no es necesario pasarlo como parámetro
+        //Lo debemos recoger de la base de datos
+        //PDO nos permite obtener el último id insertado con el método lastInsertId()
+        //Si ha habido algún error, debes devolver null
+
+    }
+    private static function registrarActor($data)
+    {
+        $idActor = null;
+        $idActor = Insertar::insertarActor($data);
+        return $idActor;
 
         // Aquí puedes manejar la inserción de los datos del alimento en la base de datos.
         // Debes devolver el id del alimento insertado

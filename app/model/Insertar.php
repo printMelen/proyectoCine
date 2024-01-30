@@ -57,4 +57,33 @@ class Insertar
         }
         return $id;
     }
+    public static function insertarActor($actor){
+        $id=false;
+        // var_dump($genero);
+        try {
+            $db = Conectar::conexion();
+            $sql = "INSERT INTO 
+            `personalc`(`nombre`, `tipo`, `imagen`) 
+            VALUES 
+            (:nombre,:tipo,:imagen);
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":nombre", $actor['nombre']);
+            $resultado->bindParam(":tipo", $actor['tipo']);
+            $resultado->bindParam(":imagen", $actor['imagen']);
+            $resultado->execute(); 
+            $resultado->fetchAll(PDO::FETCH_ASSOC);
+            if ($resultado) {
+                $id=$db->lastInsertId();
+            }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $id;
+    }
 }
