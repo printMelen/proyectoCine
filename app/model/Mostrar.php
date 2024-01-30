@@ -110,6 +110,7 @@ class Mostrar{
     }
     public static function buscarPelicula($nombre){
         $devolver=array();
+        $nombreLike="%".$nombre."%";
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
@@ -122,10 +123,13 @@ class Mostrar{
             peliculasc 
             LEFT JOIN 
             generoc ON peliculasc.genero_id = generoc.id
-            where peliculasc.nombre=:nombre;
+            WHERE 
+            peliculasc.nombre 
+            LIKE 
+            :nombre;
             ";
             $resultado = $db->prepare($sql);
-            $resultado->bindParam(":nombre", $nombre);
+            $resultado->bindParam(":nombre", $nombreLike);
             $resultado->execute(); 
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
             foreach ($devolver as $indi => $pelicula) {

@@ -21,12 +21,14 @@ class CMostrar
                     if ($id) {
                         $datos=Mostrar::getPelicula($id);
                     } else {
-                        if (isset($_GET['buscador'])) {
-                            if ($_GET['buscador']!=null) {
-                                $datos=Mostrar::buscarPelicula($_GET['buscador']);
+                        if (isset($_GET['buscar'])) {
+                            if ($_GET['buscar']!=null) {
+                                $datos=Mostrar::buscarPelicula($_GET['buscar']);
                             }else{
-                                $datos=Mostrar::getPeliculas();
+                                $datos=Mostrar::getPeliculas();                            
                             }
+                        }else{
+                            $datos=Mostrar::getPeliculas();                            
                         }
                     }
                     self::enviarRespuesta($datos);
