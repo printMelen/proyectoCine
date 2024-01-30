@@ -208,30 +208,18 @@ class CInsertar
     private static function registrarPeli($data)
     {
         $idPeli = null;
-        $idPeli = Insertar::insertarPeli($data);
+        if (!Mostrar::buscarPelicula($data['nombre'])) {
+            $idPeli = Insertar::insertarPeli($data);
+        }
         return $idPeli;
-
-        // Aquí puedes manejar la inserción de los datos del alimento en la base de datos.
-        // Debes devolver el id del alimento insertado
-        //El id es autoincremental, por lo que no es necesario pasarlo como parámetro
-        //Lo debemos recoger de la base de datos
-        //PDO nos permite obtener el último id insertado con el método lastInsertId()
-        //Si ha habido algún error, debes devolver null
-
     }
     private static function registrarActor($data)
     {
         $idActor = null;
-        $idActor = Insertar::insertarActor($data);
+        if (!Mostrar::buscarActores($data['nombre'])) {
+            $idActor = Insertar::insertarActor($data);
+        }
         return $idActor;
-
-        // Aquí puedes manejar la inserción de los datos del alimento en la base de datos.
-        // Debes devolver el id del alimento insertado
-        //El id es autoincremental, por lo que no es necesario pasarlo como parámetro
-        //Lo debemos recoger de la base de datos
-        //PDO nos permite obtener el último id insertado con el método lastInsertId()
-        //Si ha habido algún error, debes devolver null
-
     }
     private static function enviarRespuesta($esExitoso, $mensaje)
     {
