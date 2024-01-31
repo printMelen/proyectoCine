@@ -223,23 +223,24 @@ class Mostrar{
             personalc.tipo AS rol_personal 
             FROM 
             personalc
-            WHERE 
-            personalc.nombre ";
-            foreach ($nombres as $key => &$nombre) {
+            WHERE ";
+            foreach ($nombres as $key => $nombre) {
                 if ($key==0) {
-                    $sql=$sql."LIKE :nombre".$key." ";
+                    $sql=$sql."personalc.nombre LIKE :nombre".$key." ";
                 }else{
                     $sql=$sql."OR personalc.nombre LIKE :nombre".$key." ";
                 }
             }
             $sql=$sql.";";
             $resultado = $db->prepare($sql);
-            foreach ($nombres as $key => &$nombre) {
+            foreach ($nombres as $key => $nombre) {
                 $paraBind=":nombre".$key;
-                $nombre="%".$nombre."%";
-                $resultado->bindParam($paraBind,$nombre);
+                echo $paraBind."<br>";
+                $nombreConComodines="%".$nombre."%";
+                echo $nombreConComodines."<br>";
+                $resultado->bindValue($paraBind,$nombreConComodines);
             }
-            // $resultado->execute(array_map(function($nombre) { return "%$nombre%"; }, $nombres));
+            $resultado->execute();
             $elenco=$resultado->fetchAll(PDO::FETCH_ASSOC);
             foreach ($elenco as &$actor) {
                 $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];

@@ -211,9 +211,10 @@ class CInsertar
         $arrayActores = explode(",",$data['actores']);
         foreach ($arrayActores as $key => &$actor) {
             $actor=ucwords(strtolower($actor));
-            // echo $actor . "<br>";
         }
-        if (!Mostrar::buscarPelicula($data['nombre'])&&!Mostrar::buscarActores($arrayActores)) {
+        $peli=Mostrar::buscarPelicula($data['nombre']);
+        $elenco=Mostrar::buscarActores($arrayActores);
+        if (!$peli&&$elenco) {
             $idPeli = Insertar::insertarPeli($data);
         }
         return $idPeli;

@@ -31,6 +31,7 @@ class Insertar
         // var_dump($genero);
         try {
             $db = Conectar::conexion();
+            $db->beginTransaction();
             $sql = "INSERT INTO `peliculasc`
             ( `nombre`, `argumento`, `cartel`, `clasificacion_edad`, `genero_id`) 
             VALUES 
@@ -43,6 +44,7 @@ class Insertar
             $resultado->bindParam(":clasificacion_edad", $peli['clasificacion_edad']);
             $resultado->bindParam(":genero_id", $genero['id']);
             $resultado->execute(); 
+            // var_dump($resultado);
             $resultado->fetchAll(PDO::FETCH_ASSOC);
             if ($resultado) {
                 $id=$db->lastInsertId();
