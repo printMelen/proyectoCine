@@ -25,12 +25,13 @@ class Insertar
         }
         return $devolver;
     }
-    public static function insertarPeli($peli){
+    public static function insertarPeli($peli,$actores){
         $id=false;
         $genero=self::buscarGenero($peli);
         // var_dump($genero);
         try {
             $db = Conectar::conexion();
+            $db->beginTransaction();
             $sql = "INSERT INTO `peliculasc`
             ( `nombre`, `argumento`, `cartel`, `clasificacion_edad`, `genero_id`) 
             VALUES 
@@ -42,6 +43,42 @@ class Insertar
             $resultado->bindParam(":cartel", $peli['cartel']);
             $resultado->bindParam(":clasificacion_edad", $peli['clasificacion_edad']);
             $resultado->bindParam(":genero_id", $genero['id']);
+            $resultado->execute(); 
+            // var_dump($resultado);
+            $resultado->fetchAll(PDO::FETCH_ASSOC);
+            if ($resultado) {
+                $id=$db->lastInsertId();
+            }
+            foreach ($actores as $key => $actor) {
+                $consultaInsertarRelaciones = $db->prepare("INSERT INTO peliculas_personalc (pelicula_id, personal_id) VALUES (?, ?)");
+                $consultaInsertarRelaciones->execute([$id, $actor["id_personal"]]);
+            }
+            $db->commit();
+            $resultado->closeCursor();
+            $resultado = null;
+            // $db = null; 
+        } catch (PDOException $e) {
+            $db->rollBack();
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $id;
+    }
+    public static function insertarActor($actor){
+        $id=false;
+        // var_dump($genero);
+        try {
+            $db = Conectar::conexion();
+            $sql = "INSERT INTO 
+            `personalc`(`nombre`, `tipo`, `imagen`) 
+            VALUES 
+            (:nombre,:tipo,:imagen);
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":nombre", $actor['nombre']);
+            $resultado->bindParam(":tipo", $actor['tipo']);
+            $resultado->bindParam(":imagen", $actor['imagen']);
             $resultado->execute(); 
             $resultado->fetchAll(PDO::FETCH_ASSOC);
             if ($resultado) {

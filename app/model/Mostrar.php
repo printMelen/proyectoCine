@@ -9,6 +9,7 @@ class Mostrar{
             peliculasc.id AS id_pelicula, 
             peliculasc.nombre AS nombre_pelicula, 
             peliculasc.cartel AS caratula,
+            peliculasc.argumento AS argumento,
             generoc.nombre AS nombre_genero 
             FROM 
             peliculasc 
@@ -78,6 +79,7 @@ class Mostrar{
             peliculasc.id AS id_pelicula, 
             peliculasc.nombre AS nombre_pelicula, 
             peliculasc.cartel AS caratula,
+            peliculasc.argumento AS argumento,
             generoc.nombre AS nombre_genero 
             FROM 
             peliculasc 
@@ -106,6 +108,50 @@ class Mostrar{
         }
         return $devolver;  
     }
+    public static function buscarPelicula($nombre){
+        $devolver=array();
+        $nombreLike="%".$nombre."%";
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+            peliculasc.id AS id_pelicula, 
+            peliculasc.nombre AS nombre_pelicula, 
+            peliculasc.cartel AS caratula,
+            peliculasc.argumento AS argumento,
+            generoc.nombre AS nombre_genero 
+            FROM 
+            peliculasc 
+            LEFT JOIN 
+            generoc ON peliculasc.genero_id = generoc.id
+            WHERE 
+            peliculasc.nombre 
+            LIKE 
+            :nombre;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":nombre", $nombreLike);
+            $resultado->execute(); 
+            $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($devolver as $indi => $pelicula) {
+                foreach (Mostrar::obtenerElenco() as $actor) {
+                    if ($actor['id_peli']==$pelicula["id_pelicula"]) {
+                        unset($actor['id_peli']);
+                        $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+                        $devolver[$indi]['elenco'][]=$actor;
+                    }
+                }
+            }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $devolver;
+    }
+
     public static function getActor($id){
         $elenco = array();
         try {
@@ -151,6 +197,48 @@ class Mostrar{
             ";
             $resultado = $db->prepare($sql);
             $resultado->execute(); 
+            $elenco=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($elenco as &$actor) {
+                $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];
+            }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $elenco;
+    }
+    public static function buscarActores($nombres){
+        $elenco = array();
+        $paraBind="";
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+            personalc.id AS id_personal, 
+            personalc.nombre AS nombre_personal, 
+            personalc.imagen AS imagen_personal,
+            personalc.tipo AS rol_personal 
+            FROM 
+            personalc
+            WHERE ";
+            foreach ($nombres as $key => $nombre) {
+                if ($key==0) {
+                    $sql=$sql."personalc.nombre LIKE :nombre".$key." ";
+                }else{
+                    $sql=$sql."OR personalc.nombre LIKE :nombre".$key." ";
+                }
+            }
+            $sql=$sql.";";
+            $resultado = $db->prepare($sql);
+            foreach ($nombres as $key => $nombre) {
+                $paraBind=":nombre".$key;
+                $nombreConComodines="%".$nombre."%";
+                $resultado->bindValue($paraBind,$nombreConComodines);
+            }
+            $resultado->execute();
             $elenco=$resultado->fetchAll(PDO::FETCH_ASSOC);
             foreach ($elenco as &$actor) {
                 $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];

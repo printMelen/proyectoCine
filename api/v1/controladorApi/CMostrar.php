@@ -16,13 +16,20 @@ class CMostrar
             $rutaPathSinBarra = explode('/', $_SERVER['PATH_INFO']);
             $recurso = $rutaPathSinBarra[1];
             $id = isset($rutaPathSinBarra[2]) ? $rutaPathSinBarra[2] : null;
-
             switch ($recurso) {
                 case 'peliculas':
                     if ($id) {
                         $datos=Mostrar::getPelicula($id);
                     } else {
-                        $datos=Mostrar::getPeliculas();
+                        if (isset($_GET['buscar'])) {
+                            if ($_GET['buscar']!=null) {
+                                $datos=Mostrar::buscarPelicula($_GET['buscar']);
+                            }else{
+                                $datos=Mostrar::getPeliculas();                            
+                            }
+                        }else{
+                            $datos=Mostrar::getPeliculas();                            
+                        }
                     }
                     self::enviarRespuesta($datos);
                     break;
@@ -30,7 +37,15 @@ class CMostrar
                     if ($id) {
                         $datos=Mostrar::getActor($id);
                     } else {
-                        $datos=Mostrar::getActores();
+                        if (isset($_GET['buscar'])) {
+                            if ($_GET['buscar']!=null) {
+                                $datos=Mostrar::buscarActores($_GET['buscar']);
+                            }else{
+                                $datos=Mostrar::getActores();                            
+                            }
+                        }else{
+                            $datos=Mostrar::getActores();                            
+                        }
                     }
                     self::enviarRespuesta($datos);
                     break;

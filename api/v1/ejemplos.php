@@ -139,4 +139,10 @@ $json6 = [
         "hora_sesion" => "23:00:00"
     ]
 ];
-$json7=[];
+$json7=[
+    "nombre" => "Nueva prueba",
+    "argumento" => "Los doce miembros de un jurado deben juzgar a un adolescente acusado de haber matado a su padre. Todos menos uno están convencidos de la culpabilidad del acusado",
+    "clasificacion_edad" => "Mayores de 18",
+    "genero" => "drama",
+    "cartel" => "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA 7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2ODApLCBxdWF saXR5ID0gNzUK/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhw cICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04…"
+];

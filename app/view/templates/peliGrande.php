@@ -22,7 +22,7 @@
      <?php include("header.php"); ?>
      <main class="mt-5">
           <div class="flex items-center">
-            <div class="basis-1/3 h-[602px]">
+            <div class="basis-1/3 h-[602px] p-2">
                <h1 class="text-3xl text-center mb-5">
                     <?php
                          echo $_SESSION['datosPelis'][$_GET['id']]['nombre'];
@@ -83,6 +83,36 @@
                               ?>
                          </span>
                     </div>
+               </div>
+               <div class="my-6">
+                    <label for="fechas" class="block mb-2">Días de proyección:</label>
+                    <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
+                         <?php
+                              foreach ($_SESSION['fechas'] as $key => $fecha) {
+                                   $fecha_formateada = date("d/m/Y", strtotime($fecha['fecha']));
+                                   if ($fecha['fecha']!=null) {
+                                        echo <<<EOT
+                                             <option value="$key">$fecha_formateada</option>
+                                        EOT;                                  
+                                   }
+                              }
+                         ?>
+                    </select>
+               </div>
+               <!-- botones -->
+               <div class="flex items-center gap-5">
+                    <a href="#">
+                         <button class="w-[161px] h-[59px] bg-greyBotones rounded-[6.26px]">Trailer</button>                    
+                    </a>
+                    <a href="#">
+                         <button type="submit" class="w-[161px] h-[59px] bg-pink rounded-[6.26px]">Comprar</button>                    
+                    </a>
+                    <a href="#">
+                         <img src="app/view/images/corazon.svg" alt="">
+                    </a>
+                    <a href="#">
+                         <img src="app/view/images/bookmark.svg" alt="">
+                    </a>
                </div>
             </div>   
             <div class="bg-pink basis-2/3 h-[673px]">
