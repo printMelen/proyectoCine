@@ -104,7 +104,7 @@
                     <a href="#">
                          <button class="w-[161px] h-[59px] bg-greyBotones rounded-[6.26px]">Trailer</button>                    
                     </a>
-                    <a href="#">
+                    <a href="index.php?peticion=butacas">
                          <button type="submit" class="w-[161px] h-[59px] bg-pink rounded-[6.26px]">Comprar</button>                    
                     </a>
                     <a href="#">

@@ -38,6 +38,9 @@ switch ($ctl) {
     case 'moviePreview':
         MoviePreviewController::inicio();
         break;
+    case 'butacas':
+        ButacasController::inicio();
+        break;
     case 'logout':
         LogoutController::cerrar();
         break;
