@@ -92,7 +92,7 @@
                                    $fecha_formateada = date("d/m/Y", strtotime($fecha['fecha']));
                                    if ($fecha['fecha']!=null) {
                                         echo <<<EOT
-                                             <option value="$key">$fecha_formateada</option>
+                                             <option class="text-back" value="$key">$fecha_formateada</option>
                                         EOT;                                  
                                    }
                               }
