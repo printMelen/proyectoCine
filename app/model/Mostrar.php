@@ -211,26 +211,35 @@ class Mostrar{
         }
         return $elenco;
     }
-    public static function buscarActores($nombre){
+    public static function buscarActores($nombres){
         $elenco = array();
-        $nombreLike="%".$nombre."%";
+        $paraBind="";
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
-                personalc.id AS id_personal, 
-                personalc.nombre AS nombre_personal, 
-                personalc.imagen AS imagen_personal,
-                personalc.tipo AS rol_personal 
-                FROM 
-                personalc
-                WHERE 
-                personalc.nombre 
-                LIKE 
-                :nombre;
-            ";
+            personalc.id AS id_personal, 
+            personalc.nombre AS nombre_personal, 
+            personalc.imagen AS imagen_personal,
+            personalc.tipo AS rol_personal 
+            FROM 
+            personalc
+            WHERE 
+            personalc.nombre ";
+            foreach ($nombres as $key => &$nombre) {
+                if ($key==0) {
+                    $sql=$sql."LIKE :nombre".$key." ";
+                }else{
+                    $sql=$sql."OR personalc.nombre LIKE :nombre".$key." ";
+                }
+            }
+            $sql=$sql.";";
             $resultado = $db->prepare($sql);
-            $resultado->bindParam(":nombre", $nombreLike);
-            $resultado->execute(); 
+            foreach ($nombres as $key => &$nombre) {
+                $paraBind=":nombre".$key;
+                $nombre="%".$nombre."%";
+                $resultado->bindParam($paraBind,$nombre);
+            }
+            // $resultado->execute(array_map(function($nombre) { return "%$nombre%"; }, $nombres));
             $elenco=$resultado->fetchAll(PDO::FETCH_ASSOC);
             foreach ($elenco as &$actor) {
                 $actor['imagen_personal'] = CMostrar::getRuta() . $actor['imagen_personal'];

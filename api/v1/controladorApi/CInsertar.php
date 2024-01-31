@@ -39,7 +39,7 @@ class CInsertar
                 case 'peliculas':
                     if (
                         isset($data['nombre']) && isset($data['argumento']) && isset($data['clasificacion_edad'])
-                        && isset($data['genero']) && isset($data['cartel']) 
+                        && isset($data['genero']) && isset($data['cartel']) && isset($data['actores']) 
                     ) {
                         // Todos los campos requeridos están presentes, puedes continuar con la lógica de tu programa
                         if (self::validarDatos($data) && self::validarImagen($data)) {
@@ -117,7 +117,7 @@ class CInsertar
         // Verificar si todos los campos necesarios están presentes y no son nulos
         if (
             (!isset($data['nombre']) || !isset($data['argumento']) || !isset($data['clasificacion_edad']) ||
-            !isset($data['genero']))
+            !isset($data['genero'])|| !isset($data['actores']))
         ) {
             $correcto = false;
         }
@@ -208,7 +208,12 @@ class CInsertar
     private static function registrarPeli($data)
     {
         $idPeli = null;
-        if (!Mostrar::buscarPelicula($data['nombre'])) {
+        $arrayActores = explode(",",$data['actores']);
+        foreach ($arrayActores as $key => &$actor) {
+            $actor=ucwords(strtolower($actor));
+            // echo $actor . "<br>";
+        }
+        if (!Mostrar::buscarPelicula($data['nombre'])&&!Mostrar::buscarActores($arrayActores)) {
             $idPeli = Insertar::insertarPeli($data);
         }
         return $idPeli;
@@ -216,7 +221,8 @@ class CInsertar
     private static function registrarActor($data)
     {
         $idActor = null;
-        if (!Mostrar::buscarActores($data['nombre'])) {
+        $arrayNombres=array($data['nombre']);
+        if (!Mostrar::buscarActores($arrayNombres)) {
             $idActor = Insertar::insertarActor($data);
         }
         return $idActor;
