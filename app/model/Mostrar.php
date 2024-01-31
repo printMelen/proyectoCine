@@ -235,9 +235,7 @@ class Mostrar{
             $resultado = $db->prepare($sql);
             foreach ($nombres as $key => $nombre) {
                 $paraBind=":nombre".$key;
-                echo $paraBind."<br>";
                 $nombreConComodines="%".$nombre."%";
-                echo $nombreConComodines."<br>";
                 $resultado->bindValue($paraBind,$nombreConComodines);
             }
             $resultado->execute();
