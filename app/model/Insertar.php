@@ -25,7 +25,7 @@ class Insertar
         }
         return $devolver;
     }
-    public static function insertarPeli($peli){
+    public static function insertarPeli($peli,$actores){
         $id=false;
         $genero=self::buscarGenero($peli);
         // var_dump($genero);
@@ -49,10 +49,16 @@ class Insertar
             if ($resultado) {
                 $id=$db->lastInsertId();
             }
+            foreach ($actores as $key => $actor) {
+                $consultaInsertarRelaciones = $db->prepare("INSERT INTO peliculas_personalc (pelicula_id, personal_id) VALUES (?, ?)");
+                $consultaInsertarRelaciones->execute([$id, $actor["id_personal"]]);
+            }
+            $db->commit();
             $resultado->closeCursor();
             $resultado = null;
-            $db = null; 
+            // $db = null; 
         } catch (PDOException $e) {
+            $db->rollBack();
             echo "<br>Error: " . $e->getMessage();  
             echo "<br>Línea del error: " . $e->getLine();  
             echo "<br>Archivo del error: " . $e->getFile();

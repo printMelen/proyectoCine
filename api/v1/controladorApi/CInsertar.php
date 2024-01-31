@@ -215,7 +215,7 @@ class CInsertar
         $peli=Mostrar::buscarPelicula($data['nombre']);
         $elenco=Mostrar::buscarActores($arrayActores);
         if (!$peli&&$elenco) {
-            $idPeli = Insertar::insertarPeli($data);
+            $idPeli = Insertar::insertarPeli($data,$elenco);
         }
         return $idPeli;
     }
