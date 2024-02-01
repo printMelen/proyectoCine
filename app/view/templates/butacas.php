@@ -28,10 +28,7 @@
             </div>
         </div>
         <div class="flex flex-col items-center">
-            <span>Screen</span>
-            <div class="flex flex-wrap gap-2" id="butacas">
-
-            </div>
+            <?php include("butacasEnW.php"); ?>     
         </div>
      </main>
      <?php include("footer.php"); ?>     
