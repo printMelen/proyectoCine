@@ -1,5 +1,5 @@
 <div class="flex flex-col w-[1040px] text-back">
-    <div class="flex justify-between">
+    <div class="todo flex justify-between">
         <div class="butacas flex flex-wrap w-[282px]">
         
         </div>

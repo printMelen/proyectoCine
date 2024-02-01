@@ -594,12 +594,36 @@ video {
   top: 0px;
 }
 
-.top-5 {
-  top: 1.25rem;
-}
-
 .top-6 {
   top: 1.5rem;
+}
+
+.top-7 {
+  top: 1.75rem;
+}
+
+.top-9 {
+  top: 2.25rem;
+}
+
+.top-10 {
+  top: 2.5rem;
+}
+
+.top-11 {
+  top: 2.75rem;
+}
+
+.left-2 {
+  left: 0.5rem;
+}
+
+.left-5 {
+  left: 1.25rem;
+}
+
+.left-4 {
+  left: 1rem;
 }
 
 .z-10 {
@@ -612,6 +636,14 @@ video {
 
 .z-\[10\] {
   z-index: 10;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-\[-1\] {
+  z-index: -1;
 }
 
 .m-0 {
@@ -730,6 +762,10 @@ video {
   margin-left: 0px;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .ml-\[17px\] {
   margin-left: 17px;
 }
@@ -744,6 +780,10 @@ video {
 
 .mr-1 {
   margin-right: 0.25rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .mr-3 {
@@ -792,22 +832,6 @@ video {
 
 .mt-\[85px\] {
   margin-top: 85px;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.ml-5 {
-  margin-left: 1.25rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
 }
 
 .block {
@@ -990,6 +1014,10 @@ video {
   width: 100%;
 }
 
+.w-\[1040px\] {
+  width: 1040px;
+}
+
 .w-\[116px\] {
   width: 116px;
 }
@@ -1022,8 +1050,16 @@ video {
   width: 200px;
 }
 
+.w-\[226px\] {
+  width: 226px;
+}
+
 .w-\[25px\] {
   width: 25px;
+}
+
+.w-\[282px\] {
+  width: 282px;
 }
 
 .w-\[300px\] {
@@ -1060,18 +1096,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[282px\] {
-  width: 282px;
-}
-
-.w-\[226px\] {
-  width: 226px;
-}
-
-.w-\[1040px\] {
-  width: 1040px;
 }
 
 .min-w-0 {
@@ -1199,10 +1223,6 @@ video {
   grid-template-columns: 50px 1000px 50px;
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .grid-rows-4 {
   grid-template-rows: repeat(4, minmax(0, 1fr));
 }
@@ -1213,10 +1233,6 @@ video {
 
 .grid-rows-\[265px_46px_53px\] {
   grid-template-rows: 265px 46px 53px;
-}
-
-.grid-rows-3 {
-  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -1241,10 +1257,6 @@ video {
 
 .items-start {
   align-items: flex-start;
-}
-
-.items-end {
-  align-items: flex-end;
 }
 
 .items-center {
@@ -1273,10 +1285,6 @@ video {
 
 .justify-around {
   justify-content: space-around;
-}
-
-.gap-2 {
-  gap: 0.5rem;
 }
 
 .gap-5 {
@@ -1329,22 +1337,6 @@ video {
 
 .gap-\[9px\] {
   gap: 9px;
-}
-
-.gap-10 {
-  gap: 2.5rem;
-}
-
-.gap-\[128px\] {
-  gap: 128px;
-}
-
-.gap-3 {
-  gap: 0.75rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .overflow-x-auto {
@@ -1606,10 +1598,6 @@ video {
 
 .p-\[35px\] {
   padding: 35px;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .px-2 {
