@@ -814,6 +814,14 @@ video {
   margin-top: 85px;
 }
 
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.mt-\[-20px\] {
+  margin-top: -20px;
+}
+
 .block {
   display: block;
 }
@@ -1694,6 +1702,16 @@ video {
 .py-\[30px\] {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.py-\[-20px\] {
+  padding-top: -20px;
+  padding-bottom: -20px;
+}
+
+.py-\[-30px\] {
+  padding-top: -30px;
+  padding-bottom: -30px;
 }
 
 .pb-0 {
