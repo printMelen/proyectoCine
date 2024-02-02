@@ -27,28 +27,30 @@
             <div class="bg-bermuda w-[500px]">
             </div>
         </div>
-        <div class="flex flex-col items-center ml-[-60px]">
-            <?php include("butacasEnW.php"); ?>     
-        </div>
-        <div class="grid grid-cols-3 w-[325px] h-[77px] items-center mx-auto">
-            <div class=" flex flex-col items-center">
-                <img class="h-[40px]" src="app/view/images/butacaBlanca.svg" alt="">
-                <span>Disponible</span>
-            </div>
-            <div class=" flex flex-col items-center">
-                <img class="h-[40px]" src="app/view/images/butacaGris.svg" alt="">
-                <span>No disponible</span>
-            </div>
-            <div class=" flex flex-col items-center">
-                <img class="h-[40px]" src="app/view/images/butacaMorada.svg" alt="">
-                <span>Seleccionada</span>
-            </div>
-        
+        <div class="flex flex-col items-center">
+            <form method="post">
+                <?php include("butacasRaras.php"); ?>     
+                <div class="grid grid-cols-3 w-[325px] h-[77px] mt-[40px] items-center mx-auto">
+                    <div class=" flex flex-col items-center">
+                        <img class="h-[40px]" src="app/view/images/butacaBlanca.svg" alt="">
+                        <span>Disponible</span>
+                    </div>
+                    <div class=" flex flex-col items-center">
+                        <img class="h-[40px]" src="app/view/images/butacaGris.svg" alt="">
+                        <span>No disponible</span>
+                    </div>
+                    <div class=" flex flex-col items-center">
+                        <img class="h-[40px]" src="app/view/images/butacaMorada.svg" alt="">
+                        <span>Seleccionada</span>
+                    </div>
+                </div>
+                <input type="submit" class="w-[100%] mt-[60px] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar">
+            </form>
         </div>
         <!-- <input type="submit" class="w-[100%] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar"> -->
      </main>
      <?php include("footer.php"); ?>  
-    <script src="app\view\js\butacasW.js"></script>
+    <script src="app\view\js\butacasRaras.js"></script>
 
 </body>
 </html>
