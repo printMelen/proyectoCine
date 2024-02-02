@@ -2,7 +2,9 @@ const tabla = document.querySelector("table");
 let cont = 0;
 let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
-
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+});
 function generarArray() {
     for (let i = 0; i < 8; i++) {
         asientos[i] = new Array(20);
@@ -46,9 +48,9 @@ asientos.forEach(function(rowData) {
     rowData.forEach(function(cellData) {
       let cell = document.createElement('td');
       cell.id = "celda" + cont;
-      cell.className = "px-2";
       if (cellData==1) {
         cont++;
+        cell.className = "px-2";
         generar(cell);
       }
       row.appendChild(cell);
@@ -72,7 +74,8 @@ function generar(celda){
         cambiarColor(input,img.id);
     });
     span.textContent = cont;
-    span.className = "flex justify-center relative top-6";
+    span.className = "flex justify-center relative top-6  cursor-pointer";
+    img.className = "cursor-pointer";
     input.className = "flex justify-center relative top-11 left-4 z-[-1]";
     div.className = "mt-[-20px]";
     img.src = "app/view/images/butacaBlanca.svg"; // Define la ruta de la imagen que deseas mostrar

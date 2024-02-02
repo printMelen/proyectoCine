@@ -46,7 +46,7 @@
                         <span>Seleccionada</span>
                     </div>
                 </div>
-                <input type="submit" class="w-[100%] mt-[60px] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar">
+                <input type="submit" class="w-[100%] mt-[60px] bg-pink h-[86px] rounded-[7px] text-9xl cursor-pointer" value="Comprar">
             </form>
         </div>
         <!-- <input type="submit" class="w-[100%] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar"> -->
