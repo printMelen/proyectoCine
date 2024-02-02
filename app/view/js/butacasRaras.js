@@ -1,54 +1,63 @@
-const contenedores = document.querySelectorAll(".butacas");
-const fila = document.querySelector("#fila");
+const tabla = document.querySelector("table");
 let cont = 0;
-let inputs = document.querySelectorAll(".todo input");
-// let imagen=document.querySelectorAll(".butacas>img");
-function cinco(contenedor) {
+let inputs = document.querySelectorAll("table input");
+let asientos = new Array(8);
+
+function generarArray() {
+    for (let i = 0; i < 8; i++) {
+        asientos[i] = new Array(20);
+        }        
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 20; j++) {
+            asientos[i][j] = 0;
+        }
+    }
+    //de la columna 3 a la 7 estan llenas
     for (let i = 0; i < 7; i++) {
-        for (let j = 0; j < 5; j++) {
-          cont++;
-          generar(contenedor);
+        for (let j = 3; j < 8; j++) {
+            asientos[i][j] = 1;
+        }
+    }
+    //la ultima fila esta a 1
+    for (let i = 0; i < 20; i++) {
+        asientos[7][i] = 1;
+    }
+    //la columna 8 esta a 1 desde la fila 1
+    for (let i = 1; i < 8; i++) {
+        asientos[i][8] = 1;
+    }
+    //desde la columna 9 a la 14 estan a 1 pero desde la fila 0
+    for (let i = 0; i < 8; i++) {
+        for (let j = 9; j < 14; j++) {
+            asientos[i][j] = 1;
+        }
+    }
+    //las 4 ultimas columnas a 1
+    for (let i = 0; i < 8; i++) {
+        for (let j = 16; j < 20; j++) {
+            asientos[i][j] = 1;
         }
     }
 }
-contenedores.forEach((contenedor, key) => {
-    switch (key) {
-        case 0:
-            cinco(contenedor);
-            break;
-        case 1:
-            
-            break;
-        case 2:
-            
-            break;
-        case 3:
-            
-            break;
-    
-        default:
-            break;
-    }
-  if (key == 2) {
-    for (let i = 0; i < 7; i++) {
-      for (let j = 0; j < 4; j++) {
+generarArray();
+asientos.forEach(function(rowData) {
+    let row = document.createElement('tr');
+  
+    rowData.forEach(function(cellData) {
+      let cell = document.createElement('td');
+      cell.id = "celda" + cont;
+      cell.className = "px-2";
+      if (cellData==1) {
         cont++;
-        generar(contenedor); 
+        generar(cell);
       }
-    }
-  } else {
-    
-  }
+      row.appendChild(cell);
+    });
+  
+    tabla.appendChild(row);
 });
-for (let j = 0; j < 18; j++) {
-  cont++;
-  generar(null,fila);
-}
 
-// inputs.forEach((input) => {
-//   input.addEventListener("change", cambiarColor);
-// });
-function generar(contenedor,fila=null){
+function generar(celda){
     let img = document.createElement("img");
     let input = document.createElement("input");
     input.type = "checkbox";
@@ -65,15 +74,11 @@ function generar(contenedor,fila=null){
     span.textContent = cont;
     span.className = "flex justify-center relative top-6";
     input.className = "flex justify-center relative top-11 left-4 z-[-1]";
-    div.className = "ml-2";
+    div.className = "mt-[-20px]";
     img.src = "app/view/images/butacaBlanca.svg"; // Define la ruta de la imagen que deseas mostrar
     div.appendChild(input);
     div.appendChild(label);
-    if (contenedor==null) {
-        fila.appendChild(div); 
-    }else{
-        contenedor.appendChild(div);
-    }
+    celda.appendChild(div);
     label.appendChild(span);
     label.appendChild(img);
 }

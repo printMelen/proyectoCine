@@ -29,7 +29,9 @@
         </div>
         <div class="flex flex-col items-center">
             <form method="post">
-                <?php include("butacasRaras.php"); ?>     
+            <table class="text-back">
+                
+            </table> 
                 <div class="grid grid-cols-3 w-[325px] h-[77px] mt-[40px] items-center mx-auto">
                     <div class=" flex flex-col items-center">
                         <img class="h-[40px]" src="app/view/images/butacaBlanca.svg" alt="">
@@ -50,7 +52,7 @@
         <!-- <input type="submit" class="w-[100%] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar"> -->
      </main>
      <?php include("footer.php"); ?>  
-    <script src="app\view\js\butacasRaras.js"></script>
+    <script src="app\view\js\butacasW.js"></script>
 
 </body>
 </html>
