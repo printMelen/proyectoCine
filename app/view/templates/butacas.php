@@ -30,7 +30,7 @@
         <div class="flex flex-col items-center">
             <form method="post">
             <table class="text-back">
-                
+                <!-- donde se genera la tabla de butacas -->
             </table> 
                 <div class="grid grid-cols-3 w-[325px] h-[77px] mt-[40px] items-center mx-auto">
                     <div class=" flex flex-col items-center">
@@ -46,13 +46,11 @@
                         <span>Seleccionada</span>
                     </div>
                 </div>
-                <input type="submit" class="w-[100%] mt-[60px] bg-pink h-[86px] rounded-[7px] text-9xl cursor-pointer" value="Comprar">
+                <input type="submit" class="w-[100%] mt-[60px] bg-pink h-[86px] rounded-[7px] font-600 text-2xl cursor-pointer" value="Comprar">
             </form>
         </div>
-        <!-- <input type="submit" class="w-[100%] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar"> -->
      </main>
      <?php include("footer.php"); ?>  
-    <script src="app\view\js\butacasW.js"></script>
-
+    <script src="app\view\js\butacasRaras.js"></script>
 </body>
 </html>

@@ -20,6 +20,13 @@
 
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
      <?php include("header.php"); ?>
+     <?php 
+               echo "<pre>";
+               // echo ;
+               var_dump($_SESSION['datosPelis'][$_GET['id']]);
+               var_dump($_SESSION['datosPelis'][$_GET['id']]['fechas']);
+               echo "</pre>";
+               ?>
      <main class="mt-5">
           <div class="flex items-center">
             <div class="basis-1/3 h-[602px] p-2">
@@ -88,8 +95,9 @@
                     <label for="fechas" class="block mb-2">Días de proyección:</label>
                     <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
                          <?php
-                              foreach ($_SESSION['fechas'] as $key => $fecha) {
+                              foreach ($_SESSION['datosPelis'][$_GET['id']]['fechas'] as $key => $fecha) {
                                    $fecha_formateada = date("d/m/Y", strtotime($fecha['fecha']));
+                                   echo "HOLAAA";
                                    if ($fecha['fecha']!=null) {
                                         echo <<<EOT
                                              <option class="text-back" value="$key">$fecha_formateada</option>
