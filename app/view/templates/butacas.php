@@ -27,7 +27,7 @@
             <div class="bg-bermuda w-[500px]">
             </div>
         </div>
-        <div class="flex flex-col items-center ml-[-50px]">
+        <div class="flex flex-col items-center ml-[-60px]">
             <?php include("butacasEnW.php"); ?>     
         </div>
         <div class="grid grid-cols-3 w-[325px] h-[77px] items-center mx-auto">
@@ -45,9 +45,10 @@
             </div>
         
         </div>
-        <button class="w-[100%] bg-pink h-[86px] rounded-[7px] text-9xl">Comprar</button>
+        <!-- <input type="submit" class="w-[100%] bg-pink h-[86px] rounded-[7px] text-9xl" value="Comprar"> -->
      </main>
-     <?php include("footer.php"); ?>     
-     <script src="app\view\js\butacas.js"></script>
+     <?php include("footer.php"); ?>  
+    <script src="app\view\js\butacasW.js"></script>
+
 </body>
 </html>
