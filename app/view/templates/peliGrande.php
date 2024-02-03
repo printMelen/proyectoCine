@@ -25,6 +25,9 @@
           $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
           $response = file_get_contents($url);
           $data = json_decode($response, true);
+          // echo "<pre>";
+          // print_r($data);
+          // echo "</pre>";
      ?>
      <main class="mt-5">
           <div class="flex items-center">
@@ -91,6 +94,11 @@
                     </div>
                </div>
                <div class="my-6">
+               <?php
+               if ($data!=null) {
+                    echo "<form method='post'>";
+               }
+               ?>
                     <label for="fechas" class="block mb-2">Días de proyección:</label>
                          <?php
                               if ($data!=null) {
@@ -101,10 +109,11 @@
                                         $date= $fecha["dia_sesion"];
                                         $fecha_formateada = date("d/m/Y", strtotime($date));
                                         echo <<<EOT
-                                        <option class="text-back" value="$key">$fecha_formateada</option>
+                                        <option class="text-back" value="$key,{$fecha['nombre_sala']}">$fecha_formateada</option>
                                         EOT;                                                                          
                                    }
                                    echo "</select>"; 
+                                   echo "</form>"; 
                               }else{
                                    echo <<<EOT
                                         <span class="text-[#ef233c]">No hay fechas disponibles</span>
