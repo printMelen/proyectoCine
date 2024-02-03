@@ -21,10 +21,34 @@
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
      <?php include("header.php"); ?>
      <?php 
-               echo "<pre>";
-               var_dump($_SESSION['datosPelis'][$_GET['id']]);
-               var_dump($_SESSION['datosPelis'][$_GET['id']]['fechas']);
-               echo "</pre>";
+     $url = 'http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?nombre='.$_SESSION['datosPelis'][$_GET['id']]['nombre'];
+     echo $url."<br>";
+     // Inicializar cURL
+     $curl = curl_init($url);
+     
+     // Configurar opciones de cURL
+     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+     
+     // Realizar la llamada a la API
+     $response = curl_exec($curl);
+     
+     // Verificar si la llamada fue exitosa
+     if ($response !== false) {
+     // La llamada fue exitosa, puedes trabajar con los datos aquí
+     $data = json_decode($response);
+     var_dump($data);
+     } else {
+     // Hubo un error en la llamada cURL
+     $error = curl_error($curl);
+     echo 'Error en la llamada cURL: ' . $error;
+     }
+     // Cerrar la sesión cURL
+     curl_close($curl);
+     
+               // echo "<pre>";
+               // var_dump($_SESSION['datosPelis'][$_GET['id']]);
+               // var_dump($_SESSION['datosPelis'][$_GET['id']]['fechas']);
+               // echo "</pre>";
                ?>
      <main class="mt-5">
           <div class="flex items-center">
@@ -94,6 +118,7 @@
                     <label for="fechas" class="block mb-2">Días de proyección:</label>
                     <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
                          <?php
+                              
                               foreach ($_SESSION['datosPelis'][$_GET['id']]['fechas'] as $key => $fecha) {
                                    $fecha_formateada = date("d/m/Y", strtotime($fecha));
                                    if ($fecha!=null) {
