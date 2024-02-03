@@ -22,7 +22,6 @@
      <?php include("header.php"); ?>
      <?php 
                echo "<pre>";
-               // echo ;
                var_dump($_SESSION['datosPelis'][$_GET['id']]);
                var_dump($_SESSION['datosPelis'][$_GET['id']]['fechas']);
                echo "</pre>";
@@ -96,9 +95,8 @@
                     <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
                          <?php
                               foreach ($_SESSION['datosPelis'][$_GET['id']]['fechas'] as $key => $fecha) {
-                                   $fecha_formateada = date("d/m/Y", strtotime($fecha['fecha']));
-                                   echo "HOLAAA";
-                                   if ($fecha['fecha']!=null) {
+                                   $fecha_formateada = date("d/m/Y", strtotime($fecha));
+                                   if ($fecha!=null) {
                                         echo <<<EOT
                                              <option class="text-back" value="$key">$fecha_formateada</option>
                                         EOT;                                  
