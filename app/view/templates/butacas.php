@@ -51,6 +51,13 @@
         </div>
      </main>
      <?php include("footer.php"); ?>  
-    <script src="app\view\js\butacasRaras.js"></script>
+    <?php
+        $sala=explode(",",$_POST["fechas"]);
+        if ($sala[1]!="Sala VIP") {
+            echo "<script src='app/view\js\butacasRaras.js'></script>";
+        }else{
+            echo "<script src='app/view\js\butacasW.js'></script>";
+        }
+    ?>
 </body>
 </html>

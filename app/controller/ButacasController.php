@@ -3,6 +3,8 @@ class ButacasController
 {
     public static function inicio()
     {
-        ViewController::cargarVista("butacas");
+        if (isset($_POST["fechas"])) {
+            ViewController::cargarVista("butacas");
+        }
     }
 }
