@@ -25,6 +25,8 @@
           $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
           $response = file_get_contents($url);
           $data = json_decode($response, true);
+          $today = new DateTime();
+          $today->format('Y-m-d');
      ?>
      <main class="mt-5">
           <div class="flex items-center">
@@ -94,17 +96,35 @@
                     <label for="fechas" class="block mb-2">Días de proyección:</label>
                          <?php
                               if ($data!=null) {
-                                   echo <<<EOT
-                                        <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
-                                   EOT;
+                                   $fechaValida=false;
+                                   $contador=0;
+                                   usort($data, function($a, $b) {
+                                        $dateA = DateTime::createFromFormat('Y-m-d', $a['dia_sesion']);
+                                        $dateB = DateTime::createFromFormat('Y-m-d', $b['dia_sesion']);
+                                    
+                                        return $dateA <=> $dateB;
+                                   });
                                    foreach ($data as $key => $fecha) {
                                         $date= $fecha["dia_sesion"];
-                                        $fecha_formateada = date("d/m/Y", strtotime($date));
-                                        if ($fecha["dia_sesion"]!=null) {
-                                             echo <<<EOT
-                                                  <option class="text-back" value="$key">$fecha_formateada</option>
-                                             EOT;                                  
+                                        if ($contador==3) { 
+                                             break;
                                         }
+                                        if ($date>=$today->format('Y-m-d')) {
+                                             if ($fechaValida==false) {
+                                                  echo <<<EOT
+                                                  <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
+                                                  EOT;
+                                                  $fechaValida=true;
+                                             }
+                                             $fecha_formateada = date("d/m/Y", strtotime($date));
+                                             if ($contador!=3) {
+                                                  echo <<<EOT
+                                                  <option class="text-back" value="$key">$fecha_formateada</option>
+                                                  EOT;                                  
+                                                  $contador++;
+                                             }
+                                        }
+                                        
                                    }
                                    echo "</select>"; 
                               }else{
