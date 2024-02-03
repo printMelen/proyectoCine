@@ -1183,6 +1183,10 @@ video {
   cursor: pointer;
 }
 
+.cursor-wait {
+  cursor: wait;
+}
+
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1881,11 +1885,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-\[\#cd3333\] {
-  --tw-text-opacity: 1;
-  color: rgb(205 51 51 / var(--tw-text-opacity));
 }
 
 .underline {

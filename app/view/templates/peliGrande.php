@@ -96,7 +96,7 @@
                <div class="my-6">
                <?php
                if ($data!=null) {
-                    echo "<form method='post'>";
+                    echo "<form method='post' action='index.php?peticion=butacas'>";
                }
                ?>
                     <label for="fechas" class="block mb-2">Días de proyección:</label>
@@ -112,8 +112,9 @@
                                         <option class="text-back" value="$key,{$fecha['nombre_sala']}">$fecha_formateada</option>
                                         EOT;                                                                          
                                    }
+                                   
                                    echo "</select>"; 
-                                   echo "</form>"; 
+                                   // echo "</form>"; 
                               }else{
                                    echo <<<EOT
                                         <span class="text-[#ef233c]">No hay fechas disponibles</span>
@@ -126,9 +127,9 @@
                     <a href="#">
                          <button class="w-[161px] h-[59px] bg-greyBotones rounded-[6.26px]">Trailer</button>                    
                     </a>
-                    <a href="index.php?peticion=butacas">
-                         <button type="submit" class="w-[161px] h-[59px] bg-pink rounded-[6.26px]">Comprar</button>                    
-                    </a>
+                    <!-- <a href="index.php?peticion=butacas"> -->
+                         <input type="submit" class="cursor-pointer w-[161px] h-[59px] bg-pink rounded-[6.26px]" value="Comprar">                    
+                    <!-- </a> -->
                     <a href="#">
                          <img src="app/view/images/corazon.svg" alt="">
                     </a>
@@ -136,6 +137,7 @@
                          <img src="app/view/images/bookmark.svg" alt="">
                     </a>
                </div>
+                         </form>
             </div>   
             <div class="bg-pink basis-2/3 h-[673px]">
                <img class="h-[100%] w-[100%]" src="app/view/images/caratula/<?php echo $_SESSION['datosPelis'][$_GET['id']]['cartel']; ?>" alt="" srcset="">
