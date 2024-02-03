@@ -297,11 +297,11 @@ class Mostrar{
                 FROM 
                 sesionesc
                 LEFT JOIN 
-                salasc ON sesionesc.id = salasc.id
+                salasc ON sesionesc.sala_id = salasc.id
                 LEFT JOIN 
                 horasc ON sesionesc.hora = horasc.id
                 LEFT JOIN 
-                peliculasc ON sesionesc.id = peliculasc.id
+                peliculasc ON sesionesc.pelicula_id = peliculasc.id
                 GROUP BY 
                 sesionesc.id;
             ";
