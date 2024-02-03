@@ -21,35 +21,15 @@
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
      <?php include("header.php"); ?>
      <?php 
-     $url = 'http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?nombre='.$_SESSION['datosPelis'][$_GET['id']]['nombre'];
-     echo $url."<br>";
-     // Inicializar cURL
-     $curl = curl_init($url);
-     
-     // Configurar opciones de cURL
-     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-     
-     // Realizar la llamada a la API
-     $response = curl_exec($curl);
-     
-     // Verificar si la llamada fue exitosa
-     if ($response !== false) {
-     // La llamada fue exitosa, puedes trabajar con los datos aquí
-     $data = json_decode($response);
-     var_dump($data);
-     } else {
-     // Hubo un error en la llamada cURL
-     $error = curl_error($curl);
-     echo 'Error en la llamada cURL: ' . $error;
-     }
-     // Cerrar la sesión cURL
-     curl_close($curl);
-     
-               // echo "<pre>";
-               // var_dump($_SESSION['datosPelis'][$_GET['id']]);
-               // var_dump($_SESSION['datosPelis'][$_GET['id']]['fechas']);
-               // echo "</pre>";
-               ?>
+          $nombre_peli_encoded = urlencode($_SESSION['datosPelis'][$_GET['id']]['nombre']);
+          $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
+          $response = file_get_contents($url);
+          $data = json_decode($response, true);
+          echo $url;
+          echo "<pre>";
+          var_dump($data);
+          echo "</pre>";
+     ?>
      <main class="mt-5">
           <div class="flex items-center">
             <div class="basis-1/3 h-[602px] p-2">
@@ -119,12 +99,15 @@
                     <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
                          <?php
                               
-                              foreach ($_SESSION['datosPelis'][$_GET['id']]['fechas'] as $key => $fecha) {
-                                   $fecha_formateada = date("d/m/Y", strtotime($fecha));
-                                   if ($fecha!=null) {
+                              foreach ($data as $key => $fecha) {
+                                   $date= $fecha["dia_sesion"];
+                                   $fecha_formateada = date("d/m/Y", strtotime($date));
+                                   if ($fecha["dia_sesion"]!=null) {
                                         echo <<<EOT
                                              <option class="text-back" value="$key">$fecha_formateada</option>
                                         EOT;                                  
+                                   }else{
+                                        echo "No hay fechas disponibles";
                                    }
                               }
                          ?>

@@ -392,7 +392,7 @@ class Mostrar{
                 LEFT JOIN 
                 peliculasc ON sesionesc.pelicula_id = peliculasc.id
                 WHERE
-                peliculasc.nombre=:nom
+                peliculasc.nombre LIKE :nom
                 GROUP BY 
                 sesionesc.id;
             ";
