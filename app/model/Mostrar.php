@@ -375,6 +375,8 @@ class Mostrar{
     }
     public static function getSesionesNom($nom){
         $sesiones = array();
+        $today = new DateTime();        
+        $diaFormateado=$today->format('Y-m-d');
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
@@ -393,11 +395,15 @@ class Mostrar{
                 peliculasc ON sesionesc.pelicula_id = peliculasc.id
                 WHERE
                 peliculasc.nombre LIKE :nom
+                AND
+                sesionesc.fecha >= :dia
                 GROUP BY 
-                sesionesc.id;
+                sesionesc.id
+                LIMIT 3;
             ";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":nom", $nom);
+            $resultado->bindParam(":dia", $diaFormateado);
             $resultado->execute(); 
             $sesiones=$resultado->fetchAll(PDO::FETCH_ASSOC);
             $butacas=self::getButacas();
