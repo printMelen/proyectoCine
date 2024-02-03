@@ -399,6 +399,8 @@ class Mostrar{
                 sesionesc.fecha >= :dia
                 GROUP BY 
                 sesionesc.id
+                ORDER BY
+                sesionesc.fecha
                 LIMIT 3;
             ";
             $resultado = $db->prepare($sql);
