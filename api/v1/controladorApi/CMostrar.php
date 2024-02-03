@@ -51,8 +51,11 @@ class CMostrar
                     break;
                 case 'sesiones':
                     $dia = isset($_GET['dia']) ? $_GET['dia'] : null;
+                    $nombre = isset($_GET['nombre']) ? $_GET['nombre'] : null;
                     if ($dia) {
                         $datos=Mostrar::getSesionDia($dia);
+                    }elseif ($nombre) {
+                        $datos=Mostrar::getSesionesNom($nombre);
                     }else{
                         $datos=Mostrar::getSesiones();
                     }
