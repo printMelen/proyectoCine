@@ -25,9 +25,10 @@
           $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
           $response = file_get_contents($url);
           $data = json_decode($response, true);
-          // echo "<pre>";
-          // print_r($data);
-          // echo "</pre>";
+          echo "<pre>";
+          $_SESSION['sesiones'] = $data;
+          print_r($data);
+          echo "</pre>";
      ?>
      <main class="mt-5">
           <div class="flex items-center">

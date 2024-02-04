@@ -20,11 +20,18 @@
 
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
      <?php include("header.php"); ?>
+     <?php
+        $sala=explode(",",$_POST["fechas"]);
+     ?>
      <main class="flex flex-col mt-5 gap-5">
-        <div class="flex bg-[#1D1731] w-[100%] rounded-[15.833px] h-[259px] justify-center">
-            <div class="flex flex-wrap bg-pink w-[500px]">
-            </div>
-            <div class="bg-bermuda w-[500px]">
+        <div class="flex bg-[#1D1731] mx-auto max-w-screen-xl rounded-[15.833px] h-[259px] justify-center">
+            <div class="flex flex-wrap  w-[1500px] justify-between">
+                <div class="flex justify-between">
+                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
+                </div>
+                <div class="flex justify-between">
+                    <h2 class="text-white"><?=$sala[1]?></h2>
+                </div>
             </div>
         </div>
         <div class="flex flex-col items-center">
@@ -52,7 +59,6 @@
      </main>
      <?php include("footer.php"); ?>  
     <?php
-        $sala=explode(",",$_POST["fechas"]);
         if ($sala[1]!="Sala VIP") {
             echo "<script src='app/view\js\butacasRaras.js'></script>";
         }else{
