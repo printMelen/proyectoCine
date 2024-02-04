@@ -20,6 +20,16 @@
 
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
      <?php include("header.php"); ?>
+     <?php 
+          $nombre_peli_encoded = urlencode($_SESSION['datosPelis'][$_GET['id']]['nombre']);
+          $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
+          $response = file_get_contents($url);
+          $data = json_decode($response, true);
+          echo "<pre>";
+          // $_SESSION['sesiones'] = $data;
+          print_r($data);
+          echo "</pre>";
+     ?>
      <main class="mt-5">
           <div class="flex items-center">
             <div class="basis-1/3 h-[602px] p-2">
@@ -85,28 +95,42 @@
                     </div>
                </div>
                <div class="my-6">
+               <?php
+               if ($data!=null) {
+                    echo "<form method='post' action='index.php?peticion=butacas'>";
+               }
+               ?>
                     <label for="fechas" class="block mb-2">Días de proyección:</label>
-                    <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
                          <?php
-                              foreach ($_SESSION['fechas'] as $key => $fecha) {
-                                   $fecha_formateada = date("d/m/Y", strtotime($fecha['fecha']));
-                                   if ($fecha['fecha']!=null) {
+                              if ($data!=null) {
+                                   echo <<<EOT
+                                   <select name="fechas" id="fechas" class="flex items-center bg-transparent w-[85%] h-8 border border-greyBotones rounded">
+                                   EOT;
+                                   foreach ($data as $key => $fecha) {
+                                        $date= $fecha["dia_sesion"];
+                                        $fecha_formateada = date("d/m/Y", strtotime($date));
                                         echo <<<EOT
-                                             <option value="$key">$fecha_formateada</option>
-                                        EOT;                                  
+                                        <option class="text-back" value="$date,{$fecha['nombre_sala']}">$fecha_formateada</option>
+                                        EOT;                                                                          
                                    }
+                                   
+                                   echo "</select>"; 
+                                   // echo "</form>"; 
+                              }else{
+                                   echo <<<EOT
+                                        <span class="text-[#ef233c]">No hay fechas disponibles</span>
+                                   EOT;
                               }
                          ?>
-                    </select>
                </div>
                <!-- botones -->
                <div class="flex items-center gap-5">
                     <a href="#">
                          <button class="w-[161px] h-[59px] bg-greyBotones rounded-[6.26px]">Trailer</button>                    
                     </a>
-                    <a href="#">
-                         <button type="submit" class="w-[161px] h-[59px] bg-pink rounded-[6.26px]">Comprar</button>                    
-                    </a>
+                    <!-- <a href="index.php?peticion=butacas"> -->
+                         <input type="submit" class="cursor-pointer w-[161px] h-[59px] bg-pink rounded-[6.26px]" value="Comprar">                    
+                    <!-- </a> -->
                     <a href="#">
                          <img src="app/view/images/corazon.svg" alt="">
                     </a>
@@ -114,6 +138,7 @@
                          <img src="app/view/images/bookmark.svg" alt="">
                     </a>
                </div>
+                         </form>
             </div>   
             <div class="bg-pink basis-2/3 h-[673px]">
                <img class="h-[100%] w-[100%]" src="app/view/images/caratula/<?php echo $_SESSION['datosPelis'][$_GET['id']]['cartel']; ?>" alt="" srcset="">

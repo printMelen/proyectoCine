@@ -17,6 +17,22 @@ class CMostrar
             $recurso = $rutaPathSinBarra[1];
             $id = isset($rutaPathSinBarra[2]) ? $rutaPathSinBarra[2] : null;
             switch ($recurso) {
+                case 'horas':
+                    $datos=Mostrar::getHoras();
+                    self::enviarRespuesta($datos);
+                break;
+                case 'butacas':
+                    if ($id) {
+                        $datos=Mostrar::getButacasOcupadas($id);
+                    } else {
+                        $datos=Mostrar::getButacas();
+                    }
+                    self::enviarRespuesta($datos);
+                break;
+                case 'salas':
+                    $datos=Mostrar::getSalas();
+                    self::enviarRespuesta($datos);
+                break;
                 case 'peliculas':
                     if ($id) {
                         $datos=Mostrar::getPelicula($id);
@@ -51,8 +67,11 @@ class CMostrar
                     break;
                 case 'sesiones':
                     $dia = isset($_GET['dia']) ? $_GET['dia'] : null;
+                    $nombre = isset($_GET['nombre']) ? $_GET['nombre'] : null;
                     if ($dia) {
                         $datos=Mostrar::getSesionDia($dia);
+                    }elseif ($nombre) {
+                        $datos=Mostrar::getSesionesNom($nombre);
                     }else{
                         $datos=Mostrar::getSesiones();
                     }

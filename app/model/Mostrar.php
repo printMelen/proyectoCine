@@ -284,6 +284,79 @@ class Mostrar{
         }
         return $butacas;
     }
+    public static function getButacasOcupadas($id){
+        $butacas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT  
+                butacas_reservadasc.asiento
+                FROM 
+                butacas_reservadasc
+                WHERE
+                butacas_reservadasc.idsesion = :id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":id", $id);
+            $resultado->execute(); 
+            $butacas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $butacas;
+    }
+    public static function getHoras(){
+        $horas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                horasc.hora
+                FROM 
+                horasc
+                GROUP BY
+                horasc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $horas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $horas;
+    }
+    public static function getSalas(){
+        $salas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                *
+                FROM 
+                `salasc`
+                GROUP BY
+                salasc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $salas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $salas;
+    }
     public static function getSesiones(){
         $sesiones = array();
         try {
@@ -297,11 +370,11 @@ class Mostrar{
                 FROM 
                 sesionesc
                 LEFT JOIN 
-                salasc ON sesionesc.id = salasc.id
+                salasc ON sesionesc.sala_id = salasc.id
                 LEFT JOIN 
                 horasc ON sesionesc.hora = horasc.id
                 LEFT JOIN 
-                peliculasc ON sesionesc.id = peliculasc.id
+                peliculasc ON sesionesc.pelicula_id = peliculasc.id
                 GROUP BY 
                 sesionesc.id;
             ";
@@ -340,11 +413,11 @@ class Mostrar{
                 FROM 
                 sesionesc
                 LEFT JOIN 
-                salasc ON sesionesc.id = salasc.id
+                salasc ON sesionesc.sala_id = salasc.id
                 LEFT JOIN 
                 horasc ON sesionesc.hora = horasc.id
                 LEFT JOIN 
-                peliculasc ON sesionesc.id = peliculasc.id
+                peliculasc ON sesionesc.pelicula_id = peliculasc.id
                 WHERE
                 sesionesc.fecha=:dia
                 GROUP BY 
@@ -352,6 +425,60 @@ class Mostrar{
             ";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":dia", $dia);
+            $resultado->execute(); 
+            $sesiones=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $butacas=self::getButacas();
+            foreach ($sesiones as &$sesion) {
+                foreach ($butacas as $butaca) {
+                    if ($sesion['id_sesion']==$butaca['id_sesion']) {
+                        $sesion['asientos_libres']=$butaca["todas_butacas"]-$butaca["asientos_ocupados"];
+                        $sesion['asientos_ocupados']=$butaca["asientos_ocupados"];
+                    }
+                }
+            }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $sesiones;
+    }
+    public static function getSesionesNom($nom){
+        $sesiones = array();
+        $today = new DateTime();        
+        $diaFormateado=$today->format('Y-m-d');
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                sesionesc.id AS id_sesion, 
+                salasc.nombre AS nombre_sala, 
+                peliculasc.nombre AS nombre_peli, 
+                sesionesc.fecha AS dia_sesion, 
+                horasc.hora AS hora_sesion 
+                FROM 
+                sesionesc
+                LEFT JOIN 
+                salasc ON sesionesc.sala_id = salasc.id
+                LEFT JOIN 
+                horasc ON sesionesc.hora = horasc.id
+                LEFT JOIN 
+                peliculasc ON sesionesc.pelicula_id = peliculasc.id
+                WHERE
+                peliculasc.nombre LIKE :nom
+                AND
+                sesionesc.fecha >= :dia
+                GROUP BY 
+                sesionesc.fecha
+                ORDER BY
+                sesionesc.fecha
+                LIMIT 3;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":nom", $nom);
+            $resultado->bindParam(":dia", $diaFormateado);
             $resultado->execute(); 
             $sesiones=$resultado->fetchAll(PDO::FETCH_ASSOC);
             $butacas=self::getButacas();
