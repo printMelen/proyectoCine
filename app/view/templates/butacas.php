@@ -29,15 +29,11 @@
         // print_r($datosDia);
         // echo "</pre>";
         $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/butacas/".$datosDia[0]['id_sesion'];
-        echo $url;
         $response = file_get_contents($url);
         $butacasOcupadas = json_decode($response, true);
         // echo <<<EOT
         
         // EOT;
-        echo "<pre>";
-        print_r($butacasOcupadas);
-        echo "</pre>";
      ?>
      <main class="flex flex-col mt-5 gap-5">
         <script>
@@ -78,10 +74,11 @@
                 </div>
         </div>
         <div class="flex flex-col items-center">
-            <form method="post">
-            <table class="text-back">
-                <!-- donde se genera la tabla de butacas -->
-            </table> 
+            <form method="post" action="index.php?peticion=reservaDeButacas">
+                    <table class="text-back">
+                        <!-- donde se genera la tabla de butacas -->
+                    </table> 
+                <!-- </select> -->
                 <div class="grid grid-cols-3 w-[325px] h-[77px] mt-[40px] items-center mx-auto">
                     <div class=" flex flex-col items-center">
                         <img class="h-[40px]" src="app/view/images/butacaBlanca.svg" alt="">

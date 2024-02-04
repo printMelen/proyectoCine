@@ -1,4 +1,6 @@
 const tabla = document.querySelector("table");
+
+
 let cont = 0;
 let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
@@ -9,10 +11,12 @@ butacasOcupadas.forEach(butaca => {
     console.log(butaca.asiento);
 });
 
-
 document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
+    console.log('Formulario enviado');
 });
+// document.querySelector('form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+// });
 
 function generarArray() {
     for (let i = 0; i < 8; i++) {

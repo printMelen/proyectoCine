@@ -7,9 +7,9 @@ butacasOcupadas.forEach(butaca => {
     butacasReservadas.push(butaca.asiento);
     console.log(butaca.asiento);
 });
-document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-});
+// document.querySelector('form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+// });
 function generarArray() {
     for (let i = 0; i < 8; i++) {
         asientos[i] = new Array(20);
