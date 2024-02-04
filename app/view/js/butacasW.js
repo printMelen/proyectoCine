@@ -3,17 +3,15 @@ let cont = 0;
 let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
 
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    console.log(this.responseText);
-  }
-};
+let butacasReservadas=[];
+butacasOcupadas.forEach(butaca => {
+    butacasReservadas.push(butaca.asiento);
+    console.log(butaca.asiento);
+});
 
-xhttp.open("GET", "butacas.php", true);
-xhttp.send();
+
 document.querySelector('form').addEventListener('submit', function(event) {
-  event.preventDefault();
+    event.preventDefault();
 });
 
 function generarArray() {
@@ -85,7 +83,16 @@ function generar(celda){
     img.className = "cursor-pointer";
     input.className = "flex justify-center relative top-11 left-4 z-[-1]";
     div.className = "mt-[-20px]";
-    img.src = "app/view/images/butacaBlanca.svg"; // Define la ruta de la imagen que deseas mostrar
+    let contString = String(cont);
+    let butacasReservadasStrings = butacasReservadas.map(String);
+
+    if (butacasReservadasStrings.includes(contString)) {
+        console.log("ENTRO");
+        img.src = "app/view/images/butacaGris.svg";
+        input.setAttribute("disabled", "");
+    } else {
+        img.src = "app/view/images/butacaBlanca.svg";
+    }
     div.appendChild(input);
     div.appendChild(label);
     celda.appendChild(div);

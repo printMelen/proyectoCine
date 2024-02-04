@@ -32,11 +32,17 @@
         echo $url;
         $response = file_get_contents($url);
         $butacasOcupadas = json_decode($response, true);
+        // echo <<<EOT
+        
+        // EOT;
         echo "<pre>";
         print_r($butacasOcupadas);
         echo "</pre>";
      ?>
      <main class="flex flex-col mt-5 gap-5">
+        <script>
+            var butacasOcupadas = <?php echo json_encode($butacasOcupadas); ?>;
+        </script>
         <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center py-6">
                 <div class="grid grid-rows-2 items-center justify-center gap-2">
                     <div class="flex flex-wrap gap-[48px]">
@@ -97,9 +103,16 @@
      <?php include("footer.php"); ?>  
     <?php
         if ($sala[1]!="Sala VIP") {
-            echo "<script src='app/view\js\butacasRaras.js'></script>";
+            echo <<<EOT
+            "<script src='app/view\js\butacasRaras.js'>
+                let asientosOcupados = <?php echo json_encode({$butacasOcupadas}); ?>;
+            </script>"
+            EOT;
         }else{
-            echo "<script src='app/view\js\butacasW.js'></script>";
+            echo <<<EOT
+            "<script src='app/view\js\butacasW.js'>
+            </script>"
+            EOT;
         }
     ?>
 </body>
