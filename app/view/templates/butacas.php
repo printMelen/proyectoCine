@@ -24,15 +24,15 @@
         $sala=explode(",",$_POST["fechas"]);
      ?>
      <main class="flex flex-col mt-5 gap-5">
-        <div class="flex bg-[#1D1731] mx-auto max-w-screen-xl rounded-[15.833px] h-[259px] justify-center">
-            <div class="flex flex-wrap  w-[1500px] justify-between">
-                <div class="flex justify-between">
+        <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center">
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
                     <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
                 </div>
-                <div class="flex justify-between">
-                    <h2 class="text-white"><?=$sala[1]?></h2>
+                <div class="flex flex-col flex-wrap mx-auto justify-center gap-2">
+                    <h2 class="text-white text-[30px]"><?=$sala[1]?></h2>
+                    <span>Elige tus entradas</span>
                 </div>
-            </div>
         </div>
         <div class="flex flex-col items-center">
             <form method="post">
