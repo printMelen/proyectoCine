@@ -38,26 +38,25 @@
                     </div>
                     <div class="flex flex-wrap gap-[48px]">
                         <?php
-                        echo "EEE".$_SESSION['horas'][2]['hora'];
+                        $horas=array();
                         foreach ($datosDia as $key => $diaInfo) {
-                            foreach ($_SESSION['horas'] as $key => $hora) {
-                                // echo "<pre>";
-                                $timeObject = DateTime::createFromFormat('H:i:s', $hora['hora']);
-                                $formattedTime = $timeObject->format('H:i');
-                                if ($diaInfo['hora_sesion']==$hora['hora']) {
-                                    echo <<<EOT
-                                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink">$formattedTime</button>
-                                    EOT;
-                                }else{
-                                    echo <<<EOT
-                                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink opacity-50">$formattedTime</button>
-                                    EOT;
-                                }
+                            array_push($horas,$diaInfo['hora_sesion']);
+                        }
+                        foreach ($_SESSION['horas'] as $key => $hora) {
+                            // echo "<pre>";
+                            $timeObject = DateTime::createFromFormat('H:i:s', $hora['hora']);
+                            $formattedTime = $timeObject->format('H:i');
+                            if (in_array($hora['hora'], $horas)) {
+                                echo <<<EOT
+                                <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink">$formattedTime</button>
+                                EOT;
+                            }else{
+                                echo <<<EOT
+                                <button disable class="w-[111px] h-[59px] rounded-[6.26px] bg-pink opacity-50">$formattedTime</button>
+                                EOT;
                             }
                         }
                         ?>
-                        <!-- <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button>
-                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button> -->
                     </div>
                 </div>
                 <div class="flex flex-col flex-wrap mx-auto gap-2">
