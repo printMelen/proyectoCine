@@ -398,7 +398,7 @@ class Mostrar{
                 AND
                 sesionesc.fecha >= :dia
                 GROUP BY 
-                sesionesc.id
+                sesionesc.fecha
                 ORDER BY
                 sesionesc.fecha
                 LIMIT 3;

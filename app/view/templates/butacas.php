@@ -24,12 +24,18 @@
         $sala=explode(",",$_POST["fechas"]);
      ?>
      <main class="flex flex-col mt-5 gap-5">
-        <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center">
-                <div class="flex flex-wrap items-center justify-center gap-2">
-                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
-                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
+        <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center py-6">
+                <div class="grid grid-rows-2 items-center justify-center gap-2">
+                    <div class="flex flex-wrap gap-[48px]">
+                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
+                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
+                    </div>
+                    <div class="flex flex-wrap gap-[48px]">
+                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button>
+                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button>
+                    </div>
                 </div>
-                <div class="flex flex-col flex-wrap mx-auto justify-center gap-2">
+                <div class="flex flex-col flex-wrap mx-auto gap-2">
                     <h2 class="text-white text-[30px]"><?=$sala[1]?></h2>
                     <span>Elige tus entradas</span>
                 </div>
