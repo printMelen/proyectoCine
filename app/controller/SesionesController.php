@@ -15,7 +15,7 @@ class SesionesController
         SesionesController::comprobar();
     }
     public static function comprobar(){
-        if (FormularioPeli::comprobar()) {
+        if (SesionesController::comprobar()) {
             $_SESSION["logeado"]=true;
             ViewController::cargarVista("index".$_SESSION["rol"]);
         }else{
