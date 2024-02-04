@@ -17,6 +17,10 @@ class CMostrar
             $recurso = $rutaPathSinBarra[1];
             $id = isset($rutaPathSinBarra[2]) ? $rutaPathSinBarra[2] : null;
             switch ($recurso) {
+                case 'horas':
+                    $datos=Mostrar::getHoras();
+                    self::enviarRespuesta($datos);
+                break;
                 case 'peliculas':
                     if ($id) {
                         $datos=Mostrar::getPelicula($id);

@@ -22,17 +22,42 @@
      <?php include("header.php"); ?>
      <?php
         $sala=explode(",",$_POST["fechas"]);
+        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?dia=".$sala[0];
+        $response = file_get_contents($url);
+        $datosDia = json_decode($response, true);
+        // echo "<pre>";
+        // print_r($datosDia);
+        // echo "</pre>";
      ?>
      <main class="flex flex-col mt-5 gap-5">
         <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center py-6">
                 <div class="grid grid-rows-2 items-center justify-center gap-2">
                     <div class="flex flex-wrap gap-[48px]">
                         <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
-                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
+                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-greyBotones"><?=$sala[1]?></button>
                     </div>
                     <div class="flex flex-wrap gap-[48px]">
-                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button>
-                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button>
+                        <?php
+                        echo "EEE".$_SESSION['horas'][2]['hora'];
+                        foreach ($datosDia as $key => $diaInfo) {
+                            foreach ($_SESSION['horas'] as $key => $hora) {
+                                // echo "<pre>";
+                                $timeObject = DateTime::createFromFormat('H:i:s', $hora['hora']);
+                                $formattedTime = $timeObject->format('H:i');
+                                if ($diaInfo['hora_sesion']==$hora['hora']) {
+                                    echo <<<EOT
+                                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink">$formattedTime</button>
+                                    EOT;
+                                }else{
+                                    echo <<<EOT
+                                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink opacity-50">$formattedTime</button>
+                                    EOT;
+                                }
+                            }
+                        }
+                        ?>
+                        <!-- <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button>
+                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink"><?=$sala[1]?></button> -->
                     </div>
                 </div>
                 <div class="flex flex-col flex-wrap mx-auto gap-2">

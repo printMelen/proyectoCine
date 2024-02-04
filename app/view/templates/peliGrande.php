@@ -26,7 +26,7 @@
           $response = file_get_contents($url);
           $data = json_decode($response, true);
           echo "<pre>";
-          $_SESSION['sesiones'] = $data;
+          // $_SESSION['sesiones'] = $data;
           print_r($data);
           echo "</pre>";
      ?>
@@ -110,7 +110,7 @@
                                         $date= $fecha["dia_sesion"];
                                         $fecha_formateada = date("d/m/Y", strtotime($date));
                                         echo <<<EOT
-                                        <option class="text-back" value="$key,{$fecha['nombre_sala']}">$fecha_formateada</option>
+                                        <option class="text-back" value="$date,{$fecha['nombre_sala']}">$fecha_formateada</option>
                                         EOT;                                                                          
                                    }
                                    

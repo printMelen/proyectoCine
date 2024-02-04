@@ -284,6 +284,30 @@ class Mostrar{
         }
         return $butacas;
     }
+    public static function getHoras(){
+        $horas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                horasc.hora
+                FROM 
+                horasc
+                GROUP BY
+                horasc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $horas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $horas;
+    }
     public static function getSesiones(){
         $sesiones = array();
         try {
