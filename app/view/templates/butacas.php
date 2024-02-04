@@ -22,13 +22,13 @@
      <?php include("header.php"); ?>
      <?php
         $sala=explode(",",$_POST["fechas"]);
-        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/sesiones?dia=".$sala[0];
+        $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/sesiones?dia=".$sala[0];
         $response = file_get_contents($url);
         $datosDia = json_decode($response, true);
         // echo "<pre>";
         // print_r($datosDia);
         // echo "</pre>";
-        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/butacas/".$datosDia[0]['id_sesion'];
+        $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/butacas/".$datosDia[0]['id_sesion'];
         $response = file_get_contents($url);
         $butacasOcupadas = json_decode($response, true);
         // echo <<<EOT

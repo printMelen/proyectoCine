@@ -3,13 +3,13 @@ class SesionesController
 {
     public static function inicio()
     {
-        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/peliculas";
+        $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/peliculas";
         $response = file_get_contents($url);
         $_SESSION['peliculasSesiones'] = json_decode($response, true);
-        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/horas";
+        $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/horas";
         $response = file_get_contents($url);
         $_SESSION['horasSesiones'] = json_decode($response, true);
-        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/salas";
+        $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/salas";
         $response = file_get_contents($url);
         $_SESSION['salasSesiones'] = json_decode($response, true);
         SesionesController::comprobar();
