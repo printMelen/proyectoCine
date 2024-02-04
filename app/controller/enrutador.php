@@ -41,6 +41,9 @@ switch ($ctl) {
     case 'butacas':
         ButacasController::inicio();
         break;
+    case 'gestionarSesiones':
+        SesionesController::inicio();
+        break;
     case 'logout':
         LogoutController::cerrar();
         break;

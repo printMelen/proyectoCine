@@ -21,6 +21,10 @@ class CMostrar
                     $datos=Mostrar::getHoras();
                     self::enviarRespuesta($datos);
                 break;
+                case 'salas':
+                    $datos=Mostrar::getSalas();
+                    self::enviarRespuesta($datos);
+                break;
                 case 'peliculas':
                     if ($id) {
                         $datos=Mostrar::getPelicula($id);

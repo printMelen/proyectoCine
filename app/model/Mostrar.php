@@ -308,6 +308,30 @@ class Mostrar{
         }
         return $horas;
     }
+    public static function getSalas(){
+        $salas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                salasc.nombre
+                FROM 
+                `salasc`
+                GROUP BY
+                salasc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $salas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $salas;
+    }
     public static function getSesiones(){
         $sesiones = array();
         try {
