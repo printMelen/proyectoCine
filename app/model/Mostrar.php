@@ -313,7 +313,7 @@ class Mostrar{
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
-                salasc.nombre
+                *
                 FROM 
                 `salasc`
                 GROUP BY
