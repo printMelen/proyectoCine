@@ -21,6 +21,14 @@ class CMostrar
                     $datos=Mostrar::getHoras();
                     self::enviarRespuesta($datos);
                 break;
+                case 'butacas':
+                    if ($id) {
+                        $datos=Mostrar::getButacasOcupadas($id);
+                    } else {
+                        $datos=Mostrar::getButacas();
+                    }
+                    self::enviarRespuesta($datos);
+                break;
                 case 'salas':
                     $datos=Mostrar::getSalas();
                     self::enviarRespuesta($datos);

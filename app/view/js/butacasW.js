@@ -3,6 +3,15 @@ let cont = 0;
 let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
 
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    console.log(this.responseText);
+  }
+};
+
+xhttp.open("GET", "butacas.php", true);
+xhttp.send();
 document.querySelector('form').addEventListener('submit', function(event) {
   event.preventDefault();
 });

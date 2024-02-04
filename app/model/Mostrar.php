@@ -284,6 +284,31 @@ class Mostrar{
         }
         return $butacas;
     }
+    public static function getButacasOcupadas($id){
+        $butacas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT  
+                butacas_reservadasc.asiento
+                FROM 
+                butacas_reservadasc
+                WHERE
+                butacas_reservadasc.idsesion = :id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":id", $id);
+            $resultado->execute(); 
+            $butacas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $butacas;
+    }
     public static function getHoras(){
         $horas = array();
         try {

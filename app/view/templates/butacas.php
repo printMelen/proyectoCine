@@ -28,6 +28,13 @@
         // echo "<pre>";
         // print_r($datosDia);
         // echo "</pre>";
+        $url = "http://localhost:80/dwes/proyectoCine/api/v1/cine/butacas/".$datosDia[0]['id_sesion'];
+        echo $url;
+        $response = file_get_contents($url);
+        $butacasOcupadas = json_decode($response, true);
+        echo "<pre>";
+        print_r($butacasOcupadas);
+        echo "</pre>";
      ?>
      <main class="flex flex-col mt-5 gap-5">
         <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center py-6">
