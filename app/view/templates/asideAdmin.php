@@ -6,6 +6,7 @@
                <ul class="w-[200px]">
                     <li><a href="index.php?peticion=formularioPeli" class="flex items-center gap-[10px] pb-[20px]"><img src="app/view/images/MaterialSymbolsAddCircleOutline.svg" class="w-[30px]" alt="" srcset="">Añadir película</a></li>
                     <li><a href="index.php?peticion=formularioActor" class="flex items-center gap-[10px] pb-[20px]"><img src="app/view/images/MingcuteUserAdd2Fill.svg" class="w-[30px]" alt="" srcset="">Añadir elenco</a></li>
+                    <li><a href="index.php?peticion=gestionarSesiones" class="flex items-center gap-[10px] pb-[20px]"><img src="app/view/images/sesiones.svg" class="w-[30px]" alt="" srcset="">Gestión sesiones</a></li>
                     <li><a href="#" class="flex items-center gap-[10px] pb-[20px]"><img src="app/view/images/FluentMoviesAndTv16Filled.svg" class="w-[30px]" alt="" srcset="">Mostrar Peliculas</a></li>
                     <li><a href="#" class="flex items-center gap-[10px] pb-[20px]"><img src="app/view/images/PhUserListFill.svg" class="w-[30px]" alt="" srcset="">Mostrar elenco</a></li>
                     <li><a href="#" class="flex items-center gap-[10px] pb-[20px]"><img src="app/view/images/PhUsersThreeFill.svg" class="w-[30px]" alt="" srcset="">Mostrar usuarios</a></li>
