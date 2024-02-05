@@ -19,11 +19,21 @@ document.querySelector('form').addEventListener('submit', function(event) {
     } else {
         // Los asientos han sido seleccionados, puedes continuar con el envío del formulario
         console.log('Formulario enviado');
+        let stringAsientos="";
+        cont = 0;
         asientosSeleccionados.forEach(asiento => {
-            console.log(asiento);
+            let arr = asiento.id.split(/(\d+)/);
+            if (cont==0) {
+                stringAsientos += arr[1];
+            }else{
+                stringAsientos += "," + arr[1];
+            }
+            cont++;
         });
+        document.cookie = "butacas="+stringAsientos+"; path=/;";
     }
 });
+
 // document.querySelector('form').addEventListener('submit', function(event) {
 //     event.preventDefault();
 // });

@@ -16,7 +16,27 @@ if (typeof butacasOcupadas !== 'undefined') {
 
 
 document.querySelector('form').addEventListener('submit', function(event) {
-    console.log('Formulario enviado');
+    // Verificar si se han seleccionado asientos
+    let asientosSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (asientosSeleccionados.length === 0) {
+        event.preventDefault(); // Evitar el envío del formulario si no se han seleccionado asientos
+        alert('Por favor, selecciona al menos un asiento.');
+    } else {
+        // Los asientos han sido seleccionados, puedes continuar con el envío del formulario
+        console.log('Formulario enviado');
+        let stringAsientos="";
+        cont = 0;
+        asientosSeleccionados.forEach(asiento => {
+            let arr = asiento.id.split(/(\d+)/);
+            if (cont==0) {
+                stringAsientos += arr[1];
+            }else{
+                stringAsientos += "," + arr[1];
+            }
+            cont++;
+        });
+        document.cookie = "butacas="+stringAsientos+"; path=/;";
+    }
 });
 // document.querySelector('form').addEventListener('submit', function(event) {
 //     event.preventDefault();
