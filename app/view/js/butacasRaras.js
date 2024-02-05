@@ -10,7 +10,20 @@ if (typeof butacasOcupadas !== 'undefined') {
         console.log(butaca.asiento);
     }); 
 }
-
+document.querySelector('form').addEventListener('submit', function(event) {
+    // Verificar si se han seleccionado asientos
+    let asientosSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (asientosSeleccionados.length === 0) {
+        event.preventDefault(); // Evitar el envío del formulario si no se han seleccionado asientos
+        alert('Por favor, selecciona al menos un asiento.');
+    } else {
+        // Los asientos han sido seleccionados, puedes continuar con el envío del formulario
+        console.log('Formulario enviado');
+        asientosSeleccionados.forEach(asiento => {
+            console.log(asiento);
+        });
+    }
+});
 // document.querySelector('form').addEventListener('submit', function(event) {
 //     event.preventDefault();
 // });
@@ -113,3 +126,4 @@ function cambiarColor(input,id) {
         imagen.src = "app/view/images/butacaBlanca.svg";
     }
 }
+// console.log(form);

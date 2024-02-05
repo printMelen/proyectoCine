@@ -9,7 +9,6 @@ $_SESSION["nombreApellidos"]="";
 $_SESSION["correo"]="";
 $_SESSION["errorLogin"]="";
 
-
 // if (!isset($_SESSION['datosPelis'])) {
     DatosController::inicio();
 // }else{
@@ -42,6 +41,7 @@ switch ($ctl) {
         ButacasController::inicio();
         break;
     case 'reservaDeButacas':
+        var_dump($_POST);
         ReservarButacasController::inicio();
         break;
     case 'gestionarSesiones':
