@@ -6,10 +6,14 @@ let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
 
 let butacasReservadas=[];
-butacasOcupadas.forEach(butaca => {
-    butacasReservadas.push(butaca.asiento);
-    console.log(butaca.asiento);
-});
+
+if (typeof butacasOcupadas !== 'undefined') {
+    butacasOcupadas.forEach(butaca => {
+        butacasReservadas.push(butaca.asiento);
+        console.log(butaca.asiento);
+    }); 
+}
+
 
 document.querySelector('form').addEventListener('submit', function(event) {
     console.log('Formulario enviado');
@@ -88,13 +92,15 @@ function generar(celda){
     input.className = "flex justify-center relative top-11 left-4 z-[-1]";
     div.className = "mt-[-20px]";
     let contString = String(cont);
-    let butacasReservadasStrings = butacasReservadas.map(String);
-
-    if (butacasReservadasStrings.includes(contString)) {
-        console.log("ENTRO");
-        img.src = "app/view/images/butacaGris.svg";
-        input.setAttribute("disabled", "");
-    } else {
+    if (butacasReservadas.length != 0) {
+        let butacasReservadasStrings = butacasReservadas.map(String);
+        if (butacasReservadasStrings.includes(contString)) {
+            img.src = "app/view/images/butacaGris.svg";
+            input.setAttribute("disabled", "");
+        } else {
+            img.src = "app/view/images/butacaBlanca.svg";
+        }
+    }else{
         img.src = "app/view/images/butacaBlanca.svg";
     }
     div.appendChild(input);

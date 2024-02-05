@@ -3,12 +3,14 @@ let cont = 0;
 let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
 let butacasReservadas=[];
-if (butacasOcupadas.length != 0) {
+
+if (typeof butacasOcupadas !== 'undefined') {
     butacasOcupadas.forEach(butaca => {
         butacasReservadas.push(butaca.asiento);
         console.log(butaca.asiento);
     }); 
 }
+
 // document.querySelector('form').addEventListener('submit', function(event) {
 //     event.preventDefault();
 // });
@@ -89,7 +91,6 @@ function generar(celda){
     if (butacasReservadas.length != 0) {
         let butacasReservadasStrings = butacasReservadas.map(String);
         if (butacasReservadasStrings.includes(contString)) {
-            console.log("ENTRO");
             img.src = "app/view/images/butacaGris.svg";
             input.setAttribute("disabled", "");
         } else {

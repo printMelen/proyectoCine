@@ -25,20 +25,25 @@
         $url = URL."/sesiones?dia=".$sala[0];
         $response = file_get_contents($url);
         $datosDia = json_decode($response, true);
-        // echo "<pre>";
-        // print_r($datosDia);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($datosDia);
+        echo "</pre>";
         $url = URL."/butacas"."/".$datosDia[0]['id_sesion'];
         $response = file_get_contents($url);
         $butacasOcupadas = json_decode($response, true);
-        // echo <<<EOT
-        
-        // EOT;
+        var_dump($butacasOcupadas);
      ?>
      <main class="flex flex-col mt-5 gap-5">
-        <script>
-            var butacasOcupadas = <?php echo json_encode($butacasOcupadas); ?>;
-        </script>
+        <?php
+        if ($butacasOcupadas!=NULL){
+            echo "ENTROOOO";
+            echo <<<EOT
+            <script>
+                var butacasOcupadas = <?php echo json_encode($butacasOcupadas); ?>;
+            </script>
+            EOT;
+        }
+        ?>
         <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center py-6">
                 <div class="grid grid-rows-2 items-center justify-center gap-2">
                     <div class="flex flex-wrap gap-[48px]">
@@ -102,7 +107,6 @@
         if ($sala[1]!="Sala VIP") {
             echo <<<EOT
             "<script src='app/view\js\butacasRaras.js'>
-                let asientosOcupados = <?php echo json_encode({$butacasOcupadas}); ?>;
             </script>"
             EOT;
         }else{
