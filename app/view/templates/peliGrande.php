@@ -22,7 +22,7 @@
      <?php include("header.php"); ?>
      <?php 
           $nombre_peli_encoded = urlencode($_SESSION['datosPelis'][$_GET['id']]['nombre']);
-          $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
+          $url = URL."/sesiones?nombre=".$nombre_peli_encoded;
           $response = file_get_contents($url);
           $data = json_decode($response, true);
           echo "<pre>";
