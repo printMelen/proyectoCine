@@ -40,6 +40,7 @@ class Login
         if (count($array)!=0&&password_verify($_POST['password'],$array[0]["hash_pass"])&&$array[0]['activo']==1) {
             $devolver=true;
             $_SESSION['nombre']=$array[0]['nombre'];
+            $_SESSION['correo']=$array[0]['correo'];
             $_SESSION['avatar']=$array[0]['avatar'];
             if ($array[0]['rol']=='cliente') {
                 $_SESSION["rol"]="Usuario";

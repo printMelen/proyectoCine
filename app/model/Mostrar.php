@@ -284,6 +284,37 @@ class Mostrar{
         }
         return $butacas;
     }
+    public static function getUsuario($nombre){
+        $butacas = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                sesionesc.id AS id_sesion, 
+                salasc.id AS id_sala, 
+                salasc.num_butacas AS todas_butacas, 
+                COUNT(butacas_reservadasc.asiento) AS asientos_ocupados
+                FROM 
+                butacas_reservadasc
+                LEFT JOIN 
+                sesionesc ON butacas_reservadasc.idsesion = sesionesc.id
+                LEFT JOIN 
+                salasc ON sesionesc.id = salasc.id
+                GROUP BY
+                salasc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $butacas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $butacas;
+    }
     public static function getButacasOcupadas($id){
         $butacas = array();
         try {

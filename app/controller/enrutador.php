@@ -3,10 +3,10 @@ session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
 $_SESSION["logeado"] = $_SESSION["logeado"] ?? NULL;
 $_SESSION['nombre'] = $_SESSION['nombre'] ?? NULL;
+$_SESSION['correo'] = $_SESSION['correo'] ?? NULL;
 // $_SESSION["errorLogin"] = $_SESSION["errorLogin"] ?? NULL;
 $_SESSION["nif"]="";
 $_SESSION["nombreApellidos"]="";
-$_SESSION["correo"]="";
 $_SESSION["errorLogin"]="";
 
 // if (!isset($_SESSION['datosPelis'])) {
