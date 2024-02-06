@@ -284,23 +284,16 @@ class Mostrar{
         }
         return $butacas;
     }
-    public static function getUsuario($nombre){
-        $butacas = array();
+    public static function getUsuario($correo){
+        $usuario = array();
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
-                sesionesc.id AS id_sesion, 
-                salasc.id AS id_sala, 
-                salasc.num_butacas AS todas_butacas, 
-                COUNT(butacas_reservadasc.asiento) AS asientos_ocupados
+                usuarioc.id AS id_usuario, 
                 FROM 
-                butacas_reservadasc
-                LEFT JOIN 
-                sesionesc ON butacas_reservadasc.idsesion = sesionesc.id
-                LEFT JOIN 
-                salasc ON sesionesc.id = salasc.id
-                GROUP BY
-                salasc.id;
+                usuariosc
+                WHERE
+                usuariosc.correo LIKE :correo;
             ";
             $resultado = $db->prepare($sql);
             $resultado->execute(); 
