@@ -112,7 +112,7 @@
                                         $date= $fecha["dia_sesion"];
                                         $fecha_formateada = date("d/m/Y", strtotime($date));
                                         echo <<<EOT
-                                        <option class="text-back" value="$date,{$fecha['nombre_sala']}">$fecha_formateada</option>
+                                        <option class="text-back" value="$date,{$fecha['nombre_sala']},{$fecha['id_sesion']}">$fecha_formateada</option>
                                         EOT;                                                                          
                                    }
                                    
@@ -148,7 +148,7 @@
           </div>
      </main>
      <?php include("footer.php"); ?>     
-     <!-- <script src="app/view/js/peliGrande.js"> -->
-     <!-- </script> -->
+     <!-- <script src="app/view/js/peliGrande.js"> 
+     </script> -->
 </body>
 </html>

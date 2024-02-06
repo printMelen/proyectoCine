@@ -4,12 +4,17 @@ let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
 let butacasReservadas=[];
 
+
 if (typeof butacasOcupadas !== 'undefined') {
     butacasOcupadas.forEach(butaca => {
         butacasReservadas.push(butaca.asiento);
         console.log(butaca.asiento);
     }); 
 }
+// if (typeof sala !== 'undefined') {
+//     console.log("entro");
+//     console.log(sala[3]);
+// }
 document.querySelector('form').addEventListener('submit', function(event) {
     // Verificar si se han seleccionado asientos
     let asientosSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');

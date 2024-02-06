@@ -25,13 +25,13 @@
         $url = URL."/sesiones?dia=".$sala[0];
         $response = file_get_contents($url);
         $datosDia = json_decode($response, true);
-        echo "<pre>";
-        print_r($datosDia);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($datosDia);
+        // echo "</pre>";
         $url = URL."/butacas"."/".$datosDia[0]['id_sesion'];
         $response = file_get_contents($url);
         $butacasOcupadas = json_decode($response, true);
-        var_dump($butacasOcupadas);
+        // var_dump($butacasOcupadas);
      ?>
      <main class="flex flex-col mt-5 gap-5">
         <?php

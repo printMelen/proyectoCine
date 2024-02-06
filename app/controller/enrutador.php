@@ -38,6 +38,7 @@ switch ($ctl) {
         MoviePreviewController::inicio();
         break;
     case 'butacas':
+        var_dump($_POST);
         ButacasController::inicio();
         break;
     case 'reservaDeButacas':
