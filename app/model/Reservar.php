@@ -1,6 +1,7 @@
 <?php
 class Reservar{
     public static function insertar(){
+        $insertado=true;
         try {
             // Conexión a la base de datos
             $db = Conectar::conexion();
@@ -10,7 +11,7 @@ class Reservar{
             $sql="SELECT 
             id 
             FROM 
-            personalc 
+            usuariosc 
             WHERE correo LIKE :correo";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":correo", $_SESSION['correo']);
@@ -49,6 +50,7 @@ class Reservar{
         
         } catch (PDOException $e) {
             // Manejo de errores
+            $insertado=false;
             echo 'Error: ' . $e->getMessage();
             // Deshacer transacción en caso de error
             $db->rollBack();
@@ -56,5 +58,6 @@ class Reservar{
         
         // Cerrar la conexión
         $db = null;
+        return $insertado;
     }
 }
