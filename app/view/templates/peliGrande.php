@@ -97,6 +97,8 @@
                <div class="my-6">
                <?php
                if ($data!=null) {
+                    var_dump($data);
+                    var_dump($data[0]);
                     echo "<form method='post' action='index.php?peticion=butacas'>";
                }
                ?>
@@ -146,6 +148,7 @@
           </div>
      </main>
      <?php include("footer.php"); ?>     
-     <script src="assets/js/custom.js"></script>
+     <!-- <script src="app/view/js/peliGrande.js"> -->
+     <!-- </script> -->
 </body>
 </html>
