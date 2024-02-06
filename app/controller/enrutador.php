@@ -41,7 +41,6 @@ switch ($ctl) {
         ButacasController::inicio();
         break;
     case 'reservaDeButacas':
-        var_dump($_POST);
         ReservarButacasController::inicio();
         break;
     case 'gestionarSesiones':

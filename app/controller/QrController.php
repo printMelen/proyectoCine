@@ -5,7 +5,7 @@ class QrController
 {
     public static function generarQr($datos = null)
     {
-        $datos = "sesion=4-butaca=17-usuario=pepito-pelicula=terror";
+        // $datos = "sesion=4-butaca=17-usuario=pepito-pelicula=terror";
 
         //Construyendo ruta genérica para cualquier servidor
         $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;

@@ -1,17 +1,24 @@
 <?php
-echo $_COOKIE["butacas"]; 
+
 class ReservarButacasController
 {
     public static function inicio()
     {
 // Recibir datos del cliente
-    
-
-        var_dump($_POST);
-        echo $_SESSION['nombre']."<br>";
-        echo "Butacas compradas"."<br>";
-        //obten he imprime la fecha de hoy
-        $fecha = date("Y-m-d");
-        echo $fecha;
+        if (self::comprobar()) {
+            echo $_SESSION['nombre']."<br>";
+            $fecha = date("Y-m-d");
+            echo "Butacas compradas"."<br>";
+            QrController::generarQr("Usuario:".$_SESSION["nombre"]."Asientos:".$_COOKIE["butacas"]."Fecha:".$fecha);
+        }else{
+            echo "No estas logeado";
+        }
+    }
+    public static function comprobar(){
+        $logeado=false;
+        if ($_SESSION['logeado'] == true) {
+            $logeado= true;
+        }
+        return $logeado;
     }
 }
