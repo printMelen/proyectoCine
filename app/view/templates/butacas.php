@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>   <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
 <!--[if IE 7]> 		<html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
@@ -9,80 +8,77 @@
 <!--<![endif]-->
 
 <head>
-     <meta charset="utf-8">
-     <meta name="author" content="Álvaro Redondo Rodríguez">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <meta name="description" content="">
-     <title>PlayOn</title>
-     <link href="app/view/css/dist/output.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="author" content="Álvaro Redondo Rodríguez">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>PlayOn</title>
+    <link href="app/view/css/dist/output.css" rel="stylesheet">
 
 </head>
 
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
-     <?php include("header.php"); ?>
-     <?php
-        $sala=explode(",",$_POST["fechas"]);
-        $url = URL."/sesiones?dia=".$sala[0];
-        $response = file_get_contents($url);
-        $datosDia = json_decode($response, true);
-        // echo "<pre>";
-        // print_r($datosDia);
-        // echo "</pre>";
-        $url = URL."/butacas"."/".$datosDia[0]['id_sesion'];
-        $response = file_get_contents($url);
-        $butacasOcupadas = json_decode($response, true);
-        // var_dump($butacasOcupadas);
-     ?>
-     <main class="flex flex-col mt-5 gap-5">
+    <?php include("header.php"); ?>
+    <?php
+    $sala = explode(",", $_POST["fechas"]);
+    $url = URL . "/sesiones?dia=" . $sala[0];
+    $response = file_get_contents($url);
+    $datosDia = json_decode($response, true);
+    // echo "<pre>";
+    // print_r($datosDia);
+    // echo "</pre>";
+    $url = URL . "/butacas" . "/" . $datosDia[0]['id_sesion'];
+    $response = file_get_contents($url);
+    $butacasOcupadas = json_decode($response, true);
+    ?>
+    <main class="flex flex-col mt-5 gap-5">
         <?php
-        if ($butacasOcupadas!=NULL){
-            echo "ENTROOOO";
-            echo <<<EOT
-            <script>
-                var butacasOcupadas = <?php echo json_encode($butacasOcupadas); ?>;
-            </script>
-            EOT;
+        if ($butacasOcupadas != NULL) {
+        ?>
+        <script>
+            var butacasOcupadas = <?php echo json_encode($butacasOcupadas); ?>;
+        </script>
+        <?php
         }
         ?>
         <div class="grid grid-cols-2 bg-[#1D1731] mx-auto w-[1500px] max-w-screen-xl rounded-[15.833px] h-[259px] justify-center py-6">
-                <div class="grid grid-rows-2 items-center justify-center gap-2">
-                    <div class="flex flex-wrap gap-[48px]">
-                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?=$sala[1]?></button>
-                        <button class="w-[111px] h-[59px] rounded-[6.26px] bg-greyBotones"><?=$sala[1]?></button>
-                    </div>
-                    <div class="flex flex-wrap gap-[48px]">
-                        <?php
-                        $horas=array();
-                        foreach ($datosDia as $key => $diaInfo) {
-                            array_push($horas,$diaInfo['hora_sesion']);
-                        }
-                        foreach ($_SESSION['horas'] as $key => $hora) {
-                            // echo "<pre>";
-                            $timeObject = DateTime::createFromFormat('H:i:s', $hora['hora']);
-                            $formattedTime = $timeObject->format('H:i');
-                            if (in_array($hora['hora'], $horas)) {
-                                echo <<<EOT
+            <div class="grid grid-rows-2 items-center justify-center gap-2">
+                <div class="flex flex-wrap gap-[48px]">
+                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-grey"><?= $sala[1] ?></button>
+                    <button class="w-[111px] h-[59px] rounded-[6.26px] bg-greyBotones"><?= $sala[1] ?></button>
+                </div>
+                <div class="flex flex-wrap gap-[48px]">
+                    <?php
+                    $horas = array();
+                    foreach ($datosDia as $key => $diaInfo) {
+                        array_push($horas, $diaInfo['hora_sesion']);
+                    }
+                    foreach ($_SESSION['horas'] as $key => $hora) {
+                        // echo "<pre>";
+                        $timeObject = DateTime::createFromFormat('H:i:s', $hora['hora']);
+                        $formattedTime = $timeObject->format('H:i');
+                        if (in_array($hora['hora'], $horas)) {
+                            echo <<<EOT
                                 <button class="w-[111px] h-[59px] rounded-[6.26px] bg-pink">$formattedTime</button>
                                 EOT;
-                            }else{
-                                echo <<<EOT
+                        } else {
+                            echo <<<EOT
                                 <button disable class="w-[111px] h-[59px] rounded-[6.26px] bg-pink opacity-50">$formattedTime</button>
                                 EOT;
-                            }
                         }
-                        ?>
-                    </div>
+                    }?>
                 </div>
-                <div class="flex flex-col flex-wrap mx-auto gap-2">
-                    <h2 class="text-white text-[30px]"><?=$sala[1]?></h2>
-                    <span>Elige tus entradas</span>
-                </div>
+            </div>
+            <div class="flex flex-col flex-wrap mx-auto gap-2">
+                <h2 class="text-white text-[30px]"><?= $sala[1] ?></h2>
+                <span>Elige tus entradas</span>
+            </div>
         </div>
         <div class="flex flex-col items-center">
             <form method="post" action="index.php?peticion=reservaDeButacas">
-                    <table class="text-back">
-                        <!-- donde se genera la tabla de butacas -->
-                    </table> 
+                <table class="text-back">
+                    <!-- donde se genera la tabla de butacas -->
+                </table>
                 <!-- </select> -->
                 <div class="grid grid-cols-3 w-[325px] h-[77px] mt-[40px] items-center mx-auto">
                     <div class=" flex flex-col items-center">
@@ -101,20 +97,15 @@
                 <input type="submit" class="w-[100%] mt-[60px] bg-pink h-[86px] rounded-[7px] font-600 text-2xl cursor-pointer" value="Comprar">
             </form>
         </div>
-     </main>
-     <?php include("footer.php"); ?>  
+    </main>
+    <?php include("footer.php"); ?>
     <?php
-        if ($sala[1]!="Sala VIP") {
-            echo <<<EOT
-            "<script src='app/view\js\butacasRaras.js'>
-            </script>"
-            EOT;
-        }else{
-            echo <<<EOT
-            "<script src='app/view\js\butacasW.js'>
-            </script>"
-            EOT;
-        }
+    if ($sala[1] != "Sala VIP") {
+        echo "<script src='app/view/js/butacasRaras.js'></script>";
+    } else {
+        echo "<script src='app/view/js/butacasW.js'></script>";
+    }
     ?>
 </body>
+
 </html>
