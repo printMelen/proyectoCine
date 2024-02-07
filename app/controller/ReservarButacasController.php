@@ -7,9 +7,6 @@ class ReservarButacasController
         // Recibir datos del cliente
         if (self::comprobar()) {
             if (Reservar::insertar()) {
-                echo $_SESSION['nombre'] . "<br>";
-                $fecha = date("Y-m-d");
-                echo "Butacas compradas" . "<br>";
                 ViewController::cargarVista("tablaQr");
             }
         } else {
