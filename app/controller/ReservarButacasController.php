@@ -10,7 +10,7 @@ class ReservarButacasController
                 echo $_SESSION['nombre'] . "<br>";
                 $fecha = date("Y-m-d");
                 echo "Butacas compradas" . "<br>";
-                QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asientos:" . $_COOKIE["butacas"] . "Fecha:" . $fecha);
+                ViewController::cargarVista("tablaQr");
             }
         } else {
             echo "No estas logeado";

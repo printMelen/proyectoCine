@@ -54,14 +54,14 @@ class QrController
         //  header("Content-disposition: attachment; filename=$nombreArchivo");
 
         # Leer el archivo y sacarlo al navegador y permitir a usuario descargarlo
-        readfile($rutaArchivo);
+        // readfile($rutaArchivo);
 
         # Otra opción: para mostrar el archivo SVG en el navegador
        
-        echo '<img src="' . Ruta::QR_PATH . $nombreArchivo . '" />';
+        // echo '<img src="' . Ruta::QR_PATH . $nombreArchivo . '" />';
 
         # Proporcionar un enlace de descarga 
-        echo '<a href="' . $rutaArchivo . '" download="' . $nombreArchivo . '">Descargar QR</a>';
-     
+        // echo '<a href="' . $rutaArchivo . '" download="' . $nombreArchivo . '">Descargar QR</a>';
+        return $rutaArchivo;
     }
 }

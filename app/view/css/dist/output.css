@@ -1187,10 +1187,6 @@ video {
   cursor: pointer;
 }
 
-.cursor-not-allowed {
-  cursor: not-allowed;
-}
-
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1905,6 +1901,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-bermuda {
+  --tw-text-opacity: 1;
+  color: rgb(120 220 202 / var(--tw-text-opacity));
 }
 
 .underline {
