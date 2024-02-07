@@ -24,9 +24,10 @@
     $url = URL . "/sesiones?dia=" . $sala[0];
     $response = file_get_contents($url);
     $datosDia = json_decode($response, true);
-    // echo "<pre>";
-    // print_r($datosDia);
-    // echo "</pre>";
+    echo "<pre>";
+    print_r($datosDia);
+    echo "</pre>";
+    $_SESSION['datosPelis'] = $datosDia;
     $url = URL . "/butacas" . "/" . $datosDia[0]['id_sesion'];
     $response = file_get_contents($url);
     $butacasOcupadas = json_decode($response, true);
