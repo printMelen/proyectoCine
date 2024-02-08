@@ -66,12 +66,15 @@ class CMostrar
                     self::enviarRespuesta($datos);
                     break;
                 case 'sesiones':
+                    $id = isset($_GET['id']) ? $_GET['id'] : null;
                     $dia = isset($_GET['dia']) ? $_GET['dia'] : null;
                     $nombre = isset($_GET['nombre']) ? $_GET['nombre'] : null;
                     if ($dia) {
                         $datos=Mostrar::getSesionDia($dia);
                     }elseif ($nombre) {
                         $datos=Mostrar::getSesionesNom($nombre);
+                    }elseif($id){
+                        $datos=Mostrar::getSesionId($id);
                     }else{
                         $datos=Mostrar::getSesiones();
                     }

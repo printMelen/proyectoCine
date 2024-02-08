@@ -35,9 +35,12 @@
                   </tr>
               </thead>
                   <?php
-                  $fecha = date("Y-m-d");
+                    $fecha = date("Y-m-d");
+                    $url = URL . "/sesiones" . "?id=" . $_COOKIE['idSesion'];
+                    $response = file_get_contents($url);
+                    $datos = json_decode($response, true);
                 //   echo "<pre>";
-                //     var_dump($_SESSION['datosPelis']);
+                //     var_dump($datos);
                 //     echo "</pre>";
                   foreach (explode(',',$_COOKIE["butacas"]) as $key => $butaca) {
                       $qr=QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asiento:" . $butaca . "Fecha:" . $fecha);
@@ -45,8 +48,8 @@
                       echo <<< EOT
                           <tr>
                               <td class="text-center">{$_SESSION['nombre']}</td>
-                              <td class="text-center">{$_SESSION['datosPelis'][0]['nombre_peli']}</td>
-                              <td class="text-center">{$_SESSION['datosPelis'][0]['nombre_sala']}</td>
+                              <td class="text-center">{$datos[0]['nombre_peli']}</td>
+                              <td class="text-center">{$datos[0]['nombre_sala']}</td>
                               <td class="text-center">{$fecha}</td>
                               <td class="text-center">{$butaca}</td>
                               <td><img src=$qr alt="" srcset="" class="mx-auto"></td>
