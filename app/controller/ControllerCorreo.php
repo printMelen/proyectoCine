@@ -11,7 +11,7 @@ class ControllerCorreo
 {
     //Método para enviar un correo
     //Recibe como parámetro la dirección de correo del receptor
-    public static function enviarCorreo($receptor,$subject,$message)
+    public static function enviarCorreo($receptor,$subject,$message,$adjuntar=false,$ruta=null)
     {
         //Creamos el contenido del asunto 
         // $subject = ;
@@ -81,7 +81,9 @@ class ControllerCorreo
 
 
             // Adjuntando unos archivos si fuese necesario, hay que colocar la ruta completa al archivo
-            //$mail->addAttachment('imagenes/mafalda.png');
+            if ($adjuntar) {
+                $mail->addAttachment($ruta);
+            }
 
 
             //Esta instrucción envía el mensaje

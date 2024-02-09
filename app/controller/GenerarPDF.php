@@ -27,7 +27,7 @@ class GenerarPDF
         // echo URLPDF;
         //guarda el archivo pdf en la ruta indicada en el servidor, se debe indicar el path completo
         file_put_contents($nombreRandom, $datos);
-        ControllerCorreo::enviarCorreo($_SESSION['correo'],"PlayOn información de compra","Le adjunto la factura de PlayOn:<br> <a href='http://143.47.43.204:8080/alvaro/proyectoCine/index.php?peticion=validar' target='_blank'>click aquí</a><br> No conteste a este mensaje es automático");
+        ControllerCorreo::enviarCorreo($_SESSION['correo'],"PlayOn información de compra","Le adjunto la factura de PlayOn:",true,$nombreRandom);
         //Indicamos que se va a generar un archivo pdf
         // header("Content-type:application/pdf");
 
