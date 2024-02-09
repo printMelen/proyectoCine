@@ -6,7 +6,11 @@ class ReservarButacasController
     {
         // Recibir datos del cliente
         if (self::comprobar()) {
+            $_SESSION["mostrada"]=null;
             if (Reservar::insertar()) {
+                $_SESSION["mostrada"]=1;
+                GenerarPDF::generarPDF("factura.pdf");
+                $_SESSION["mostrada"]=0;
                 ViewController::cargarVista("tablaQr");
             }
         } else {

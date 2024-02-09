@@ -19,7 +19,11 @@
 </head>
 
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
-    <?php include("header.php"); ?>
+    <?php 
+    if ($_SESSION['mostrada']==0) {
+        include("header.php"); 
+    }
+    ?>
      <main class="flex flex-col py-[30px] px-[68px] h-[100%] bg-[#0A031C]">
         <h2 class="text-center text-white font-600 text-[25px] mb-6">ENTRADAS:</h2>
         <div class="flex items-center mx-auto border rounded-lg shadow-lg w-[1500px]">
@@ -47,6 +51,8 @@
                   foreach (explode(',',$_COOKIE["butacas"]) as $key => $butaca) {
                       $qr=QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asiento:" . $butaca . "Fecha:" . $fecha);
                       $name=explode("/",$qr);
+                      $urlimg=URLQR.$name[2];
+                    //   echo $urlimg;
                       $precioTotal+=$datos[0]['precio'];
                       echo <<< EOT
                           <tr>
@@ -55,7 +61,7 @@
                               <td class="text-center">{$datos[0]['nombre_sala']}</td>
                               <td class="text-center">{$fecha}</td>
                               <td class="text-center">{$butaca}</td>
-                              <td><img src=$qr alt="" srcset="" class="mx-auto"></td>
+                              <td><img src="$urlimg" alt="" srcset="" class="mx-auto"></td>
                               <td><a href="$qr" download="$name[2]">Descargar QR</a></td>
                           </tr>
                       EOT;
@@ -96,5 +102,9 @@
      </main>
      <script src="../js/custom.js"></script>
 </body>
-<?php include("app/view/templates/footer.php"); ?>
+<?php
+if ($_SESSION['mostrada']==0) {
+    include("app/view/templates/footer.php"); 
+}
+?>
 </html>
