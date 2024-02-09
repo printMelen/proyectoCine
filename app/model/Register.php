@@ -89,7 +89,7 @@ class Register
                 Register::registrar($nombre[0],$nombre[1],$nif,$email,$password);
                 // $_SESSION['correo']=$email;
                 CrearCookieController::crear($email,$nombre[0]);
-                ControllerCorreo::enviarCorreo($_SESSION['correo']);
+                ControllerCorreo::enviarCorreo($_SESSION['correo'],"PlayOn correo de validación","Correo de validación para activar tu cuenta en PlayOn:<br> <a href='http://143.47.43.204:8080/alvaro/proyectoCine/index.php?peticion=validar' target='_blank'>click aquí</a><br> No conteste a este mensaje es automático");
             }
             
         }
