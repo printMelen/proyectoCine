@@ -99,7 +99,11 @@
                 </tr>
             </table>
         </div>
-        <button class="bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] mx-auto rounded-xl">DESCARGAR PDF</button>
+        <?php
+        if ($_SESSION['mostrada']==0) {
+            echo "<button class='bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] mx-auto rounded-xl'>DESCARGAR PDF</button>";
+        }
+        ?>
      </main>
      <script src="../js/custom.js"></script>
 </body>

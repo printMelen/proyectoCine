@@ -8,10 +8,10 @@ class ReservarButacasController
         if (self::comprobar()) {
             $_SESSION["mostrada"]=null;
             if (Reservar::insertar()) {
-                $_SESSION["mostrada"]=1;
-                GenerarPDF::generarPDF("factura.pdf");
                 $_SESSION["mostrada"]=0;
                 ViewController::cargarVista("tablaQr");
+                $_SESSION["mostrada"]=1;
+                GenerarPDF::generarPDF("factura.pdf");
             }
         } else {
             echo "No estas logeado";

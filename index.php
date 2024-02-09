@@ -1,5 +1,6 @@
 <?php
 const URL = "http://localhost/dwes/proyectoCine/api/v1/cine";
+const URLPDF = "http://localhost/dwes/proyectoCine/pdf/";
 const URLCSS = "http://localhost/dwes/proyectoCine/app/view/css/dist/output.css";
 const URLIMG ="http://localhost/dwes/proyectoCine/app/view/images/";
 const URLQR ="http://localhost/dwes/proyectoCine/qr/qr_generados/";
