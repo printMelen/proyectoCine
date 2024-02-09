@@ -9,7 +9,7 @@ class Login
             // $password = Login::clean_input($_POST["password"]);
             try {
                 $db = Conectar::conexion();
-                $sql = "SELECT nombre,correo,hash_pass,activo,rol,avatar FROM usuariosc where correo=?";
+                $sql = "SELECT nombre,correo,nif,hash_pass,activo,rol,avatar FROM usuariosc where correo=?";
                 $resultado = $db->prepare($sql);
                 $resultado->bindParam(1, $email, PDO::PARAM_STR);
                 $resultado->execute(); 
@@ -42,6 +42,7 @@ class Login
             $_SESSION['nombre']=$array[0]['nombre'];
             $_SESSION['correo']=$array[0]['correo'];
             $_SESSION['avatar']=$array[0]['avatar'];
+            $_SESSION['nif']=$array[0]['nif'];
             if ($array[0]['rol']=='cliente') {
                 $_SESSION["rol"]="Usuario";
                 // ViewController::cargarVista("indexUsuario");

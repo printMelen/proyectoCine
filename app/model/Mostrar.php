@@ -430,6 +430,7 @@ class Mostrar{
             $db = Conectar::conexion();
             $sql = "SELECT 
                 sesionesc.id AS id_sesion, 
+                sesionesc.precio AS precio, 
                 salasc.nombre AS nombre_sala, 
                 peliculasc.nombre AS nombre_peli, 
                 sesionesc.fecha AS dia_sesion, 

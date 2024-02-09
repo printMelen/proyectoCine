@@ -21,10 +21,10 @@
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
     <?php include("header.php"); ?>
      <main class="flex flex-col py-[30px] px-[68px] h-[100%] bg-[#0A031C]">
-        <h1 class="text-center text-white font-600 text-[25px] mb-6">ENTRADAS:</h1>
+        <h2 class="text-center text-white font-600 text-[25px] mb-6">ENTRADAS:</h2>
         <div class="flex items-center mx-auto border rounded-lg shadow-lg w-[1500px]">
             <table class="w-[100%] text-white">
-              <thead>
+                <thead>
                   <tr>
                       <th>Nombre</th>
                       <th>Película</th>
@@ -39,12 +39,15 @@
                     $url = URL . "/sesiones" . "?id=" . $_COOKIE['idSesion'];
                     $response = file_get_contents($url);
                     $datos = json_decode($response, true);
-                //   echo "<pre>";
-                //     var_dump($datos);
-                //     echo "</pre>";
+                    // echo "<pre>";
+                    // var_dump($datos);
+                    // var_dump($_SESSION);
+                    // echo "</pre>";
+                    $precioTotal=0;
                   foreach (explode(',',$_COOKIE["butacas"]) as $key => $butaca) {
                       $qr=QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asiento:" . $butaca . "Fecha:" . $fecha);
                       $name=explode("/",$qr);
+                      $precioTotal+=$datos[0]['precio'];
                       echo <<< EOT
                           <tr>
                               <td class="text-center">{$_SESSION['nombre']}</td>
@@ -60,6 +63,36 @@
                   ?>
             </table>
         </div>
+        <h2 class="text-center text-white font-600 text-[25px] my-6">FACTURA:</h2>
+        <div class="flex items-center p-5 mx-auto border rounded-lg shadow-lg w-[500px]">
+            <table class="w-[100%] text-white mx-auto">
+                <tr class="mb-5">
+                    <td>Nombre:</td>
+                    <td><?php echo $_SESSION['nombre']?></td>
+                </tr>
+                <tr class="mb-5">
+                    <td>NIF:</td>
+                    <td><?php echo $_SESSION['nif']?></td>
+                </tr>
+                <tr class="mb-5">
+                    <td>Fecha:</td>
+                    <td><?php echo $fecha?></td>
+                </tr>
+                <tr class="mb-5">
+                    <td>Asientos:</td>
+                    <td><?php echo $_COOKIE["butacas"]?></td>
+                </tr>
+                <tr class="mb-5">
+                    <td>Precio Unidad:</td>
+                    <td><?php echo $datos[0]['precio']."€"?></td>
+                </tr>
+                <tr>
+                    <td>Precio Total:</td>
+                    <td><?php echo $precioTotal."€"?></td>
+                </tr>
+            </table>
+        </div>
+        <button class="bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] mx-auto rounded-xl">DESCARGAR PDF</button>
      </main>
      <script src="../js/custom.js"></script>
 </body>
