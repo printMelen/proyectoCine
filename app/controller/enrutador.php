@@ -43,6 +43,9 @@ switch ($ctl) {
     case 'reservaDeButacas':
         ReservarButacasController::inicio();
         break;
+    case 'mostrarPdf':
+        MostrarPdfController::mostrarPdf();
+        break;
     case 'gestionarSesiones':
         SesionesController::inicio();
         break;

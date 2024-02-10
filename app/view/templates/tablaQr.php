@@ -99,9 +99,10 @@
                 </tr>
             </table>
         </div>
+        
         <?php
         if ($_SESSION['mostrada']==0) {
-            echo "<button class='bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] mx-auto rounded-xl'>DESCARGAR PDF</button>";
+            echo "<a href='index.php?peticion=mostrarPdf' target='_blank' class='mx-auto'><button id='downloadPdf' class='bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] rounded-xl'>DESCARGAR PDF</button></a>";
         }
         ?>
      </main>

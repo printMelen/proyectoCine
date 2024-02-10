@@ -4,7 +4,7 @@ use Dompdf\Dompdf;
 
 class GenerarPDF
 {
-    public static function generarPDF($fichero)
+    public static function generarPDF($fichero,$nombreRandom)
     {
         //Creamos un objeto de la clase DOMPDF y le indicamos que vamos a utilizar direcciones URL
         $dompdf = new Dompdf(array('enable_remote' => true, 'isHtml5ParserEnabled' => true));
@@ -22,7 +22,6 @@ class GenerarPDF
         $dompdf->render();
         //Guardamos el pdf en la variable $datos
         $datos = $dompdf->output();
-        $nombreRandom="./pdf/factura".bin2hex(random_bytes(5)).".pdf";
         // echo $datos;
         // echo URLPDF;
         //guarda el archivo pdf en la ruta indicada en el servidor, se debe indicar el path completo
@@ -35,10 +34,14 @@ class GenerarPDF
         // header('Content-disposition: inline; filename="' . $fichero . '"');
 
         //Indicamos que el pdf generado se guarde en un archivo
+        // echo <<< EOT
+        
+        // EOT;
         // header('Content-Disposition:attachment; filename="' . $fichero . '"');
         
         //Muy importante, si no hacemos echo no se mostrará el pdf generado
         // echo $datos;
+        return $nombreRandom;
         exit;
     }
 }
