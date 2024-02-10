@@ -12,8 +12,8 @@ class ReservarButacasController
                 ViewController::cargarVista("tablaQr");
                 $_SESSION["mostrada"]=1;
                 $nombreRandom="./pdf/factura".bin2hex(random_bytes(5)).".pdf";
-                setcookie("pdf",$nombreRandom,0,"/");
-                $nombreRandom=GenerarPDF::generarPDF("factura.pdf",$nombreRandom);
+                $_SESSION['pdf']=$nombreRandom;
+                GenerarPDF::generarPDF("factura.pdf",$nombreRandom);
             }
         } else {
             echo "No estas logeado";

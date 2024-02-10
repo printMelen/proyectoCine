@@ -102,7 +102,7 @@
         
         <?php
         if ($_SESSION['mostrada']==0) {
-            echo "<a href='index.php?peticion=mostrarPdf' target='_blank' class='mx-auto'><button id='downloadPdf' class='bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] rounded-xl'>DESCARGAR PDF</button></a>";
+            echo "<a href='index.php?peticion=mostrarPdf' target='_blank' class='mx-auto'><button id='downloadPdf' class='bg-pink w-[419px] mt-6 h-[67px] font-500 text-[24px] rounded-xl'>VER PDF</button></a>";
         }
         ?>
      </main>

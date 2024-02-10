@@ -41,7 +41,6 @@ class GenerarPDF
         
         //Muy importante, si no hacemos echo no se mostrará el pdf generado
         // echo $datos;
-        return $nombreRandom;
         exit;
     }
 }

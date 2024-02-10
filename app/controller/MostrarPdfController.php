@@ -2,7 +2,7 @@
 class MostrarPdfController{
     public static function mostrarPdf()
     {
-        $ruta_pdf = $_COOKIE['pdf'];
+        $ruta_pdf = $_SESSION['pdf'];
 
         // Establecer encabezados para indicar que se va a mostrar un archivo PDF
         header('Content-Type: application/pdf');
