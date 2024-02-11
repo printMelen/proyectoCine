@@ -22,7 +22,7 @@
      <?php include("header.php"); ?>
      <?php 
           $nombre_peli_encoded = urlencode($_SESSION['datosPelis'][$_GET['id']]['nombre']);
-          $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/sesiones?nombre=".$nombre_peli_encoded;
+          $url = URL."/sesiones?nombre=".$nombre_peli_encoded;
           $response = file_get_contents($url);
           $data = json_decode($response, true);
           echo "<pre>";
@@ -97,6 +97,8 @@
                <div class="my-6">
                <?php
                if ($data!=null) {
+                    var_dump($data);
+                    var_dump($data[0]);
                     echo "<form method='post' action='index.php?peticion=butacas'>";
                }
                ?>
@@ -110,7 +112,7 @@
                                         $date= $fecha["dia_sesion"];
                                         $fecha_formateada = date("d/m/Y", strtotime($date));
                                         echo <<<EOT
-                                        <option class="text-back" value="$date,{$fecha['nombre_sala']}">$fecha_formateada</option>
+                                        <option class="text-back" value="$date,{$fecha['nombre_sala']},{$fecha['id_sesion']}">$fecha_formateada</option>
                                         EOT;                                                                          
                                    }
                                    
@@ -146,6 +148,7 @@
           </div>
      </main>
      <?php include("footer.php"); ?>     
-     <script src="assets/js/custom.js"></script>
+     <!-- <script src="app/view/js/peliGrande.js"> 
+     </script> -->
 </body>
 </html>

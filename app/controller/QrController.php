@@ -5,7 +5,7 @@ class QrController
 {
     public static function generarQr($datos = null)
     {
-        $datos = "sesion=4-butaca=17-usuario=pepito-pelicula=terror";
+        // $datos = "sesion=4-butaca=17-usuario=pepito-pelicula=terror";
 
         //Construyendo ruta genérica para cualquier servidor
         $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
@@ -54,14 +54,14 @@ class QrController
         //  header("Content-disposition: attachment; filename=$nombreArchivo");
 
         # Leer el archivo y sacarlo al navegador y permitir a usuario descargarlo
-        readfile($rutaArchivo);
+        // readfile($rutaArchivo);
 
         # Otra opción: para mostrar el archivo SVG en el navegador
        
-        echo '<img src="' . Ruta::QR_PATH . $nombreArchivo . '" />';
+        // echo '<img src="' . Ruta::QR_PATH . $nombreArchivo . '" />';
 
         # Proporcionar un enlace de descarga 
-        echo '<a href="' . $rutaArchivo . '" download="' . $nombreArchivo . '">Descargar QR</a>';
-     
+        // echo '<a href="' . $rutaArchivo . '" download="' . $nombreArchivo . '">Descargar QR</a>';
+        return $rutaArchivo;
     }
 }

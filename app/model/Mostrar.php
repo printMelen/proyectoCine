@@ -284,6 +284,30 @@ class Mostrar{
         }
         return $butacas;
     }
+    public static function getUsuario($correo){
+        $usuario = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                usuarioc.id AS id_usuario, 
+                FROM 
+                usuariosc
+                WHERE
+                usuariosc.correo LIKE :correo;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->execute(); 
+            $butacas=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $butacas;
+    }
     public static function getButacasOcupadas($id){
         $butacas = array();
         try {
@@ -390,6 +414,44 @@ class Mostrar{
                     }
                 }
             }
+            $resultado->closeCursor();
+            $resultado = null;
+            $db = null; 
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $sesiones;
+    }
+    public static function getSesionId($id){
+        $sesiones = array();
+        try {
+            $db = Conectar::conexion();
+            $sql = "SELECT 
+                sesionesc.id AS id_sesion, 
+                sesionesc.precio AS precio, 
+                salasc.nombre AS nombre_sala, 
+                peliculasc.nombre AS nombre_peli, 
+                sesionesc.fecha AS dia_sesion, 
+                horasc.hora AS hora_sesion 
+                FROM 
+                sesionesc
+                LEFT JOIN 
+                salasc ON sesionesc.sala_id = salasc.id
+                LEFT JOIN 
+                horasc ON sesionesc.hora = horasc.id
+                LEFT JOIN 
+                peliculasc ON sesionesc.pelicula_id = peliculasc.id
+                WHERE
+                sesionesc.id=:id
+                GROUP BY 
+                sesionesc.id;
+            ";
+            $resultado = $db->prepare($sql);
+            $resultado->bindParam(":id", $id);
+            $resultado->execute(); 
+            $sesiones=$resultado->fetchAll(PDO::FETCH_ASSOC);
             $resultado->closeCursor();
             $resultado = null;
             $db = null; 

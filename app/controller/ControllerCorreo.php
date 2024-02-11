@@ -11,12 +11,12 @@ class ControllerCorreo
 {
     //Método para enviar un correo
     //Recibe como parámetro la dirección de correo del receptor
-    public static function enviarCorreo($receptor)
+    public static function enviarCorreo($receptor,$subject,$message,$adjuntar=false,$ruta=null)
     {
         //Creamos el contenido del asunto 
-        $subject = "PlayOn correo de validación";
+        // $subject = ;
         //Cuerpo del mensaje
-        $message = "Correo de validación para activar tu cuenta en PlayOn:<br> <a href='http://143.47.43.204:8080/alvaro/proyectoCine/index.php?peticion=validar' target='_blank'>click aquí</a><br> No conteste a este mensaje es automático";
+        // $message = ;
 
 
         try {
@@ -81,7 +81,9 @@ class ControllerCorreo
 
 
             // Adjuntando unos archivos si fuese necesario, hay que colocar la ruta completa al archivo
-            //$mail->addAttachment('imagenes/mafalda.png');
+            if ($adjuntar) {
+                $mail->addAttachment($ruta);
+            }
 
 
             //Esta instrucción envía el mensaje

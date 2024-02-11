@@ -3,10 +3,14 @@ class ButacasController
 {
     public static function inicio()
     {
-        $url = "http://143.47.43.204:8080/alvaro/proyectoCine/api/v1/cine/horas";
+        $datos=explode(",",$_POST["fechas"]);
+        echo $datos[2];
+        setcookie("idSesion", $datos[2]);
+        $url = URL."/horas";
         $response = file_get_contents($url);
         $horas = json_decode($response, true);
         $_SESSION['horas'] = $horas;
+        
         if (isset($_POST["fechas"])) {
             ViewController::cargarVista("butacas");
         }

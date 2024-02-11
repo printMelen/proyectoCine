@@ -3,12 +3,10 @@ session_start();
 $ctl = $_REQUEST['peticion'] ?? NULL;
 $_SESSION["logeado"] = $_SESSION["logeado"] ?? NULL;
 $_SESSION['nombre'] = $_SESSION['nombre'] ?? NULL;
+$_SESSION['correo'] = $_SESSION['correo'] ?? NULL;
 // $_SESSION["errorLogin"] = $_SESSION["errorLogin"] ?? NULL;
-$_SESSION["nif"]="";
 $_SESSION["nombreApellidos"]="";
-$_SESSION["correo"]="";
 $_SESSION["errorLogin"]="";
-
 
 // if (!isset($_SESSION['datosPelis'])) {
     DatosController::inicio();
@@ -39,10 +37,14 @@ switch ($ctl) {
         MoviePreviewController::inicio();
         break;
     case 'butacas':
+        var_dump($_POST);
         ButacasController::inicio();
         break;
     case 'reservaDeButacas':
         ReservarButacasController::inicio();
+        break;
+    case 'mostrarPdf':
+        MostrarPdfController::mostrarPdf();
         break;
     case 'gestionarSesiones':
         SesionesController::inicio();

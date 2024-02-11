@@ -6,13 +6,37 @@ let inputs = document.querySelectorAll("table input");
 let asientos = new Array(8);
 
 let butacasReservadas=[];
-butacasOcupadas.forEach(butaca => {
-    butacasReservadas.push(butaca.asiento);
-    console.log(butaca.asiento);
-});
+
+if (typeof butacasOcupadas !== 'undefined') {
+    butacasOcupadas.forEach(butaca => {
+        butacasReservadas.push(butaca.asiento);
+        console.log(butaca.asiento);
+    }); 
+}
+
 
 document.querySelector('form').addEventListener('submit', function(event) {
-    console.log('Formulario enviado');
+    // Verificar si se han seleccionado asientos
+    let asientosSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (asientosSeleccionados.length === 0) {
+        event.preventDefault(); // Evitar el envío del formulario si no se han seleccionado asientos
+        alert('Por favor, selecciona al menos un asiento.');
+    } else {
+        // Los asientos han sido seleccionados, puedes continuar con el envío del formulario
+        console.log('Formulario enviado');
+        let stringAsientos="";
+        cont = 0;
+        asientosSeleccionados.forEach(asiento => {
+            let arr = asiento.id.split(/(\d+)/);
+            if (cont==0) {
+                stringAsientos += arr[1];
+            }else{
+                stringAsientos += "," + arr[1];
+            }
+            cont++;
+        });
+        document.cookie = "butacas="+stringAsientos+"; path=/;";
+    }
 });
 // document.querySelector('form').addEventListener('submit', function(event) {
 //     event.preventDefault();
@@ -88,13 +112,15 @@ function generar(celda){
     input.className = "flex justify-center relative top-11 left-4 z-[-1]";
     div.className = "mt-[-20px]";
     let contString = String(cont);
-    let butacasReservadasStrings = butacasReservadas.map(String);
-
-    if (butacasReservadasStrings.includes(contString)) {
-        console.log("ENTRO");
-        img.src = "app/view/images/butacaGris.svg";
-        input.setAttribute("disabled", "");
-    } else {
+    if (butacasReservadas.length != 0) {
+        let butacasReservadasStrings = butacasReservadas.map(String);
+        if (butacasReservadasStrings.includes(contString)) {
+            img.src = "app/view/images/butacaGris.svg";
+            input.setAttribute("disabled", "");
+        } else {
+            img.src = "app/view/images/butacaBlanca.svg";
+        }
+    }else{
         img.src = "app/view/images/butacaBlanca.svg";
     }
     div.appendChild(input);
