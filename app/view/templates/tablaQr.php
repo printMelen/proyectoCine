@@ -49,9 +49,14 @@
                     // var_dump($_SESSION);
                     // echo "</pre>";
                     $precioTotal=0;
+                    $cont=0;
                   foreach (explode(',',$_COOKIE["butacas"]) as $key => $butaca) {
-                      $qr=QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asiento:" . $butaca . "Fecha:" . $fecha);
-                      $name=explode("/",$qr);
+                    if ($_SESSION['mostrada']==0) {
+                        $qr=QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asiento:" . $butaca . "Fecha:" . $fecha);
+                        $_SESSION['qr'][$cont]=$qr;
+                    }
+                    //   $qr=QrController::generarQr("Usuario:" . $_SESSION["nombre"] . "Asiento:" . $butaca . "Fecha:" . $fecha);
+                      $name=explode("/",$_SESSION['qr'][$cont]);
                       $urlimg=URLQR.$name[2];
                     //   echo $urlimg;
                       $precioTotal+=$datos[0]['precio'];
@@ -63,9 +68,10 @@
                               <td class="text-center">{$fecha}</td>
                               <td class="text-center">{$butaca}</td>
                               <td><img src="$urlimg" alt="" srcset="" class="mx-auto"></td>
-                              <td><a href="$qr" download="$name[2]">Descargar QR</a></td>
+                              <td><a href={$_SESSION['qr'][$cont]} download="$name[2]">Descargar QR</a></td>
                           </tr>
                       EOT;
+                      $cont++;
                   }
                   ?>
             </table>

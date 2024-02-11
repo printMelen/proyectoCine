@@ -7,6 +7,7 @@ class ReservarButacasController
         // Recibir datos del cliente
         if (self::comprobar()) {
             $_SESSION["mostrada"]=null;
+            $_SESSION["qr"]=null;
             if (Reservar::insertar()) {
                 $_SESSION["mostrada"]=0;
                 ViewController::cargarVista("tablaQr");
