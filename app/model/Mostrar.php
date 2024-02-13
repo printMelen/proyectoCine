@@ -39,6 +39,17 @@ class Mostrar{
         }
         return $devolver;
     }
+    public static function getPeliculasIndex(){
+        $devolver = array();
+        try {
+            $devolver=Datos::sacarDatos();
+        } catch (PDOException $e) {
+            echo "<br>Error: " . $e->getMessage();  
+            echo "<br>Línea del error: " . $e->getLine();  
+            echo "<br>Archivo del error: " . $e->getFile();
+        }
+        return $devolver;
+    }
     public static function obtenerElenco(){
         $devolver = array();
         try {
