@@ -47,7 +47,7 @@
           </div>
           <div class="flex flex-wrap gap-[58px] mt-[61px] h-[100%] justify-center">
                <?php
-               for ($i=0; $i < count($_SESSION['datosPelis'])-2; $i++) { 
+               for ($i=0; $i < count($datos)-2; $i++) { 
                     include("app/view/templates/cardPeque.php");
                }
                ?>
