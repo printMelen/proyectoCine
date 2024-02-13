@@ -20,7 +20,7 @@
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
      <?php 
           include("app/view/templates/header.php"); 
-          $url = URL . "/peliculas";
+          $url = URL . "/peliculasIndex";
           $response = file_get_contents($url);
           $datos = json_decode($response, true);
      ?>
