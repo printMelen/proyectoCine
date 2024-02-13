@@ -19,13 +19,13 @@ class QrController
         $archivo = "/qr/barcode.php?f=svg&s=qr-l&d=" . urlencode($datos) . "&sf=8&md=1";
 
         if (($isSecure && $port != 443) || (!$isSecure && $port != 80)) {
-            $url = $protocolo . $host . ":" . $port . $rutaAplicacion . $archivo;
+            $url = $protocolo . $host . $rutaAplicacion . $archivo;
         } else {
             $url = $protocolo . $host . $rutaAplicacion . $archivo;
         }
-
+        // echo $host;
         //Visualizar la url generada
-        //echo $url;
+        // echo $url;
         //http://localhost/xclase/venancio/cargaclases/qr/barcode.php?f=svg&s=qr-l&d=sesion%3D4-butaca%3D17-usuario%3Dpepito-pelicula%3Dterror&sf=8&md=1
         //exit;
 
