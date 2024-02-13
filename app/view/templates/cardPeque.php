@@ -1,5 +1,5 @@
 <div class="grid grid-rows-[190px_40px_40px_42px] py-[20px] px-[30px] h-[396px] w-[415px] bg-[#1D1731] rounded-[15.8px]">
-    <img class="w-[100%] h-[100%]" src="app/view/images/caratula/<?php echo $_SESSION['datosPelis'][$i+2]['cartel'];
+    <img class="w-[100%] h-[100%]" src="app/view/images/caratula/<?php echo $datos[$i+2]['cartel'];
     ?>" alt="">
     <div class="flex flex-wrap justify-between pt-[22px]">
         <span>
@@ -14,7 +14,7 @@
         </span>
         <div class="flex gap-[30px]">
             <span>
-            <?php echo $_SESSION['datosPelis'][$i+2]['nombre_genero']?>
+            <?php echo $datos[$i+2]['nombre_genero']?>
             </span>
             <span>
                 <?php
@@ -23,7 +23,7 @@
             </span>
             <span>
             <?php
-                echo $_SESSION['datosPelis'][$i+2]['clasificacion_edad'];
+                echo $datos[$i+2]['clasificacion_edad'];
             ?>
             </span>
         </div>
@@ -31,8 +31,8 @@
     <div class="mt-[26px]">
         <span class="">
             <?php
-                if ($_SESSION['datosPelis'][$i+2]['nombre_director']!=NULL) {
-                    echo "Director: ". $_SESSION['datosPelis'][$i+2]['nombre_director'];
+                if ($datos[$i+2]['nombre_director']!=NULL) {
+                    echo "Director: ". $datos[$i+2]['nombre_director'];
                 }
                 ?>
         </span>
