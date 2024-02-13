@@ -7,17 +7,18 @@ class Fecha{
             $sql = "SELECT 
                 peliculasc.id,
                 sesionesc.pelicula_id,
-                sesionesc.fecha
+                MIN(sesionesc.fecha) as fecha
                 FROM 
                 peliculasc 
                 LEFT JOIN 
                 sesionesc ON peliculasc.id = sesionesc.pelicula_id 
                 GROUP BY 
-                sesionesc.id;
+                sesionesc.id,peliculasc.id, sesionesc.pelicula_id;
             ";
             $resultado = $db->prepare($sql);
             $resultado->execute(); 
             $devolver=$resultado->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($devolver);
             $resultado->closeCursor();
             $resultado = null;
             $db = null; 
