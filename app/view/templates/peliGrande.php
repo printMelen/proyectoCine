@@ -21,14 +21,19 @@
 <body class="container max-w-screen-2xl mx-auto bg-[#020510] text-white">
      <?php include("header.php"); ?>
      <?php 
-          $nombre_peli_encoded = urlencode($_SESSION['datosPelis'][$_GET['id']]['nombre']);
+          $url = URL . "/peliculasIndex";
+          $response = file_get_contents($url);
+          $datos = json_decode($response, true);
+          // var_dump($datos);
+          // echo $datos[$_GET['id']]['nombre'];
+          $nombre_peli_encoded = urlencode($datos[$_GET['id']]['nombre']);
           $url = URL."/sesiones?nombre=".$nombre_peli_encoded;
           $response = file_get_contents($url);
           $data = json_decode($response, true);
-          echo "<pre>";
+          // echo "<pre>";
           // $_SESSION['sesiones'] = $data;
-          print_r($data);
-          echo "</pre>";
+          // print_r($data);
+          // echo "</pre>";
      ?>
      <main class="mt-5">
           <div class="flex items-center">
@@ -97,8 +102,8 @@
                <div class="my-6">
                <?php
                if ($data!=null) {
-                    var_dump($data);
-                    var_dump($data[0]);
+                    // var_dump($data);
+                    // var_dump($data[0]);
                     echo "<form method='post' action='index.php?peticion=butacas'>";
                }
                ?>

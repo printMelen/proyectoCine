@@ -4,7 +4,7 @@ class ButacasController
     public static function inicio()
     {
         $datos=explode(",",$_POST["fechas"]);
-        echo $datos[2];
+        // echo $datos[2];
         setcookie("idSesion", $datos[2]);
         $url = URL."/horas";
         $response = file_get_contents($url);

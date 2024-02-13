@@ -269,18 +269,18 @@ class Mostrar{
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
-                sesionesc.id AS id_sesion, 
-                salasc.id AS id_sala, 
-                salasc.num_butacas AS todas_butacas, 
-                COUNT(butacas_reservadasc.asiento) AS asientos_ocupados
-                FROM 
-                butacas_reservadasc
-                LEFT JOIN 
-                sesionesc ON butacas_reservadasc.idsesion = sesionesc.id
-                LEFT JOIN 
-                salasc ON sesionesc.id = salasc.id
-                GROUP BY
-                salasc.id;
+            sesionesc.id AS id_sesion, 
+            salasc.id AS id_sala, 
+            salasc.num_butacas AS todas_butacas, 
+            COUNT(butacas_reservadasc.asiento) AS asientos_ocupados
+        FROM 
+            butacas_reservadasc
+        LEFT JOIN 
+            sesionesc ON butacas_reservadasc.idsesion = sesionesc.id
+        LEFT JOIN 
+            salasc ON sesionesc.id = salasc.id
+        GROUP BY
+            sesionesc.id, salasc.id, salasc.num_butacas;
             ";
             $resultado = $db->prepare($sql);
             $resultado->execute(); 
@@ -526,28 +526,28 @@ class Mostrar{
         try {
             $db = Conectar::conexion();
             $sql = "SELECT 
-                sesionesc.id AS id_sesion, 
-                salasc.nombre AS nombre_sala, 
-                peliculasc.nombre AS nombre_peli, 
-                sesionesc.fecha AS dia_sesion, 
-                horasc.hora AS hora_sesion 
-                FROM 
-                sesionesc
-                LEFT JOIN 
-                salasc ON sesionesc.sala_id = salasc.id
-                LEFT JOIN 
-                horasc ON sesionesc.hora = horasc.id
-                LEFT JOIN 
-                peliculasc ON sesionesc.pelicula_id = peliculasc.id
-                WHERE
-                peliculasc.nombre LIKE :nom
-                AND
-                sesionesc.fecha >= :dia
-                GROUP BY 
-                sesionesc.fecha
-                ORDER BY
-                sesionesc.fecha
-                LIMIT 3;
+            sesionesc.id AS id_sesion, 
+            salasc.nombre AS nombre_sala, 
+            peliculasc.nombre AS nombre_peli, 
+            sesionesc.fecha AS dia_sesion, 
+            horasc.hora AS hora_sesion 
+        FROM 
+            sesionesc
+        LEFT JOIN 
+            salasc ON sesionesc.sala_id = salasc.id
+        LEFT JOIN 
+            horasc ON sesionesc.hora = horasc.id
+        LEFT JOIN 
+            peliculasc ON sesionesc.pelicula_id = peliculasc.id
+        WHERE
+            peliculasc.nombre LIKE :nom
+        AND
+            sesionesc.fecha >= :dia
+        GROUP BY 
+            sesionesc.id, salasc.nombre, peliculasc.nombre, sesionesc.fecha, horasc.hora
+        ORDER BY
+            sesionesc.fecha
+        LIMIT 3;
             ";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":nom", $nom);
