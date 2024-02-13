@@ -18,8 +18,19 @@
 </head>
 
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
-     <?php include("app/view/templates/header.php"); ?>
+     <?php 
+          include("app/view/templates/header.php"); 
+          $url = URL . "/peliculas";
+          $response = file_get_contents($url);
+          $datos = json_decode($response, true);
+     ?>
      <main class="flex flex-col py-[30px] px-[68px] h-[100%] bg-[#0A031C]">
+          <?php
+          // echo "<pre>";
+          // var_dump($datos);
+          // echo "</pre>";
+          // echo $datos[0]['caratula'];
+          ?>
           <div class="h-[106px]">
                <h1 class="text-white mb-[15px]">Cartelera</h1>
                <button class="w-[142px] h-[46px] bg-[#FFFFFF4C] rounded-[6.29px]">En cartelera</button>

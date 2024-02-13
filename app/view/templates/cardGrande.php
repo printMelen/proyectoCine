@@ -1,5 +1,5 @@
 <div class="grid grid-rows-[265px_46px_53px] p-[35px] h-[466px] w-[653px] bg-[#1D1731] rounded-[15.8px]">
-    <img class="w-[100%] h-[100%]" src="app/view/images/caratula/<?php echo $_SESSION['datosPelis'][$i]['cartel'];
+    <img class="w-[100%] h-[100%]" src="app/view/images/caratula/<?php echo $datos[$i]['caratula'];
     ?>" alt="">
     <div class="flex justify-between pt-[28px]">
         <span>
