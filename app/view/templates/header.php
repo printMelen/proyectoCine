@@ -7,14 +7,14 @@
                 <img src="app/view/images/playOn.svg" alt="" srcset="">
             </a>
             <ul class="text-white flex gap-[50px]">
-                <li><a href="#">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="index.php?peticion=movies">Movies</a></li>
                 <li><a href="#">Series</a></li>
                 <li><a href="#">Top</a></li>
             </ul>
         </div>
         <div class="flex items-center gap-[25px] justify-end">
-            <a href="#" >
+            <a href="index.php?peticion=movies" >
                 <img src="app/view/images/lupa.svg" alt="" srcset="">
             </a>
             <a href="#">
