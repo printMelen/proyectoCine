@@ -39,13 +39,29 @@
           </div>
           <div class="container max-w-screen-1400 flex flex-wrap gap-[40px] mx-auto justify-center my-[30px]">
                <?php
-               for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
-                    echo <<<EOT
-                         <a href="index.php?peticion=moviePreview&id=$i">
-                              <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
-                         </a>
-                    EOT;
+               $_GET['buscar'] = $_GET['buscar'] ?? NULL;
+               if ($_GET['buscar']!=NULL) {
+                    for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
+                         if (strpos($_SESSION['datosPelis'][$i]['nombre'], $_GET['buscar']) !== false) {
+                              echo <<<EOT
+                                   <a href="index.php?peticion=moviePreview&id=$i">
+                                        <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
+                                   </a>
+                              EOT;
+                         }
+                    }
+               }else{
+                    for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
+                         echo <<<EOT
+                              <a href="index.php?peticion=moviePreview&id=$i">
+                                   <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
+                              </a>
+                         EOT;
+                    }
                }
+               // echo "<pre>";
+               // var_dump($_SESSION['datosPelis']);
+               // echo "</pre>";
                ?>
           </div>
      </main>
