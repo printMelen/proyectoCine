@@ -23,13 +23,14 @@
           <div class="h-[250px]">
                <h1 class="text-white mb-[15px]">Buscar peliculas</h1>
                <p class="mb-[50px]">PlayON online cinema offers more than three thousand films for viewing, including new releases and premieres</p>
-               <form class="max-w-md mx-auto mb-5">   
-               <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only text-white">Search</label>
+               <form class="max-w-md mx-auto mb-5" action="index.php">   
+               <input type="hidden" name="peticion" value="movies">
+               <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only text-back">Search</label>
                <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                          <img src="app\view\images\lupa.svg" alt="" srcset="">
                     </div>
-                    <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar peliculas, series,..." required />
+                    <input type="search" id="default-search" name="buscar" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-back dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar peliculas, series,..." required />
                     <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-pink hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
                </div>
                </form>
