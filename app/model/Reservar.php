@@ -15,14 +15,20 @@ class Reservar{
             // Iniciar transacción
             $db->beginTransaction();
             $sql="SELECT 
-            id 
+            id,NIF
             FROM 
             usuariosc 
             WHERE correo LIKE :correo";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":correo", $correo);
             $resultado->execute(); 
-            $idUser= $resultado->fetchColumn();
+            // $idUser= $resultado->fetchColumn(0);
+            // $nif= $resultado->fetchColumn(1);
+            // $_SESSION['nif']=$nif;
+            $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
+            $idUser = $usuario['id'];
+            $nif = $usuario['NIF'];
+            $_SESSION['nif'] = $nif;
             $idSesion=$_COOKIE['idSesion'];
             $butacas=explode(",",$_COOKIE['butacas']);
             $cantButacas=count($butacas);
