@@ -29,6 +29,7 @@ class Reservar{
             $idUser = $usuario['id'];
             $nif = $usuario['NIF'];
             $_SESSION['nif'] = $nif;
+            $_SESSION['correo'] = $correo;
             $idSesion=$_COOKIE['idSesion'];
             $butacas=explode(",",$_COOKIE['butacas']);
             $cantButacas=count($butacas);
