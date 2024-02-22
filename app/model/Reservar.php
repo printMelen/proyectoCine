@@ -3,6 +3,12 @@ class Reservar{
     public static function insertar(){
         $insertado=true;
         try {
+            $correo=null;
+            if ($_SESSION['correo']==null) {
+                $correo=$_COOKIE['correoUsuario'];
+            }else{
+                $correo=$_SESSION['correo'];
+            }
             // Conexión a la base de datos
             $db = Conectar::conexion();
         
@@ -14,7 +20,7 @@ class Reservar{
             usuariosc 
             WHERE correo LIKE :correo";
             $resultado = $db->prepare($sql);
-            $resultado->bindParam(":correo", $_SESSION['correo']);
+            $resultado->bindParam(":correo", $correo);
             $resultado->execute(); 
             $idUser= $resultado->fetchColumn();
             $idSesion=$_COOKIE['idSesion'];
