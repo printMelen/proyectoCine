@@ -80,26 +80,48 @@ class Sesiones{
             $consultaHora->execute([$hora]);
             $idHora = $consultaHora->fetchColumn();
             
-            
-            $idPeli=$pelicula[0]['id_pelicula'];
-            $sql = "INSERT INTO 
-            `sesionesc`( `fecha`, `hora`, `sala_id`, `precio`, `pelicula_id`) 
-            VALUES 
-            (:fecha,:hora,:idSala,:precio,:pelicula_id);
+            $sql = "
+            SELECT
+            id
+            from 
+            sesionesc
+            where
+            hora = :hora and sala_id = :idSala and fecha = :fecha;
             ";
             $resultado = $db->prepare($sql);
             $resultado->bindParam(":fecha", $fecha);
             $resultado->bindParam(":hora", $idHora);
             $resultado->bindParam(":idSala", $sala);
-            $resultado->bindParam(":precio", $precio);
-            $resultado->bindParam(":pelicula_id", $idPeli);
             $resultado->execute();
+            $idSesion = $resultado->fetchColumn();
+            // echo "Hola";
+            // echo $fecha;
+            // echo $idSesion;
+            if ($idSesion==null) {
+                $idPeli=$pelicula[0]['id_pelicula'];
+                $sql = "INSERT INTO 
+                `sesionesc`( `fecha`, `hora`, `sala_id`, `precio`, `pelicula_id`) 
+                VALUES 
+                (:fecha,:hora,:idSala,:precio,:pelicula_id);
+                ";
+                $resultado = $db->prepare($sql);
+                $resultado->bindParam(":fecha", $fecha);
+                $resultado->bindParam(":hora", $idHora);
+                $resultado->bindParam(":idSala", $sala);
+                $resultado->bindParam(":precio", $precio);
+                $resultado->bindParam(":pelicula_id", $idPeli);
+                $resultado->execute();
+                $idSesion = $db->lastInsertId();
+
+            }else{
+                $_SESSION['errorSesion'] = "Ya existe una sesión en esa sala a esa hora.";
+            }
+
             // $consultaInsertarSesion = $db->prepare("INSERT INTO `sesionesc`(`fecha`, `hora`, `sala_id`, `precio`, `pelicula_id`) VALUES ('[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')");
             // $consultaInsertarSesion->execute([$fecha, $idHora, $sala, $precio, $idPeli]);
             
         
             // Obtener el ID de la sesión recién insertada
-            $idSesion = $db->lastInsertId();
             $db->commit();
         
         
