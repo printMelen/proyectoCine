@@ -20,21 +20,48 @@
 <body class="container text-white bg-back max-w-screen-2xl mx-auto font-Poppins">
      <?php include("app/view/templates/header.php"); ?>
      <main class="flex flex-col py-[30px] px-[68px] h-[100%] bg-[#0A031C]">
-          <div class="h-[176px]">
+          <div class="h-[250px]">
                <h1 class="text-white mb-[15px]">Buscar peliculas</h1>
                <p class="mb-[50px]">PlayON online cinema offers more than three thousand films for viewing, including new releases and premieres</p>
+               <form class="max-w-md mx-auto mb-5" action="index.php">   
+               <input type="hidden" name="peticion" value="movies">
+               <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only text-back">Search</label>
+               <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                         <img src="app\view\images\lupa.svg" alt="" srcset="">
+                    </div>
+                    <input type="search" id="default-search" name="buscar" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-back dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar peliculas, series,..." required />
+                    <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-pink hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
+               </div>
+               </form>
                <button class="w-[142px] h-[46px] bg-[#FFFFFF4C] rounded-[6.29px]">Genres</button>
                <button class="w-[142px] h-[46px] bg-[#FFFFFF1A] rounded-[6.29px] ml-[27px]">Released</button>
           </div>
-          <div class="container max-w-screen-1400 flex flex-wrap gap-[40px] mx-auto justify-center my-[20px]">
+          <div class="container max-w-screen-1400 flex flex-wrap gap-[40px] mx-auto justify-center my-[30px]">
                <?php
-               for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
-                    echo <<<EOT
-                         <a href="index.php?peticion=moviePreview&id=$i">
-                              <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
-                         </a>
-                    EOT;
+               $_GET['buscar'] = $_GET['buscar'] ?? NULL;
+               if ($_GET['buscar']!=NULL) {
+                    for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
+                         if (strpos($_SESSION['datosPelis'][$i]['nombre'], $_GET['buscar']) !== false) {
+                              echo <<<EOT
+                                   <a href="index.php?peticion=moviePreview&id=$i">
+                                        <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
+                                   </a>
+                              EOT;
+                         }
+                    }
+               }else{
+                    for ($i = 0; $i < count($_SESSION['datosPelis']); $i++) {
+                         echo <<<EOT
+                              <a href="index.php?peticion=moviePreview&id=$i">
+                                   <img class="w-[200px] h-[300px] rounded-xl shadow-xl" src="app/view/images/caratula/{$_SESSION['datosPelis'][$i]['cartel']}" alt="" srcset="">
+                              </a>
+                         EOT;
+                    }
                }
+               // echo "<pre>";
+               // var_dump($_SESSION['datosPelis']);
+               // echo "</pre>";
                ?>
           </div>
      </main>
