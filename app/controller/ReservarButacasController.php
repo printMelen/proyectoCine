@@ -17,7 +17,8 @@ class ReservarButacasController
                 GenerarPDF::generarPDF("factura.pdf",$nombreRandom);
             }
         } else {
-            echo "No estas logeado";
+            header("Location: http://143.47.43.204:8080/alvaro/proyectoCine/index.php?peticion=login");
+            exit();
         }
     }
     public static function comprobar()
